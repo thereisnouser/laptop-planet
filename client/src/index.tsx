@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-const Greeting: React.FC = () => <h1>Hello World!</h1>;
+import App from './components/app/app';
 
-ReactDOM.render(<Greeting />, document.getElementById('root'));
+ReactDOM.render(<App />, document.getElementById('root'));
