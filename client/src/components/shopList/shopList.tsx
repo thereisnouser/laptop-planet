@@ -3,6 +3,8 @@ import React from 'react';
 import ShopListItemInt from '../../shopListItemInt';
 import ShopListItem from '../shopListItem/shopListItem';
 
+import './shopList.css';
+
 import img1 from './images/img-1.jpg';
 
 const ShopList: React.FC = () => {
@@ -18,16 +20,34 @@ const ShopList: React.FC = () => {
   ];
 
   return (
-    <ul>
-      <ShopListItem
-        id={listItems[0].id}
-        image={listItems[0].image}
-        title={listItems[0].title}
-        price={listItems[0].price}
-        description={listItems[0].description}
-        rating={listItems[0].rating}
-      />
-    </ul>
+    <div className="container">
+      <ul className="shop-list">
+        <ShopListItem
+          id={listItems[0].id}
+          image={listItems[0].image}
+          title={listItems[0].title}
+          price={listItems[0].price}
+          description={listItems[0].description}
+          rating={listItems[0].rating}
+        />
+        <ShopListItem
+          id={listItems[0].id}
+          image={listItems[0].image}
+          title={listItems[0].title}
+          price={listItems[0].price}
+          description={listItems[0].description}
+          rating={listItems[0].rating}
+        />
+        <ShopListItem
+          id={listItems[0].id}
+          image={listItems[0].image}
+          title={listItems[0].title}
+          price={listItems[0].price}
+          description={listItems[0].description}
+          rating={listItems[0].rating}
+        />
+      </ul>
+    </div>
   );
 };
 
