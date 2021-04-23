@@ -1,11 +1,7 @@
-import React from 'react';
-
-import ShopListItemInt from '../../shopListItemInt';
-import ShopListItem from '../shopListItem/shopListItem';
-
+import {
+  React, ShopListItemInt, ShopListItem, img1,
+} from '../../imports';
 import './shopList.css';
-
-import img1 from './images/img-1.jpg';
 
 const ShopList: React.FC = () => {
   const listItems: Array<ShopListItemInt> = [

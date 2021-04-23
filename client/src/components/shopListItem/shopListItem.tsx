@@ -1,7 +1,6 @@
-import React from 'react';
-
-import ShopListItemInt from '../../shopListItemInt';
-
+import {
+  React, ShopListItemInt,
+} from '../../imports';
 import './shopListItem.css';
 
 const ShopListItem: React.FC<ShopListItemInt> = (props: ShopListItemInt) => {
