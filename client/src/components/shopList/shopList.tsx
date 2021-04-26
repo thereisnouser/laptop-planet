@@ -1,10 +1,10 @@
 import {
-  React, ShopListItemInt, ShopListItem, img1,
+  React, ShopItemInt, ShopItem, img1,
 } from '../../imports';
 import './shopList.css';
 
 const ShopList: React.FC = () => {
-  const listItems: Array<ShopListItemInt> = [
+  const listItems: Array<ShopItemInt> = [
     {
       id: 1,
       image: img1,
@@ -18,7 +18,7 @@ const ShopList: React.FC = () => {
   return (
     <div className="container">
       <ul className="shop-list">
-        <ShopListItem
+        <ShopItem
           id={listItems[0].id}
           image={listItems[0].image}
           title={listItems[0].title}
@@ -26,7 +26,7 @@ const ShopList: React.FC = () => {
           description={listItems[0].description}
           rating={listItems[0].rating}
         />
-        <ShopListItem
+        <ShopItem
           id={listItems[0].id}
           image={listItems[0].image}
           title={listItems[0].title}
@@ -34,7 +34,7 @@ const ShopList: React.FC = () => {
           description={listItems[0].description}
           rating={listItems[0].rating}
         />
-        <ShopListItem
+        <ShopItem
           id={listItems[0].id}
           image={listItems[0].image}
           title={listItems[0].title}

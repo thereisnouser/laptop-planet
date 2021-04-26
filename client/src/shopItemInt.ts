@@ -1,4 +1,4 @@
-interface ShopListItemInt {
+interface ShopItemInt {
   id: number,
   image: string,
   title: string,
@@ -7,4 +7,4 @@ interface ShopListItemInt {
   rating: number,
 }
 
-export default ShopListItemInt;
+export default ShopItemInt;
