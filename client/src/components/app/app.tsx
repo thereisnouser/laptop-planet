@@ -1,7 +1,7 @@
 import {
   React, ShopList,
 } from '../../imports';
-import './app.css';
+import './App.css';
 
 const App: React.FC = () => (
   <>

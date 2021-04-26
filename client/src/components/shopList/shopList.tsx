@@ -1,7 +1,7 @@
 import {
   React, ShopItemInt, ShopItem, img1,
 } from '../../imports';
-import './shopList.css';
+import './ShopList.css';
 
 const ShopList: React.FC = () => {
   const listItems: Array<ShopItemInt> = [
@@ -18,30 +18,11 @@ const ShopList: React.FC = () => {
   return (
     <div className="container">
       <ul className="shop-list">
-        <ShopItem
-          id={listItems[0].id}
-          image={listItems[0].image}
-          title={listItems[0].title}
-          price={listItems[0].price}
-          description={listItems[0].description}
-          rating={listItems[0].rating}
-        />
-        <ShopItem
-          id={listItems[0].id}
-          image={listItems[0].image}
-          title={listItems[0].title}
-          price={listItems[0].price}
-          description={listItems[0].description}
-          rating={listItems[0].rating}
-        />
-        <ShopItem
-          id={listItems[0].id}
-          image={listItems[0].image}
-          title={listItems[0].title}
-          price={listItems[0].price}
-          description={listItems[0].description}
-          rating={listItems[0].rating}
-        />
+        {
+          listItems.map((item) => (
+            <ShopItem {...item} />
+          ))
+        }
       </ul>
     </div>
   );
