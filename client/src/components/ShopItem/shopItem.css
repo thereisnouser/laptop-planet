@@ -53,23 +53,6 @@
   font-size: 20px;
   color: #1a1e33;
 }
-.shop-item__rating {
-  color: #edae49;
-}
-.shop-item__star-gold {
-  background: #edae49;
-  clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
-  display: inline-block;
-  height: 24px;
-  width: 24px;
-}
-.shop-item__star-empty {
-  background: #1a1e33;
-  clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
-  display: inline-block;
-  height: 24px;
-  width: 24px;
-}
 .shop-item__description {
   color: #628395;
 }
