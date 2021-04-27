@@ -4,9 +4,7 @@ import {
 import './App.css';
 
 const App: React.FC = () => (
-  <>
-    <ShopList />
-  </>
+  <ShopList />
 );
 
 export default App;

@@ -8,7 +8,7 @@ const ItemRating: React.FC<any> = (props: any) => {
 
   const stars: Array<any> = [];
 
-  for (let i = 0; i < 5; i++) {
+  for (let i = 0; i < 5; i++) { // remake in another branch (add material ui)
     if (i < rating) {
       stars.push(<span key={i} className="shop-item__star-gold" />);
     } else {
