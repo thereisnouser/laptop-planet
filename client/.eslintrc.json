@@ -20,8 +20,18 @@
         "@typescript-eslint"
     ],
     "rules": {
+      "no-plusplus": "off",
       "no-use-before-define": "off",
       "@typescript-eslint/no-use-before-define": ["error"],
-      "react/jsx-filename-extension": [ "warn", {"extensions": [".tsx"]} ]
+      "react/jsx-filename-extension": [ "warn", {"extensions": [".tsx"]} ],
+      "import/extensions": "off",
+      "react/jsx-props-no-spreading": "off"
+    },
+    "settings": {
+        "import/resolver": {
+            "node": {
+                "extensions": [".js", ".jsx", ".ts", ".tsx"]
+            }
+        }
     }
 }
