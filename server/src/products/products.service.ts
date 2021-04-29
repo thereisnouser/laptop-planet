@@ -5,7 +5,7 @@ import { Product } from './interfaces/product.interface';
 export class ProductsService {
   private readonly products: Product[] = [];
 
-  create(product: Product) {
+  create(product: any) {
     this.products.push(product);
   }
 
@@ -18,7 +18,7 @@ export class ProductsService {
     return product;
   }
 
-  update(id: number, props: Product): void {
+  update(id: number, props: any): void {
     const [product, idx] = this.findProduct(id);
     this.products[idx] = {...this.products[idx], ...props};
   }
