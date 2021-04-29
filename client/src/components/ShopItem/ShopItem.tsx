@@ -1,6 +1,7 @@
 import {
   React,
   ShopItemInt, ItemRating,
+  trimDescription,
 } from '../../imports';
 import './ShopItem.css';
 
@@ -26,7 +27,7 @@ const ShopListItem: React.FC<ShopItemInt> = (props: ShopItemInt) => {
               {price}
             </div>
           </div>
-          <div className="shop-item__description">{description}</div>
+          <div className="shop-item__description">{trimDescription(description)}</div>
           <div className="shop-item__footer">
             <ItemRating rating={rating} />
             <button className="shop-item__button" type="button">Add to cart</button>
