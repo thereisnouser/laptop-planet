@@ -1,9 +1,10 @@
-import { Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
+import { CreateProductDto } from './dto/create-product.dto';
 
 @Controller('products')
 export class ProductsController {
   @Post()
-  createProduct(): string {
+  async createProduct(@Body() CreateProductDto: CreateProductDto) {
     return 'Product is created';
   }
 
