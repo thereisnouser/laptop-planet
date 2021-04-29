@@ -18,8 +18,8 @@ export class ProductsController {
   }
 
   @Get(':id')
-  getProduct(@Param('id') id: string): string {
-    return `Product ${id} is here`;
+  async getProduct(@Param('id') id: string): Promise<Product> {
+    return this.productsService.findOne(id);
   }
 
   @Put(':id')
