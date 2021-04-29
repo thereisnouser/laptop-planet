@@ -23,17 +23,17 @@ export class ProductsController {
   }
 
   @Get(':id')
-  async getProduct(@Param('id') id: string): Promise<Product> {
+  async getProduct(@Param('id') id: number): Promise<Product> {
     return this.productsService.findOne(id);
   }
 
   @Patch(':id')
-  async updateProduct(@Param('id') id: string, @Body() updateProductDto: UpdateProductDto) {
+  async updateProduct(@Param('id') id: number, @Body() updateProductDto: UpdateProductDto) {
     this.productsService.update(id, updateProductDto)
   }
 
   @Delete(':id')
-  async removeProduct(@Param('id') id: string) {
+  async removeProduct(@Param('id') id: number) {
     this.productsService.delete(id);
   }
 }
