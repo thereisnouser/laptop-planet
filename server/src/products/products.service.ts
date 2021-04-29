@@ -14,11 +14,23 @@ export class ProductsService {
   }
 
   findOne(id: string): Product {
-    const product = this.products.find((item) => item.id === id);
+    const product = this.findProduct(id)[0];
+    return product;
+  }
+
+  update(id: string, props: Product): void {
+    const [product, idx] = this.findProduct(id);
+    this.products[idx] = {...this.products[idx], ...props};
+  }
+
+  private findProduct(id: string): [Product, number] {
+    const productIdx = this.products.findIndex((item) => item.id === id);
+    const product = this.products[productIdx];
+
     if (!product) {
       throw new NotFoundException('Could not find the product...');
     }
 
-    return product;
+    return [product, productIdx];
   }
 }
