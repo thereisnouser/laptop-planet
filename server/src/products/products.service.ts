@@ -14,24 +14,29 @@ export class ProductsService {
   }
 
   getProduct(id: number): ProductInt {
-    const product = this.findProductAndId(id)[0];
-    return product;
+    const idx = this.findProductIdx(id);
+    return this.products[idx];
   }
 
   updateProduct(id: number, props: any): void {
-    const [product, idx] = this.findProductAndId(id);
-    this.products[idx] = {...this.products[idx], ...props};
+    const idx = this.findProductIdx(id);
+
+    this.products[idx] = {
+      ...this.products[idx],
+      ...props
+    };
   }
 
   removeProduct(id: number): void {
-    const idx = this.findProductAndId(id)[1];
+    const idx = this.findProductIdx(id);
     this.products.splice(idx, 1);
   }
 
-  private findProductAndId(id: number): [ProductInt, number] {
-    const productIdx = this.products.findIndex((item) => item.id === id);
-    const product = this.products[productIdx];
+  private findProductIdx(id: number): number {
+    const idx = this.products.findIndex(
+      item => item.id === id
+    );
 
-    return [product, productIdx];
+    return idx;
   }
 }

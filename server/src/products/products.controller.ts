@@ -13,7 +13,8 @@ export class ProductsController {
   constructor(private productsService: ProductsService) {}
 
   @Post()
-  async createProduct(@Body() createProductDto: CreateProductDto) {
+  async createProduct(
+    @Body() createProductDto: CreateProductDto) {
     this.productsService.createProduct(createProductDto);
   }
 
@@ -23,17 +24,21 @@ export class ProductsController {
   }
 
   @Get(':id')
-  async getProduct(@Param('id') id: number): Promise<ProductInt> {
+  async getProduct(
+    @Param('id') id: number): Promise<ProductInt> {
     return this.productsService.getProduct(id);
   }
 
   @Patch(':id')
-  async updateProduct(@Param('id') id: number, @Body() updateProductDto: UpdateProductDto) {
+  async updateProduct(
+    @Param('id') id: number,
+    @Body() updateProductDto: UpdateProductDto) {
     this.productsService.updateProduct(id, updateProductDto)
   }
 
   @Delete(':id')
-  async removeProduct(@Param('id') id: number) {
+  async removeProduct(
+    @Param('id') id: number) {
     this.productsService.removeProduct(id);
   }
 }
