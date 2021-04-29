@@ -1,34 +1,34 @@
 import { Injectable } from '@nestjs/common';
-import { Product } from './interfaces/product.interface';
+import { ProductInt } from './interfaces/product.interface';
 
 @Injectable()
 export class ProductsService {
-  private readonly products: Product[] = [];
+  private readonly products: ProductInt[] = [];
 
-  create(product: any) {
+  createProduct(product: any) {
     this.products.push(product);
   }
 
-  findAll(): Product[] {
+  getProductsList(): ProductInt[] {
     return this.products;
   }
 
-  findOne(id: number): Product {
-    const product = this.findProduct(id)[0];
+  getProduct(id: number): ProductInt {
+    const product = this.findProductAndId(id)[0];
     return product;
   }
 
-  update(id: number, props: any): void {
-    const [product, idx] = this.findProduct(id);
+  updateProduct(id: number, props: any): void {
+    const [product, idx] = this.findProductAndId(id);
     this.products[idx] = {...this.products[idx], ...props};
   }
 
-  delete(id: number): void {
-    const idx = this.findProduct(id)[1];
+  removeProduct(id: number): void {
+    const idx = this.findProductAndId(id)[1];
     this.products.splice(idx, 1);
   }
 
-  private findProduct(id: number): [Product, number] {
+  private findProductAndId(id: number): [ProductInt, number] {
     const productIdx = this.products.findIndex((item) => item.id === id);
     const product = this.products[productIdx];
 

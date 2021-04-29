@@ -6,7 +6,7 @@ import {
 import { CreateProductDto } from './dto/create-product.dto';
 import { UpdateProductDto } from './dto/update-product.dto';
 import { ProductsService } from './products.service';
-import { Product } from './interfaces/product.interface';
+import { ProductInt } from './interfaces/product.interface';
 
 @Controller('products')
 export class ProductsController {
@@ -14,26 +14,26 @@ export class ProductsController {
 
   @Post()
   async createProduct(@Body() createProductDto: CreateProductDto) {
-    this.productsService.create(createProductDto);
+    this.productsService.createProduct(createProductDto);
   }
 
   @Get()
-  async getProductsList(): Promise<Product[]> {
-    return this.productsService.findAll();
+  async getProductsList(): Promise<ProductInt[]> {
+    return this.productsService.getProductsList();
   }
 
   @Get(':id')
-  async getProduct(@Param('id') id: number): Promise<Product> {
-    return this.productsService.findOne(id);
+  async getProduct(@Param('id') id: number): Promise<ProductInt> {
+    return this.productsService.getProduct(id);
   }
 
   @Patch(':id')
   async updateProduct(@Param('id') id: number, @Body() updateProductDto: UpdateProductDto) {
-    this.productsService.update(id, updateProductDto)
+    this.productsService.updateProduct(id, updateProductDto)
   }
 
   @Delete(':id')
   async removeProduct(@Param('id') id: number) {
-    this.productsService.delete(id);
+    this.productsService.removeProduct(id);
   }
 }
