@@ -1,6 +1,5 @@
-import {
-  Module, ProductsModule,
-} from './imports';
+import { Module } from './imports';
+import { ProductsModule } from './products/products.module';
 
 @Module({
   imports: [ProductsModule],

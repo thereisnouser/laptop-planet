@@ -1,5 +1,6 @@
 import {
-  Module, ProductsController, ProductsService,
+  Module,
+  ProductsController, ProductsService,
 } from '../imports';
 
 @Module({
