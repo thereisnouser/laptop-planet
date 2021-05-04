@@ -3,7 +3,7 @@ import {
 } from '../../imports';
 import './ShopItem.css';
 
-const ShopListItem: React.FC<ShopItemInt> = (props: ShopItemInt) => {
+const ShopItem: React.FC<ShopItemInt> = (props: ShopItemInt) => {
   const {
     id, image, title, price, description, rating,
   } = props;
@@ -24,7 +24,9 @@ const ShopListItem: React.FC<ShopItemInt> = (props: ShopItemInt) => {
               {price}
             </div>
           </div>
-          <div className="shop-item__description">{trimDescription(description)}</div>
+          <div className="shop-item__description">
+            {trimDescription(description)}
+          </div>
           <div className="shop-item__footer">
             <ItemRating rating={rating} />
             <button className="shop-item__button" type="button">Add to cart</button>
@@ -35,4 +37,4 @@ const ShopListItem: React.FC<ShopItemInt> = (props: ShopItemInt) => {
   );
 };
 
-export default ShopListItem;
+export default ShopItem;
