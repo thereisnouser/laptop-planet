@@ -1,18 +1,16 @@
 import {
-  React,
-  ShopItem,
-  getItemsData,
+  React, ShopItemInt, ShopItem,
 } from '../../imports';
 import './ShopList.css';
 
-const ShopList: React.FC = () => {
-  const listItems = getItemsData();
+const ShopList: React.FC<any> = (props: any) => {
+  const { itemsList } = props;
 
   return (
     <div className="container">
       <ul className="shop-list">
         {
-          listItems.map((item) => (
+          itemsList.map((item: ShopItemInt) => (
             <ShopItem {...item} />
           ))
         }

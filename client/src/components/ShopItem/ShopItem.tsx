@@ -1,7 +1,5 @@
 import {
-  React,
-  ShopItemInt, ItemRating,
-  trimDescription,
+  React, ShopItemInt, ItemRating, trimDescription,
 } from '../../imports';
 import './ShopItem.css';
 
@@ -11,7 +9,7 @@ const ShopListItem: React.FC<ShopItemInt> = (props: ShopItemInt) => {
   } = props;
 
   return (
-    <li>
+    <li key={id}>
       <div className="shop-item">
         <div className="shop-item__img">
           <img src={image} alt="img-1" />
@@ -20,7 +18,6 @@ const ShopListItem: React.FC<ShopItemInt> = (props: ShopItemInt) => {
           <div className="shop-item__header">
             <div className="shop-item__title">
               {title}
-              {id}
             </div>
             <div className="shop-item__price">
               $

@@ -1,10 +1,17 @@
 import {
-  React, ShopList,
+  React, useState,
+  getItemsData, ShopList,
 } from '../../imports';
 import './App.css';
 
-const App: React.FC = () => (
-  <ShopList />
-);
+const App: React.FC = () => {
+  const [itemsList] = useState(getItemsData());
+
+  return (
+    <ShopList
+      itemsList={itemsList}
+    />
+  );
+};
 
 export default App;

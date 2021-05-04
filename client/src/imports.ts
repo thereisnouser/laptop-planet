@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
 
 import App from './components/App/App';
@@ -16,7 +16,7 @@ import img2 from './components/App/images/Irbis-NB260.png';
 import img3 from './components/App/images/IdeaPad-Slim-1-11AST-05.png';
 
 export {
-  React, ReactDOM,
+  React, useState, ReactDOM,
   App, ShopList, ShopItem, ItemRating,
   trimDescription,
   getItemsData,
