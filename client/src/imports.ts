@@ -11,13 +11,15 @@ import trimDescription from './components/ShopItem/TrimDescription';
 
 import getItemsData from './GetItemsData';
 
-import img1 from './components/ShopList/images/E210MA-GJ002T.png';
+import img1 from './components/App/images/E210MA-GJ002T.png';
+import img2 from './components/App/images/Irbis-NB260.png';
+import img3 from './components/App/images/IdeaPad-Slim-1-11AST-05.png';
 
 export {
   React, ReactDOM,
   App, ShopList, ShopItem, ItemRating,
   trimDescription,
   getItemsData,
-  img1,
+  img1, img2, img3,
 };
 export type { ShopItemInt };
