@@ -20,10 +20,7 @@ export class ProductsService {
   updateProduct(id: number, props: any): void {
     const idx = this.findProductIdx(id);
 
-    this.products[idx] = {
-      ...this.products[idx],
-      ...props
-    };
+    this.products[idx] = {...props};
   }
 
   removeProduct(id: number): void {
@@ -33,7 +30,7 @@ export class ProductsService {
 
   private findProductIdx(id: number): number {
     const idx = this.products.findIndex(
-      item => item.id === id
+      item => item.id == id
     );
 
     return idx;
