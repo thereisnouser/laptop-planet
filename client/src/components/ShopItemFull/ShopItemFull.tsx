@@ -1,6 +1,7 @@
 import {
   React, ShopItemInt, ItemRating,
 } from '../../imports';
+import './ShopItemFull.css';
 
 const ShopItemFull: React.FC<ShopItemInt> = (props: ShopItemInt) => {
   const {
@@ -16,9 +17,7 @@ const ShopItemFull: React.FC<ShopItemInt> = (props: ShopItemInt) => {
         <div className="shop-item-full__info">
           <div className="shop-item-full__header">
             <div className="shop-item-full__title">
-              <button 
-                className="shop-item-full__title-button"
-                type="button">
+              <button className="shop-item-full__title-button" type="button">
                 {title}
               </button>
             </div>
@@ -37,7 +36,7 @@ const ShopItemFull: React.FC<ShopItemInt> = (props: ShopItemInt) => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
 export default ShopItemFull;
