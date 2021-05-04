@@ -5,7 +5,7 @@ import './ShopItem.css';
 
 const ShopItem: React.FC<ShopItemInt> = (props: ShopItemInt) => {
   const {
-    id, image, title, price, description, rating,
+    id, image, title, price, description, rating, showMoreInfoToggler,
   } = props;
 
   return (
@@ -16,9 +16,9 @@ const ShopItem: React.FC<ShopItemInt> = (props: ShopItemInt) => {
         </div>
         <div className="shop-item__info">
           <div className="shop-item__header">
-            <div className="shop-item__title">
+            <button className="shop-item__title-button" onClick={() => showMoreInfoToggler(id)} type="button">
               {title}
-            </div>
+            </button>
             <div className="shop-item__price">
               $
               {price}

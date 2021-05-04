@@ -4,14 +4,17 @@ import {
 import './ShopList.css';
 
 const ShopList: React.FC<any> = (props: any) => {
-  const { itemsList } = props;
+  const { itemsList, showMoreInfoToggler } = props;
 
   return (
     <div className="container">
       <ul className="shop-list">
         {
           itemsList.map((item: ShopItemInt) => (
-            <ShopItem {...item} />
+            <ShopItem
+              {...item}
+              showMoreInfoToggler={(id: number) => showMoreInfoToggler(id)}
+            />
           ))
         }
       </ul>

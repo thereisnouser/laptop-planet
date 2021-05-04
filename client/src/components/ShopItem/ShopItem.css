@@ -38,10 +38,24 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-wrap: wrap;
 }
 .shop-item__title {
   font-size: 22px;
   color: #628395;
+}
+.shop-item__title-button {
+  padding: 0;
+  border: 0;
+
+  font-size: 20px;
+  color: #628395;
+  background-color: #fffbfc;
+
+  cursor: pointer;
+}
+.shop-item__title-button:hover {
+  color: #1a1e33;
 }
 .shop-item__price {
   font-size: 20px;
@@ -64,6 +78,8 @@
   border-radius: 8px;
   background-color: #93032E;
   color: #fffbfc;
+
+  cursor: pointer;
 }
 .shop-item__button:hover {
   background-color: #fffbfc;
