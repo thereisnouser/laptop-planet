@@ -1,19 +1,18 @@
 import { Injectable } from '@nestjs/common';
-import { ProductInt } from './interfaces/product.interface';
 
 @Injectable()
 export class ProductsService {
-  private readonly products: ProductInt[] = [];
+  private readonly products: Array<any> = [];
 
   createProduct(product: any) {
     this.products.push(product);
   }
 
-  getProductsList(): ProductInt[] {
+  getProductsList() {
     return this.products;
   }
 
-  getProduct(id: number): ProductInt {
+  getProduct(id: number) {
     const idx = this.findProductIdx(id);
     return this.products[idx];
   }

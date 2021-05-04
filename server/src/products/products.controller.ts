@@ -1,5 +1,4 @@
 import { Controller, Body, Param, Get, Post, Patch, Delete } from '@nestjs/common';
-import { ProductInt } from './interfaces/product.interface';
 import { CreateProductDto } from './dto/create-product.dto';
 import { UpdateProductDto } from './dto/update-product.dto';
 import { ProductsService } from './products.service';
@@ -15,13 +14,13 @@ export class ProductsController {
   }
 
   @Get()
-  async getProductsList(): Promise<ProductInt[]> {
+  async getProductsList(): Promise<Array<any>> {
     return this.productsService.getProductsList();
   }
 
   @Get(':id')
   async getProduct(
-    @Param('id') id: number): Promise<ProductInt> {
+    @Param('id') id: number): Promise<Array<any>> {
     return this.productsService.getProduct(id);
   }
 
