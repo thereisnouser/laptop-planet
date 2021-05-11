@@ -6,11 +6,11 @@ const getItemsData = () => {
 
   useEffect(() => {
     fetch(`${SERVER}api/products/`)
-      .then(res => res.json())
-      .then(res => setItems(res))
+      .then((res) => res.json())
+      .then((res) => setItems(res));
   }, []);
 
   return items;
-}
+};
 
 export default getItemsData;
