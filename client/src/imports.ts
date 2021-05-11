@@ -12,9 +12,9 @@ import trimDescription from './components/ShopItem/TrimDescription';
 
 import getItemsData from './GetItemsData';
 
-import img1 from './components/App/images/E210MA-GJ002T.png';
-import img2 from './components/App/images/Irbis-NB260.png';
-import img3 from './components/App/images/IdeaPad-Slim-1-11AST-05.png';
+import img1 from './components/App/images/e210ma-gj002t.png';
+import img2 from './components/App/images/irbis-nb260.png';
+import img3 from './components/App/images/ideapad-slim-1-11ast-05.png';
 
 export {
   React, useState, ReactDOM,
