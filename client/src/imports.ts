@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
 
+import {
+  Grid, Button, Paper, Typography,
+} from '@material-ui/core';
+
 import App from './components/App/App';
 import ShopItemInt from './shopItemInt';
 import ShopList from './components/ShopList/ShopList';
@@ -18,6 +22,7 @@ import img3 from './components/App/images/ideapad-slim-1-11ast-05.png';
 
 export {
   React, useState, ReactDOM,
+  Grid, Button, Paper, Typography,
   App, ShopList, ShopItem, ShopItemFull, ItemRating,
   trimDescription,
   getItemsData,

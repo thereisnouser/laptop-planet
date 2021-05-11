@@ -1,5 +1,6 @@
 import {
-  React, ShopItemInt, ItemRating, trimDescription,
+  React, Grid, Button, Paper, Typography,
+  ShopItemInt, ItemRating, trimDescription,
 } from '../../imports';
 import './ShopItem.css';
 
@@ -9,31 +10,43 @@ const ShopItem: React.FC<ShopItemInt> = (props: ShopItemInt) => {
   } = props;
 
   return (
-    <li key={id}>
-      <div className="shop-item">
-        <div className="shop-item__img">
-          <img src={image} alt="img-1" />
-        </div>
-        <div className="shop-item__info">
-          <div className="shop-item__header">
-            <button className="shop-item__title-button" onClick={() => showMoreInfoToggler(id)} type="button">
-              {title}
-            </button>
-            <div className="shop-item__price">
-              $
-              {price}
-            </div>
-          </div>
-          <div className="shop-item__description">
-            {trimDescription(description)}
-          </div>
-          <div className="shop-item__footer">
-            <ItemRating rating={rating} />
-            <button className="shop-item__button" type="button">Add to cart</button>
-          </div>
-        </div>
-      </div>
-    </li>
+    <Grid item key={id}>
+      <Paper elevation={4} className="shop-item">
+        <Grid container spacing={2}>
+          <Grid item xs={3}>
+            <img className="shop-item__img" src={image} alt="img-1" />
+          </Grid>
+          <Grid item xs={9} container direction="column" justify="space-around">
+            <Grid item container justify="space-between" alignItems="center">
+              <Grid item>
+                <Typography className="shop-item__title" onClick={() => showMoreInfoToggler(id)}>
+                  {title}
+                </Typography>
+              </Grid>
+              <Grid item>
+                <Typography className="shop-item__price">
+                  $
+                  {price}
+                </Typography>
+              </Grid>
+            </Grid>
+            <Grid item>
+              <Typography className="shop-item__description">
+                {trimDescription(description)}
+              </Typography>
+            </Grid>
+            <Grid item container justify="space-between" alignItems="center">
+              <Grid item>
+                <ItemRating rating={rating} />
+              </Grid>
+              <Grid item>
+                <Button variant="contained">Add to cart</Button>
+              </Grid>
+            </Grid>
+          </Grid>
+        </Grid>
+      </Paper>
+    </Grid>
   );
 };
 
