@@ -21,10 +21,6 @@ import trimDescription from './components/ShopItem/TrimDescription';
 import getItemsData from './GetItemsData';
 import muiconfig from './muiconfig';
 
-import img1 from './components/App/images/e210ma-gj002t.png';
-import img2 from './components/App/images/irbis-nb260.png';
-import img3 from './components/App/images/ideapad-slim-1-11ast-05.png';
-
 export {
   React, useState, ReactDOM,
   BrowserRouter, Route, Link,
@@ -33,6 +29,5 @@ export {
   App, ShopList, ShopItem, ShopItemFull,
   trimDescription,
   getItemsData, muiconfig,
-  img1, img2, img3,
 };
 export type { ShopItemInt };
