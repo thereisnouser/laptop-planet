@@ -6,7 +6,7 @@ import {
 
 import {
   CssBaseline, ThemeProvider,
-  Container, Grid, Button, Paper, Typography,
+  Container, Grid, Button, Paper, Typography, InputBase, IconButton,
 } from '@material-ui/core';
 import { Rating } from '@material-ui/lab';
 
@@ -25,7 +25,7 @@ export {
   React, useState, ReactDOM,
   BrowserRouter, Route, Link,
   CssBaseline, ThemeProvider,
-  Container, Grid, Button, Paper, Typography, Rating,
+  Container, Grid, Button, Paper, Typography, InputBase, IconButton, Rating,
   App, ShopList, ShopItem, ShopItemFull,
   trimDescription,
   getItemsData, muiconfig,
