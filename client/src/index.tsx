@@ -1,5 +1,11 @@
 import {
   React, ReactDOM, App,
+  ThemeProvider,
+  muiconfig,
 } from './imports';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+ReactDOM.render((
+  <ThemeProvider theme={muiconfig}>
+    <App />
+  </ThemeProvider>
+), document.getElementById('root'));
