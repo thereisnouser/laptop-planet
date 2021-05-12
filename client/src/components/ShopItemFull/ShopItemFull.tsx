@@ -1,6 +1,5 @@
 import {
-  React, Grid, Button, Paper, Typography,
-  ShopItemInt, Rating,
+  React, Grid, Button, Paper, Typography, Rating, ShopItemInt,
 } from '../../imports';
 import './ShopItemFull.css';
 

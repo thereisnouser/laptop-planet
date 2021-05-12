@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 
 import {
   CssBaseline, ThemeProvider,
-  Grid, Button, Paper, Typography,
+  Container, Grid, Button, Paper, Typography,
 } from '@material-ui/core';
 import { Rating } from '@material-ui/lab';
 
@@ -25,7 +25,7 @@ import img3 from './components/App/images/ideapad-slim-1-11ast-05.png';
 export {
   React, useState, ReactDOM,
   CssBaseline, ThemeProvider,
-  Grid, Button, Paper, Typography, Rating,
+  Container, Grid, Button, Paper, Typography, Rating,
   App, ShopList, ShopItem, ShopItemFull,
   trimDescription,
   getItemsData, muiconfig,
