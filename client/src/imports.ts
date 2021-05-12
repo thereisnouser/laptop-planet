@@ -12,7 +12,6 @@ import ShopItemInt from './shopItemInt';
 import ShopList from './components/ShopList/ShopList';
 import ShopItem from './components/ShopItem/ShopItem';
 import ShopItemFull from './components/ShopItemFull/ShopItemFull';
-import ItemRating from './components/ItemRating/ItemRating';
 
 import trimDescription from './components/ShopItem/TrimDescription';
 
@@ -27,7 +26,7 @@ export {
   React, useState, ReactDOM,
   CssBaseline, ThemeProvider,
   Grid, Button, Paper, Typography, Rating,
-  App, ShopList, ShopItem, ShopItemFull, ItemRating,
+  App, ShopList, ShopItem, ShopItemFull,
   trimDescription,
   getItemsData, muiconfig,
   img1, img2, img3,
