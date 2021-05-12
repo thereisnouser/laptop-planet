@@ -1,8 +1,6 @@
-import { Container } from '@material-ui/core';
 import {
-  React, Grid, ShopItemInt, ShopItem,
+  React, Grid, Container, ShopItemInt, ShopItem,
 } from '../../imports';
-import './ShopList.css';
 
 const ShopList: React.FC<any> = (props: any) => {
   const { itemsList, showMoreInfoToggler } = props;

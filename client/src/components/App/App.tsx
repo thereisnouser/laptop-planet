@@ -2,7 +2,6 @@ import {
   React, useState,
   getItemsData, ShopList, ShopItemFull,
 } from '../../imports';
-import './App.css';
 
 // need to replace w/ routing
 function isItemActive(itemsList: any) {
