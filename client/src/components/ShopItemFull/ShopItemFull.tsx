@@ -19,12 +19,12 @@ const ShopItemFull: React.FC<ShopItemInt> = (props: ShopItemInt) => {
           <Grid item xs={6} container direction="column" justify="space-around">
             <Grid item container justify="space-between" alignItems="center">
               <Grid item>
-                <Typography className="shop-item-full__title" onClick={() => showMoreInfoToggler(id)}>
+                <Typography variant="h5" className="shop-item-full__title" onClick={() => showMoreInfoToggler(id)}>
                   {title}
                 </Typography>
               </Grid>
               <Grid item>
-                <Typography className="shop-item-full__price">
+                <Typography variant="h6" className="shop-item-full__price">
                   $
                   {price}
                 </Typography>
