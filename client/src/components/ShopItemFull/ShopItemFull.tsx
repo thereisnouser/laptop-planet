@@ -16,7 +16,7 @@ const ShopItemFull: React.FC<ShopItemInt> = (props: ShopItemInt) => {
           <Grid item>
             <img className="shop-item-full__img" src={image} alt="img-1" />
           </Grid>
-          <Grid item xs={6} container direction="column" justify="space-around">
+          <Grid item md={6} xs={12} container direction="column" justify="space-around">
             <Grid item container justify="space-between" alignItems="center">
               <Grid item>
                 <Typography variant="h5" className="shop-item-full__title" onClick={() => showMoreInfoToggler(id)}>

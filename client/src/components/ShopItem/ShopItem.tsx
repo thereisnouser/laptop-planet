@@ -13,10 +13,10 @@ const ShopItem: React.FC<ShopItemInt> = (props: ShopItemInt) => {
     <Grid item key={id}>
       <Paper elevation={4} className="shop-item">
         <Grid container spacing={2}>
-          <Grid item xs={3}>
+          <Grid item sm={3} xs={12}>
             <img className="shop-item__img" src={image} alt="img-1" />
           </Grid>
-          <Grid item xs={9} container direction="column" justify="space-around">
+          <Grid item sm={9} xs={12} container direction="column" justify="space-around">
             <Grid item container justify="space-between" alignItems="center">
               <Grid item>
                 <Typography variant="h6" className="shop-item__title" onClick={() => showMoreInfoToggler(id)}>
