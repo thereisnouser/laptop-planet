@@ -1,10 +1,10 @@
 import {
-  React, useState, BrowserRouter, Route,
+  React, BrowserRouter, Route,
   getItemsData, ShopList, ShopItemFull,
 } from '../../imports';
 
 const App: React.FC = () => {
-  const [itemsList] = useState(getItemsData());
+  const itemsList = getItemsData();
 
   return (
     <BrowserRouter>
