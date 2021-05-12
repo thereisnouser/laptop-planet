@@ -1,6 +1,6 @@
 import {
   React, Grid, Button, Paper, Typography,
-  ShopItemInt, ItemRating,
+  ShopItemInt, Rating,
 } from '../../imports';
 import './ShopItemFull.css';
 
@@ -37,7 +37,7 @@ const ShopItemFull: React.FC<ShopItemInt> = (props: ShopItemInt) => {
             </Grid>
             <Grid item container justify="space-between" alignItems="center">
               <Grid item>
-                <ItemRating rating={rating} />
+                <Rating name="read-only" value={rating} readOnly />
               </Grid>
               <Grid item>
                 <Button color="primary" variant="contained">Add to cart</Button>
