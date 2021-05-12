@@ -1,5 +1,5 @@
 import {
-  React, useState,
+  React, useState, BrowserRouter, Route,
   getItemsData, ShopList, ShopItemFull,
 } from '../../imports';
 
@@ -39,10 +39,14 @@ const App: React.FC = () => {
   }
 
   return (
-    <ShopList
-      itemsList={itemsList}
-      showMoreInfoToggler={showMoreInfoToggler}
-    />
+    <BrowserRouter>
+      <Route path="/">
+        <ShopList
+          itemsList={itemsList}
+          showMoreInfoToggler={showMoreInfoToggler}
+        />
+      </Route>
+    </BrowserRouter>
   );
 };
 
