@@ -1,5 +1,5 @@
 import {
-  Controller, Body, Param,
+  Controller, Body, Param, Query,
   Delete, Get, Post, Put,
   UsePipes, NotFoundException, BadRequestException,
 } from '@nestjs/common';
@@ -18,9 +18,15 @@ export class ProductsController {
   }
 
   @Get()
-  async getProductsList() {
-    const productsList = await this.productsService.getProductsList();
+  async getProductsList(@Query('description') description) {
+    let productsList = await this.productsService.getProductsList();
     if (!productsList) throw new NotFoundException();
+
+    if (description) {
+      productsList = productsList.filter((item) => (
+        item.description.toLowerCase().includes(description.toLowerCase())
+      ));
+    }
 
     return productsList;
   }
