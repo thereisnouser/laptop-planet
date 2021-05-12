@@ -1,5 +1,6 @@
 import {
-  React, Grid, Button, Paper, Typography, Rating,
+  React, Link,
+  Grid, Button, Paper, Typography, Rating,
   ShopItemInt, trimDescription,
 } from '../../imports';
 import './ShopItem.css';
@@ -20,7 +21,9 @@ const ShopItem: React.FC<ShopItemInt> = (props: ShopItemInt) => {
             <Grid item container justify="space-between" alignItems="center">
               <Grid item>
                 <Typography variant="h6" className="shop-item__title">
-                  {title}
+                  <Link to={`/product/${id}`}>
+                    {title}
+                  </Link>
                 </Typography>
               </Grid>
               <Grid item>
