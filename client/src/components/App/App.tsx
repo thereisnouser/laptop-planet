@@ -1,6 +1,6 @@
 import {
   React, useState, BrowserRouter, Route,
-  getItemsData, ShopList,
+  getItemsData, ShopList, ShopItemFull,
 } from '../../imports';
 
 const App: React.FC = () => {
@@ -8,11 +8,16 @@ const App: React.FC = () => {
 
   return (
     <BrowserRouter>
-      <Route path="/">
+      <Route path="/" exact>
         <ShopList itemsList={itemsList} />
+      </Route>
+      <Route path="/product/:id">
+        <ShopItemFull {...itemsList[0]} />
       </Route>
     </BrowserRouter>
   );
+  // remove hard coded '0' id when add method
+  // for getting product by id from server
 };
 
 export default App;
