@@ -40,7 +40,7 @@ const ShopItem: React.FC<ShopItemInt> = (props: ShopItemInt) => {
                 <ItemRating rating={rating} />
               </Grid>
               <Grid item>
-                <Button variant="contained">Add to cart</Button>
+                <Button color="primary" variant="contained">Add to cart</Button>
               </Grid>
             </Grid>
           </Grid>
