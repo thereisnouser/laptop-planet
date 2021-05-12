@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
 import {
-  BrowserRouter, Switch, Route, Link,
+  BrowserRouter, Route, Link,
 } from 'react-router-dom';
 
 import {
@@ -27,7 +27,7 @@ import img3 from './components/App/images/ideapad-slim-1-11ast-05.png';
 
 export {
   React, useState, ReactDOM,
-  BrowserRouter, Switch, Route, Link,
+  BrowserRouter, Route, Link,
   CssBaseline, ThemeProvider,
   Container, Grid, Button, Paper, Typography, Rating,
   App, ShopList, ShopItem, ShopItemFull,

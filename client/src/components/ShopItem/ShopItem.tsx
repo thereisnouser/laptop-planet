@@ -20,8 +20,8 @@ const ShopItem: React.FC<ShopItemInt> = (props: ShopItemInt) => {
           <Grid item sm={9} xs={12} container direction="column" justify="space-around">
             <Grid item container justify="space-between" alignItems="center">
               <Grid item>
-                <Typography variant="h6" className="shop-item__title">
-                  <Link to={`/product/${id}`}>
+                <Typography variant="h6">
+                  <Link to={`/product/${id}`} className="shop-item__title">
                     {title}
                   </Link>
                 </Typography>
