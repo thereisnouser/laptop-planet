@@ -1,6 +1,6 @@
 import {
   React, BrowserRouter, Route,
-  getItemsData, ShopList, ShopItemFull,
+  SearchPanel, getItemsData, ShopList, ShopItemFull,
 } from '../../imports';
 
 const App: React.FC = () => {
@@ -9,6 +9,7 @@ const App: React.FC = () => {
   return (
     <BrowserRouter>
       <Route path="/" exact>
+        <SearchPanel />
         <ShopList itemsList={itemsList} />
       </Route>
       <Route path="/product/:id">

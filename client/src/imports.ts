@@ -8,9 +8,11 @@ import {
   CssBaseline, ThemeProvider,
   Container, Grid, Button, Paper, Typography, InputBase, IconButton,
 } from '@material-ui/core';
+import { Search as SearchIcon } from '@material-ui/icons';
 import { Rating } from '@material-ui/lab';
 
 import App from './components/App/App';
+import SearchPanel from './components/SearchPanel/SearchPanel';
 import ShopItemInt from './shopItemInt';
 import ShopList from './components/ShopList/ShopList';
 import ShopItem from './components/ShopItem/ShopItem';
@@ -25,8 +27,8 @@ export {
   React, useState, ReactDOM,
   BrowserRouter, Route, Link,
   CssBaseline, ThemeProvider,
-  Container, Grid, Button, Paper, Typography, InputBase, IconButton, Rating,
-  App, ShopList, ShopItem, ShopItemFull,
+  Container, Grid, Button, Paper, Typography, InputBase, IconButton, SearchIcon, Rating,
+  SearchPanel, App, ShopList, ShopItem, ShopItemFull,
   trimDescription,
   getItemsData, muiconfig,
 };

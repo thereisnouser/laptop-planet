@@ -1,5 +1,5 @@
 import {
-  React, Paper, InputBase, IconButton,
+  React, Paper, InputBase, IconButton, SearchIcon,
 } from '../../imports';
 
 const SearchPanel: React.FC = () => (
@@ -7,7 +7,9 @@ const SearchPanel: React.FC = () => (
     <InputBase
       placeholder="Search..."
     />
-    <IconButton />
+    <IconButton type="submit" aria-label="search">
+      <SearchIcon />
+    </IconButton>
   </Paper>
 );
 
