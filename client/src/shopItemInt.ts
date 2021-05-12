@@ -5,8 +5,6 @@ interface ShopItemInt {
   price: number,
   description: string,
   rating: number,
-  active?: boolean,
-  showMoreInfoToggler?: any,
 }
 
 export default ShopItemInt;

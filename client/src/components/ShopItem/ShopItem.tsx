@@ -6,7 +6,7 @@ import './ShopItem.css';
 
 const ShopItem: React.FC<ShopItemInt> = (props: ShopItemInt) => {
   const {
-    id, image, title, price, description, rating, showMoreInfoToggler,
+    id, image, title, price, description, rating,
   } = props;
 
   return (
@@ -19,7 +19,7 @@ const ShopItem: React.FC<ShopItemInt> = (props: ShopItemInt) => {
           <Grid item sm={9} xs={12} container direction="column" justify="space-around">
             <Grid item container justify="space-between" alignItems="center">
               <Grid item>
-                <Typography variant="h6" className="shop-item__title" onClick={() => showMoreInfoToggler(id)}>
+                <Typography variant="h6" className="shop-item__title">
                   {title}
                 </Typography>
               </Grid>
