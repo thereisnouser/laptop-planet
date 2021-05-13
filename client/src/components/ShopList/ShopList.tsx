@@ -3,7 +3,12 @@ import {
 } from '../../imports';
 import './ShopList.css';
 
-export const ShopList: React.FC<any> = (props: any) => {
+interface ShopListProps {
+  itemsList: IShopItem[];
+  showMoreInfoToggler: (id: number) => void;
+}
+
+export const ShopList: React.FC<ShopListProps> = (props): React.ReactElement => {
   const { itemsList, showMoreInfoToggler } = props;
 
   return (
@@ -12,7 +17,7 @@ export const ShopList: React.FC<any> = (props: any) => {
         {
           itemsList.map((item: IShopItem) => (
             <ShopItem
-              {...item}
+              item={item}
               showMoreInfoToggler={(id: number) => showMoreInfoToggler(id)}
             />
           ))

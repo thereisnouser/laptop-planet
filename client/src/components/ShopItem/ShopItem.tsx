@@ -3,10 +3,17 @@ import {
 } from '../../imports';
 import './ShopItem.css';
 
-export const ShopItem: React.FC<IShopItem> = (props: IShopItem) => {
+interface ShopItemProps {
+  item: IShopItem;
+  showMoreInfoToggler: (id: number) => void;
+}
+
+export const ShopItem: React.FC<ShopItemProps> = ({
+  item, showMoreInfoToggler,
+}): React.ReactElement => {
   const {
-    id, image, title, price, description, rating, showMoreInfoToggler,
-  } = props;
+    id, image, title, price, description, rating,
+  } = item;
 
   return (
     <li key={id}>

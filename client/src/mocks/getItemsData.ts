@@ -3,8 +3,8 @@ import {
   img1, img2, img3,
 } from '../imports';
 
-export function getItemsData() {
-  const listItems: Array<IShopItem> = [
+export function getItemsData(): IShopItem[] {
+  const listItems = [
     {
       id: 1,
       image: img1,

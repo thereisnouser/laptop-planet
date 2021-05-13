@@ -5,7 +5,7 @@ import {
 import './App.css';
 
 // need to replace w/ routing
-function getItemIndex(itemsList: IShopItem[]) {
+function getItemIndex(itemsList: IShopItem[]): number {
   for (let i = 0; i < itemsList.length; i++) {
     if (itemsList[i].active) {
       return i;
@@ -15,10 +15,10 @@ function getItemIndex(itemsList: IShopItem[]) {
   return -1;
 }
 
-export const App: React.FC = () => {
+export const App: React.FC = (): React.ReactElement => {
   const [itemsList, setItemsList] = useState(getItemsData());
 
-  const showMoreInfoToggler = (id: number) => {
+  const showMoreInfoToggler = (id: number): void => {
     setItemsList(() => [
       ...itemsList.slice(0, id - 1),
       {
@@ -29,12 +29,11 @@ export const App: React.FC = () => {
     ]);
   };
 
-  const idxActiveItem = getItemIndex(itemsList);
+  const idxActiveItem: number = getItemIndex(itemsList);
   if (idxActiveItem >= 0) {
     return (
       <ShopItemFull
         {...itemsList[idxActiveItem]}
-        showMoreInfoToggler={showMoreInfoToggler}
       />
     );
   }
