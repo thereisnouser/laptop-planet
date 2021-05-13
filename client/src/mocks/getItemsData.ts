@@ -1,7 +1,7 @@
 import {
   ShopItemInt,
   img1, img2, img3,
-} from './imports';
+} from '../imports';
 
 function getItemsData() {
   const listItems: Array<ShopItemInt> = [

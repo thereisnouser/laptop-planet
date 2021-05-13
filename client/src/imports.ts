@@ -10,7 +10,7 @@ import ItemRating from './components/ItemRating/ItemRating';
 
 import trimDescription from './components/ShopItem/TrimDescription';
 
-import getItemsData from './GetItemsData';
+import getItemsData from './mocks/getItemsData';
 
 // img{id} naming only for testing / before fetching images from server
 import img1 from './components/App/images/e210ma-gj002t.png';
