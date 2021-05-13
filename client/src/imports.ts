@@ -1,16 +1,16 @@
 import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
 
-import App from './components/App/App';
-import ShopItemInt from './shopItemInt';
-import ShopList from './components/ShopList/ShopList';
-import ShopItem from './components/ShopItem/ShopItem';
-import ShopItemFull from './components/ShopItemFull/ShopItemFull';
-import ItemRating from './components/ItemRating/ItemRating';
+import { App } from './components/App/App';
+import { ShopItemInt } from './shopItemInt';
+import { ShopList } from './components/ShopList/ShopList';
+import { ShopItem } from './components/ShopItem/ShopItem';
+import { ShopItemFull } from './components/ShopItemFull/ShopItemFull';
+import { ItemRating } from './components/ItemRating/ItemRating';
 
-import trimDescription from './components/ShopItem/TrimDescription';
+import { trimDescription } from './components/ShopItem/TrimDescription';
 
-import getItemsData from './mocks/getItemsData';
+import { getItemsData } from './mocks/getItemsData';
 
 // img{id} naming only for testing / before fetching images from server
 import img1 from './components/App/images/e210ma-gj002t.png';

@@ -3,7 +3,7 @@ import {
 } from '../../imports';
 import './ShopItem.css';
 
-const ShopItem: React.FC<ShopItemInt> = (props: ShopItemInt) => {
+export const ShopItem: React.FC<ShopItemInt> = (props: ShopItemInt) => {
   const {
     id, image, title, price, description, rating, showMoreInfoToggler,
   } = props;
@@ -36,5 +36,3 @@ const ShopItem: React.FC<ShopItemInt> = (props: ShopItemInt) => {
     </li>
   );
 };
-
-export default ShopItem;

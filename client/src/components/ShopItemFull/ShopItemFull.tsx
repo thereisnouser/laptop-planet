@@ -3,7 +3,7 @@ import {
 } from '../../imports';
 import './ShopItemFull.css';
 
-const ShopItemFull: React.FC<ShopItemInt> = (props: ShopItemInt) => {
+export const ShopItemFull: React.FC<ShopItemInt> = (props: ShopItemInt) => {
   const {
     id, image, title, price, description, rating, showMoreInfoToggler,
   } = props;
@@ -38,5 +38,3 @@ const ShopItemFull: React.FC<ShopItemInt> = (props: ShopItemInt) => {
     </div>
   );
 };
-
-export default ShopItemFull;

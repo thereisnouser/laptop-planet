@@ -3,7 +3,7 @@ import {
 } from '../../imports';
 import './ItemRating.css';
 
-const ItemRating: React.FC<any> = (props: any) => {
+export const ItemRating: React.FC<any> = (props: any) => {
   const { rating } = props;
 
   const stars: Array<any> = [];
@@ -22,5 +22,3 @@ const ItemRating: React.FC<any> = (props: any) => {
     </div>
   );
 };
-
-export default ItemRating;

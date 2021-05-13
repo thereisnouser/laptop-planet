@@ -3,7 +3,7 @@ import {
 } from '../../imports';
 import './ShopList.css';
 
-const ShopList: React.FC<any> = (props: any) => {
+export const ShopList: React.FC<any> = (props: any) => {
   const { itemsList, showMoreInfoToggler } = props;
 
   return (
@@ -21,5 +21,3 @@ const ShopList: React.FC<any> = (props: any) => {
     </div>
   );
 };
-
-export default ShopList;

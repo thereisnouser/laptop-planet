@@ -1,4 +1,4 @@
-interface ShopItemInt {
+export interface ShopItemInt {
   id: number,
   image: string,
   title: string,
@@ -8,5 +8,3 @@ interface ShopItemInt {
   active?: boolean,
   showMoreInfoToggler?: any,
 }
-
-export default ShopItemInt;

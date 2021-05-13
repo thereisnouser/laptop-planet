@@ -3,7 +3,7 @@ import {
   img1, img2, img3,
 } from '../imports';
 
-function getItemsData() {
+export function getItemsData() {
   const listItems: Array<ShopItemInt> = [
     {
       id: 1,
@@ -36,5 +36,3 @@ function getItemsData() {
 
   return listItems;
 }
-
-export default getItemsData;
