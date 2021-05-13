@@ -2,12 +2,13 @@ import {
   React, useState,
   getItemsData, ShopList, ShopItemFull,
 } from '../../imports';
+import ShopItemInt from '../../shopItemInt';
 import './App.css';
 
 // need to replace w/ routing
-function isItemActive(itemsList: any) {
+function getItemIndex(itemsList: ShopItemInt[]) {
   for (let i = 0; i < itemsList.length; i++) {
-    if (itemsList[i].active === true) {
+    if (itemsList[i].active) {
       return i;
     }
   }
@@ -29,7 +30,7 @@ const App: React.FC = () => {
     ]);
   };
 
-  const idxActiveItem = isItemActive(itemsList);
+  const idxActiveItem = getItemIndex(itemsList);
   if (idxActiveItem >= 0) {
     return (
       <ShopItemFull
