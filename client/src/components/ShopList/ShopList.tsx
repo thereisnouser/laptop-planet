@@ -5,11 +5,12 @@ import './ShopList.css';
 
 interface ShopListProps {
   itemsList: IShopItem[];
-  showMoreInfoToggler: (id: number) => void;
+  // eslint-disable-next-line no-unused-vars
+  setActiveItemId: (id: number) => void;
 }
 
 export const ShopList: React.FC<ShopListProps> = (props): React.ReactElement => {
-  const { itemsList, showMoreInfoToggler } = props;
+  const { itemsList, setActiveItemId } = props;
 
   return (
     <div className="container">
@@ -18,7 +19,7 @@ export const ShopList: React.FC<ShopListProps> = (props): React.ReactElement => 
           itemsList.map((item: IShopItem) => (
             <ShopItem
               item={item}
-              showMoreInfoToggler={(id: number) => showMoreInfoToggler(id)}
+              setActiveItemId={(id: number) => setActiveItemId(id)}
             />
           ))
         }

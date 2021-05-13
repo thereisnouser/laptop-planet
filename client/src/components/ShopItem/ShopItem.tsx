@@ -5,11 +5,12 @@ import './ShopItem.css';
 
 interface ShopItemProps {
   item: IShopItem;
-  showMoreInfoToggler: (id: number) => void;
+  // eslint-disable-next-line no-unused-vars
+  setActiveItemId: (id: number) => void;
 }
 
 export const ShopItem: React.FC<ShopItemProps> = ({
-  item, showMoreInfoToggler,
+  item, setActiveItemId,
 }): React.ReactElement => {
   const {
     id, image, title, price, description, rating,
@@ -23,7 +24,7 @@ export const ShopItem: React.FC<ShopItemProps> = ({
         </div>
         <div className="shop-item__info">
           <div className="shop-item__header">
-            <button className="shop-item__title-button" onClick={() => showMoreInfoToggler(id)} type="button">
+            <button className="shop-item__title-button" onClick={() => setActiveItemId(id)} type="button">
               {title}
             </button>
             <div className="shop-item__price">

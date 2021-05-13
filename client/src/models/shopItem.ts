@@ -5,5 +5,4 @@ export interface IShopItem {
   price: number,
   description: string,
   rating: number,
-  active?: boolean,
 }

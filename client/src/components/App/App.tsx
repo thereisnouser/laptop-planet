@@ -1,39 +1,17 @@
 import {
   React, useState,
-  getItemsData, ShopList, ShopItemFull, IShopItem,
+  getItemsData, ShopList, ShopItemFull,
 } from '../../imports';
 import './App.css';
 
-// need to replace w/ routing
-function getItemIndex(itemsList: IShopItem[]): number {
-  for (let i = 0; i < itemsList.length; i++) {
-    if (itemsList[i].active) {
-      return i;
-    }
-  }
-
-  return -1;
-}
-
 export const App: React.FC = (): React.ReactElement => {
-  const [itemsList, setItemsList] = useState(getItemsData());
+  const [itemsList] = useState(getItemsData());
+  const [activeItemId, setActiveItemId] = useState(0);
 
-  const showMoreInfoToggler = (id: number): void => {
-    setItemsList(() => [
-      ...itemsList.slice(0, id - 1),
-      {
-        ...itemsList[id - 1],
-        active: !itemsList[id - 1].active,
-      },
-      ...itemsList.slice(id),
-    ]);
-  };
-
-  const idxActiveItem: number = getItemIndex(itemsList);
-  if (idxActiveItem >= 0) {
+  if (activeItemId > 0) {
     return (
       <ShopItemFull
-        {...itemsList[idxActiveItem]}
+        {...itemsList[activeItemId - 1]}
       />
     );
   }
@@ -41,7 +19,7 @@ export const App: React.FC = (): React.ReactElement => {
   return (
     <ShopList
       itemsList={itemsList}
-      showMoreInfoToggler={showMoreInfoToggler}
+      setActiveItemId={setActiveItemId}
     />
   );
 };
