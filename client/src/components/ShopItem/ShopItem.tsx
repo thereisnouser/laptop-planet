@@ -5,7 +5,6 @@ import './ShopItem.css';
 
 interface ShopItemProps {
   item: IShopItem;
-  // eslint-disable-next-line no-unused-vars
   setActiveItemId: (id: number) => void;
 }
 
