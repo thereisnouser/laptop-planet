@@ -5,6 +5,6 @@
   "username": "postgres",
   "password": "345YP455",
   "database": "laptop-planet",
-  "entities": [],
+  "entities": ["dist/**/*.entity.js"],
   "synchronize": true
 }
