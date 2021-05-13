@@ -1,10 +1,10 @@
 import {
-  ShopItemInt,
+  IShopItem,
   img1, img2, img3,
 } from '../imports';
 
 export function getItemsData() {
-  const listItems: Array<ShopItemInt> = [
+  const listItems: Array<IShopItem> = [
     {
       id: 1,
       image: img1,

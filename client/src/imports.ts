@@ -2,13 +2,14 @@ import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
 
 import { App } from './components/App/App';
-import { ShopItemInt } from './shopItemInt';
 import { ShopList } from './components/ShopList/ShopList';
 import { ShopItem } from './components/ShopItem/ShopItem';
 import { ShopItemFull } from './components/ShopItemFull/ShopItemFull';
 import { ItemRating } from './components/ItemRating/ItemRating';
 
 import { trimDescription } from './components/ShopItem/TrimDescription';
+
+import { IShopItem } from './models/shopItem';
 
 import { getItemsData } from './mocks/getItemsData';
 
@@ -24,4 +25,4 @@ export {
   getItemsData,
   img1, img2, img3,
 };
-export type { ShopItemInt };
+export type { IShopItem };

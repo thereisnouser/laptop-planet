@@ -1,4 +1,4 @@
-export interface ShopItemInt {
+export interface IShopItem {
   id: number,
   image: string,
   title: string,

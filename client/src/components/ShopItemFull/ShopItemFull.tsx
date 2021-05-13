@@ -1,9 +1,9 @@
 import {
-  React, ShopItemInt, ItemRating,
+  React, IShopItem, ItemRating,
 } from '../../imports';
 import './ShopItemFull.css';
 
-export const ShopItemFull: React.FC<ShopItemInt> = (props: ShopItemInt) => {
+export const ShopItemFull: React.FC<IShopItem> = (props: IShopItem) => {
   const {
     id, image, title, price, description, rating, showMoreInfoToggler,
   } = props;

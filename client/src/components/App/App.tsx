@@ -1,11 +1,11 @@
 import {
   React, useState,
-  getItemsData, ShopList, ShopItemFull, ShopItemInt,
+  getItemsData, ShopList, ShopItemFull, IShopItem,
 } from '../../imports';
 import './App.css';
 
 // need to replace w/ routing
-function getItemIndex(itemsList: ShopItemInt[]) {
+function getItemIndex(itemsList: IShopItem[]) {
   for (let i = 0; i < itemsList.length; i++) {
     if (itemsList[i].active) {
       return i;
