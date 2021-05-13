@@ -9,7 +9,10 @@ import {
   HttpCode,
   BadRequestException,
   ValidationPipe,
+  NotFoundException,
+  Query,
 } from '@nestjs/common';
+
 import { CreateProductDto } from './dto/create-product.dto';
 import { Product } from './entities/product.entity';
 import { ProductsService } from './products.service';
@@ -27,6 +30,23 @@ export class ProductsController {
   @Get()
   async getProductsList(): Promise<Product[]> {
     const productsList = await this.productsService.getProductsList();
+    if (!productsList) {
+      throw new NotFoundException();
+    }
+
+    return productsList;
+  }
+
+  @Get('filter')
+  async getFilteredProductsList(@Query('description') description: string): Promise<Product[] | undefined> {
+    let productsList = await this.productsService.getProductsList();
+    if (!productsList) {
+      throw new NotFoundException();
+    }
+
+    if (description) {
+      productsList = productsList.filter(item => item.description.toLowerCase().includes(description.toLowerCase()));
+    }
 
     return productsList;
   }
@@ -44,7 +64,9 @@ export class ProductsController {
     @Body(new ValidationPipe()) dto: CreateProductDto,
   ): Promise<UpdateDeleteResult> {
     const product = await this.productsService.getProduct(id);
-    if (!product) throw new BadRequestException();
+    if (!product) {
+      throw new BadRequestException();
+    }
 
     await this.productsService.updateProduct(id, dto);
 
@@ -57,7 +79,9 @@ export class ProductsController {
   @Delete(':id')
   async removeProduct(@Param('id') id: number): Promise<UpdateDeleteResult> {
     const product = await this.productsService.getProduct(id);
-    if (!product) throw new BadRequestException();
+    if (!product) {
+      throw new BadRequestException();
+    }
 
     await this.productsService.removeProduct(id);
 
