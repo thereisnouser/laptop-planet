@@ -6,12 +6,14 @@ import './App.css';
 
 export const App: React.FC = (): React.ReactElement => {
   const [itemsList] = useState(getItemsData());
-  const [activeItemIndex, setActiveItemIndex] = useState(0);
+  const [activeItemId, setActiveItemId] = useState(0);
 
-  if (activeItemIndex > 0) {
+  if (activeItemId > 0) {
+    const index = itemsList.findIndex((item) => item.id === activeItemId);
+
     return (
       <ShopItemFull
-        {...itemsList[activeItemIndex - 1]}
+        {...itemsList[index]}
       />
     );
   }
@@ -19,7 +21,7 @@ export const App: React.FC = (): React.ReactElement => {
   return (
     <ShopList
       itemsList={itemsList}
-      onSelect={setActiveItemIndex}
+      onSelect={setActiveItemId}
     />
   );
 };
