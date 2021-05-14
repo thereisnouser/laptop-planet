@@ -6,12 +6,12 @@ import './App.css';
 
 export const App: React.FC = (): React.ReactElement => {
   const [itemsList] = useState(getItemsData());
-  const [activeItemId, setActiveItemId] = useState(0);
+  const [activeItemIndex, setActiveItemIndex] = useState(0);
 
-  if (activeItemId > 0) {
+  if (activeItemIndex > 0) {
     return (
       <ShopItemFull
-        {...itemsList[activeItemId - 1]}
+        {...itemsList[activeItemIndex - 1]}
       />
     );
   }
@@ -19,7 +19,7 @@ export const App: React.FC = (): React.ReactElement => {
   return (
     <ShopList
       itemsList={itemsList}
-      setActiveItemId={setActiveItemId}
+      onSelect={setActiveItemIndex}
     />
   );
 };

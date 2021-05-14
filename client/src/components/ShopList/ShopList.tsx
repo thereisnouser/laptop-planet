@@ -5,11 +5,11 @@ import './ShopList.css';
 
 interface ShopListProps {
   itemsList: IShopItem[];
-  setActiveItemId: (id: number) => void;
+  onSelect: (id: number) => void;
 }
 
 export const ShopList: React.FC<ShopListProps> = ({
-  itemsList, setActiveItemId,
+  itemsList, onSelect,
 }): React.ReactElement => (
   <div className="container">
     <ul className="shop-list">
@@ -17,7 +17,7 @@ export const ShopList: React.FC<ShopListProps> = ({
         itemsList.map((item: IShopItem) => (
           <ShopItem
             item={item}
-            setActiveItemId={(id: number) => setActiveItemId(id)}
+            onSelect={onSelect}
           />
         ))
       }
