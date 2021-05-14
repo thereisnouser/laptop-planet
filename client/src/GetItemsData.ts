@@ -1,14 +1,14 @@
 import { useEffect, useState } from 'react';
 
-const getItemsData = () => {
-  const SERVER = 'http://localhost:5000/';
+const getItemsData = (description?: string) => {
+  const url = `http://localhost:5000/api/products/filter?description=${description}`;
   const [items, setItems] = useState([]);
 
   useEffect(() => {
-    fetch(`${SERVER}api/products/`)
+    fetch(url)
       .then((res) => res.json())
       .then((res) => setItems(res));
-  }, []);
+  }, [description]);
 
   return items;
 };

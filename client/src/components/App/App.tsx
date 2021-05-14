@@ -1,15 +1,16 @@
 import {
   React, BrowserRouter, Route,
-  SearchPanel, getItemsData, ShopList, ShopItemFull,
+  SearchPanel, getItemsData, ShopList, ShopItemFull, useState,
 } from '../../imports';
 
 const App: React.FC = () => {
-  const itemsList = getItemsData();
+  const [description, setDescription] = useState('');
+  const itemsList = getItemsData(description || '');
 
   return (
     <BrowserRouter>
       <Route path="/" exact>
-        <SearchPanel />
+        <SearchPanel filterItemsList={(value: string) => setDescription(value)} />
         <ShopList itemsList={itemsList} />
       </Route>
       <Route path="/product/:id">
