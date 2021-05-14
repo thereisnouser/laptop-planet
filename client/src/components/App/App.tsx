@@ -13,7 +13,7 @@ export const App: React.FC = (): React.ReactElement => {
 
     return (
       <ShopItemFull
-        {...itemsList[index]}
+        item={itemsList[index]}
       />
     );
   }
