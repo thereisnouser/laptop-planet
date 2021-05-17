@@ -1,25 +1,19 @@
 import {
-  React, useState, useHistory,
+  React, useState,
   Paper, InputBase, IconButton, SearchIcon,
 } from '../../imports';
 import './SearchPanel.css';
 
 interface SearchPanelProps {
-  filterItemsList: (value: string) => void;
+  onSearch: (value: string) => void;
 }
 
-const SearchPanel: React.FC<SearchPanelProps> = ({ filterItemsList }): React.ReactElement => {
-  const history = useHistory();
+const SearchPanel: React.FC<SearchPanelProps> = ({ onSearch }): React.ReactElement => {
   const [value, setValue] = useState('');
 
   const handleSubmit = (event: React.FormEvent): void => {
     event.preventDefault();
-
-    history.push({
-      search: `?description=${value}`,
-    });
-
-    filterItemsList(value);
+    onSearch(value);
   };
 
   return (

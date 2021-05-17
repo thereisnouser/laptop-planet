@@ -1,22 +1,40 @@
 import {
-  React, BrowserRouter, Route,
-  SearchPanel, getItemsData, ShopList, ShopItemFull, useState,
+  React, useState, useEffect, Route, useLocation, useHistory,
+  SearchPanel, getItemsData, ShopList, ShopItemFull,
 } from '../../imports';
 
 const App: React.FC = () => {
+  const history = useHistory();
+  const location = useLocation();
+  const params = new URLSearchParams(location.search);
   const [description, setDescription] = useState('');
-  const itemsList = getItemsData(description || '');
+  let itemsList = getItemsData('');
+
+  useEffect(() => {
+    if (params.get('description') !== null) {
+      const value = params.get('description');
+      setDescription(value || '');
+    }
+  }, [location]);
+
+  itemsList = getItemsData(description || '');
+
+  const filterItemsList = (value: string) => {
+    history.push({
+      search: `?description=${value}`,
+    });
+  };
 
   return (
-    <BrowserRouter>
+    <>
       <Route path="/" exact>
-        <SearchPanel filterItemsList={(value: string) => setDescription(value)} />
+        <SearchPanel onSearch={filterItemsList} />
         <ShopList itemsList={itemsList} />
       </Route>
       <Route path="/product/:id">
         <ShopItemFull {...itemsList[0]} />
       </Route>
-    </BrowserRouter>
+    </>
   );
   // remove hard coded '0' id when add method
   // for getting product by id from server
