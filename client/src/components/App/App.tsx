@@ -32,6 +32,7 @@ const App: React.FC = () => {
       <Route path="/" exact>
         <SearchPanel onSearch={setParamInQuery} />
         <ShopList itemsList={itemsList} />
+        <PageNumbers />
       </Route>
       <Route path="/product/:id">
         <ShopItemFull {...itemsList[0]} />

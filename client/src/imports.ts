@@ -10,13 +10,14 @@ import {
   Container, Grid, Button, Paper, Typography, InputBase, IconButton,
 } from '@material-ui/core';
 import { Search as SearchIcon } from '@material-ui/icons';
-import { Rating } from '@material-ui/lab';
+import { Rating, Pagination } from '@material-ui/lab';
 
 import App from './components/App/App';
 import SearchPanel from './components/SearchPanel/SearchPanel';
 import ShopList from './components/ShopList/ShopList';
 import ShopItem from './components/ShopItem/ShopItem';
 import ShopItemFull from './components/ShopItemFull/ShopItemFull';
+import PageNumbers from './components/PageNumbers/PageNumbers';
 
 import trimDescription from './components/ShopItem/TrimDescription';
 
@@ -29,8 +30,8 @@ export {
   React, useState, useEffect, ReactDOM,
   BrowserRouter, Route, Link, useHistory, useLocation,
   CssBaseline, ThemeProvider,
-  Container, Grid, Button, Paper, Typography, InputBase, IconButton, SearchIcon, Rating,
-  SearchPanel, App, ShopList, ShopItem, ShopItemFull,
+  Container, Grid, Button, Paper, Typography, InputBase, IconButton, SearchIcon, Rating, Pagination,
+  SearchPanel, App, ShopList, ShopItem, ShopItemFull, PageNumbers,
   trimDescription,
   getItemsData, muiconfig,
 };
