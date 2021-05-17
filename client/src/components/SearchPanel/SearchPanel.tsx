@@ -1,5 +1,5 @@
 import {
-  React, useState,
+  React, useState, useHistory,
   Paper, InputBase, IconButton, SearchIcon,
 } from '../../imports';
 import './SearchPanel.css';
@@ -9,10 +9,16 @@ interface SearchPanelProps {
 }
 
 const SearchPanel: React.FC<SearchPanelProps> = ({ filterItemsList }): React.ReactElement => {
+  const history = useHistory();
   const [value, setValue] = useState('');
 
   const handleSubmit = (event: React.FormEvent): void => {
     event.preventDefault();
+
+    history.push({
+      search: `?description=${value}`,
+    });
+
     filterItemsList(value);
   };
 

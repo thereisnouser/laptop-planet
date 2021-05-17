@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
 import {
   BrowserRouter, Route, Link,
+  useHistory,
 } from 'react-router-dom';
 
 import {
@@ -25,7 +26,7 @@ import muiconfig from './muiconfig';
 
 export {
   React, useState, ReactDOM,
-  BrowserRouter, Route, Link,
+  BrowserRouter, Route, Link, useHistory,
   CssBaseline, ThemeProvider,
   Container, Grid, Button, Paper, Typography, InputBase, IconButton, SearchIcon, Rating,
   SearchPanel, App, ShopList, ShopItem, ShopItemFull,
