@@ -4,6 +4,7 @@ import {
   UsePipes, NotFoundException, BadRequestException,
 } from '@nestjs/common';
 import { CreateProductDto } from './dto/create-product.dto';
+import { Product } from './entities/product.entity';
 import { ValidationPipe } from './pipes/validation.pipe';
 import { ProductsService } from './products.service';
 
@@ -13,12 +14,12 @@ export class ProductsController {
 
   @UsePipes(ValidationPipe)
   @Post()
-  createProduct(@Body() dto: CreateProductDto) {
+  createProduct(@Body() dto: CreateProductDto): Promise<CreateProductDto> {
     return this.productsService.createProduct(dto);
   }
 
   @Get()
-  async getProductsList() {
+  async getProductsList(): Promise<Product[]> {
     let productsList = await this.productsService.getProductsList();
     if (!productsList) throw new NotFoundException();
 
@@ -26,7 +27,7 @@ export class ProductsController {
   }
 
   @Get('filter')
-  async getProductsFilterList(@Query('description') description) {
+  async getProductsFilterList(@Query('description') description): Promise<Product[]> {
     let productsList = await this.productsService.getProductsList();
     if (!productsList) throw new NotFoundException();
 
@@ -40,7 +41,7 @@ export class ProductsController {
   }
 
   @Get(':id')
-  async getProduct(@Param('id') id: number) {
+  async getProduct(@Param('id') id: number): Promise<Product> {
     const product = await this.productsService.getProduct(id);
     if(!product) throw new NotFoundException();
 
@@ -51,7 +52,7 @@ export class ProductsController {
   @Put(':id')
   async updateProduct(
     @Param('id') id: number,
-    @Body() dto: CreateProductDto) {
+    @Body() dto: CreateProductDto): Promise<string> {
     const product = await this.productsService.getProduct(id);
     if(!product) throw new BadRequestException();
 
@@ -62,7 +63,7 @@ export class ProductsController {
 
   @Delete(':id')
   async removeProduct(
-    @Param('id') id: number) {
+    @Param('id') id: number): Promise<string> {
     const product = await this.productsService.getProduct(id);
     if(!product) throw new BadRequestException();
 
