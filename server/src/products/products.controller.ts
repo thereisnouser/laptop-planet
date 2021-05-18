@@ -28,17 +28,23 @@ export class ProductsController {
   @Put(':id')
   async updateProduct(
     @Param('id') id: number,
-    @Body() dto: CreateProductDto): Promise<string> {
+    @Body() dto: CreateProductDto): Promise<Object> {
     await this.productsService.updateProduct(id, dto);
 
-    return `Product ${id} was updated`;
+    return {
+      "status": "Product was updated",
+      "id": id
+    };
   }
 
   @Delete(':id')
   async removeProduct(
-    @Param('id') id: number): Promise<string> {
+    @Param('id') id: number): Promise<Object> {
     await this.productsService.removeProduct(id);
 
-    return `Product ${id} was removed`;
+    return {
+      "status": "Product was removed",
+      "id": id
+    };
   }
 }
