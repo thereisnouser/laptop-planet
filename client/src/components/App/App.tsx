@@ -6,7 +6,7 @@ import {
 const App: React.FC = () => {
   const history = useHistory();
   const location = useLocation();
-  const [query, setQuery] = useState('');
+  const [query, setQuery] = useState(new URLSearchParams(location.search).toString());
   const itemsList = getItemsData(query);
 
   const setParamInQuery = (property: string, value: string) => {
