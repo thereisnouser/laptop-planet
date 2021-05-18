@@ -21,6 +21,7 @@ import ShopItemFull from './components/ShopItemFull/ShopItemFull';
 import trimDescription from './components/ShopItem/TrimDescription';
 
 import getItemsData from './GetItemsData';
+import { createFilterQuery } from './api/createFilterQuery';
 import muiconfig from './muiconfig';
 
 import ShopItemInt from './shopItemInt';
@@ -33,6 +34,6 @@ export {
   Container, Grid, Button, Paper, Typography, InputBase, IconButton, SearchIcon, Rating,
   SearchPanel, App, ShopList, ShopItem, ShopItemFull,
   trimDescription,
-  getItemsData, muiconfig,
+  getItemsData, createFilterQuery, muiconfig,
 };
 export type { ShopItemInt, IFilterProps };

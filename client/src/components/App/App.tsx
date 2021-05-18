@@ -1,6 +1,6 @@
 import {
   React, useState, useEffect, Route, useLocation, useHistory,
-  SearchPanel, getItemsData, ShopList, ShopItemFull, IFilterProps,
+  SearchPanel, getItemsData, ShopList, ShopItemFull, IFilterProps, createFilterQuery,
 } from '../../imports';
 
 const App: React.FC = () => {
@@ -28,17 +28,8 @@ const App: React.FC = () => {
   const itemsList = getItemsData(filterParams);
 
   const filterItemsList = (val: string) => {
-    let query: string = '';
     filterParams = { ...filterParams, description: val };
-
-    for (const [key, value] of Object.entries(filterParams)) {
-      if ((key === 'description' && value === '')
-       || (key === 'page' && value <= 1)) {
-        continue;
-      }
-
-      query += `&${key}=${value}`;
-    }
+    const query: string = createFilterQuery(filterParams);
 
     history.push({
       search: query.substr(1),

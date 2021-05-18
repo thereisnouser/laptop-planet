@@ -1,13 +1,10 @@
-import { useEffect, useState } from 'react';
-import { IFilterProps } from './imports';
+import {
+  useEffect, useState,
+  createFilterQuery, IFilterProps,
+} from './imports';
 
 const getItemsData = (params: IFilterProps) => {
-  let filterQuery: string = '';
-
-  for (const [key, value] of Object.entries(params)) {
-    filterQuery += `&${key}=${value}`;
-  }
-
+  const filterQuery: string = createFilterQuery(params);
   const url = `http://localhost:5000/api/products/filter?${filterQuery}`;
   const [items, setItems] = useState([]);
 
