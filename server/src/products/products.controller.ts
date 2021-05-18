@@ -10,27 +10,25 @@ export class ProductsController {
   constructor(private productsService: ProductsService) {}
 
   @Post()
-  async createProduct(@Body() dto: CreateProductDto) {
+  createProduct(@Body() dto: CreateProductDto) {
     return this.productsService.createProduct(dto);
   }
 
   @Get()
-  async getProductsList() {
-    const productsList = await this.productsService.getProductsList();
-    return productsList;
+  getProductsList() {
+    return this.productsService.getProductsList();
   }
 
   @Get(':id')
-  async getProduct(@Param('id') id: number) {
-    const product = await this.productsService.getProduct(id);
-    return product;
+  getProduct(@Param('id') id: number) {
+    return this.productsService.getProduct(id);
   }
 
   @Put(':id')
   async updateProduct(
     @Param('id') id: number,
     @Body() dto: CreateProductDto) {
-    this.productsService.updateProduct(id, dto);
+    await this.productsService.updateProduct(id, dto);
 
     return `Product ${id} was updated`;
   }
@@ -38,7 +36,7 @@ export class ProductsController {
   @Delete(':id')
   async removeProduct(
     @Param('id') id: number) {
-    this.productsService.removeProduct(id);
+    await this.productsService.removeProduct(id);
 
     return `Product ${id} was removed`;
   }

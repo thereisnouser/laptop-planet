@@ -11,23 +11,23 @@ export class ProductsService {
     private productRepository: Repository<Product>
   ) {}
 
-  async createProduct(dto: CreateProductDto): Promise<CreateProductDto> {
-    return await this.productRepository.save(dto);
+  createProduct(dto: CreateProductDto): Promise<CreateProductDto> {
+    return this.productRepository.save(dto);
   }
 
-  async getProductsList(): Promise<Array<CreateProductDto>> {
-    return await this.productRepository.find();
+  getProductsList(): Promise<Array<CreateProductDto>> {
+    return this.productRepository.find();
   }
 
-  async getProduct(id: number): Promise<CreateProductDto> {
-    return await this.productRepository.findOne(id);
+  getProduct(id: number): Promise<CreateProductDto> {
+    return this.productRepository.findOne(id);
   }
 
-  async updateProduct(id: number, dto: CreateProductDto): Promise<any> {
-    return await this.productRepository.update(id, dto);
+  updateProduct(id: number, dto: CreateProductDto): Promise<any> {
+    return this.productRepository.update(id, dto);
   }
 
-  async removeProduct(id: number): Promise<any> {
-    return await this.productRepository.delete(id);
+  removeProduct(id: number): Promise<any> {
+    return this.productRepository.delete(id);
   }
 }
