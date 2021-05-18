@@ -78,9 +78,12 @@ export class ProductsController {
       ));
     }
     if (page) {
-      list = list.filter((item, index) => {
-        if (index + 1 === +page) return item;
-      });
+      const maxItemsOnPage = 2;
+
+      list = list.slice(
+        maxItemsOnPage * (page - 1),
+        maxItemsOnPage * (page - 1) + maxItemsOnPage
+      );
     }
 
     return list;
