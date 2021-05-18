@@ -7,10 +7,10 @@ const App: React.FC = () => {
   const history = useHistory();
   const location = useLocation();
   const params = new URLSearchParams(location.search);
-
-  const filterParams: IFilterProps = {};
   const [description, setDescription] = useState('');
-  let itemsList = getItemsData(description);
+  let filterParams: IFilterProps = {
+    description,
+  };
 
   useEffect(() => {
     if (params.has('description')) {
@@ -19,13 +19,17 @@ const App: React.FC = () => {
     } else {
       setDescription('');
     }
+
+    return (() => {
+      filterParams = { ...filterParams, description };
+    });
   }, [location]);
 
-  itemsList = getItemsData(description);
+  const itemsList = getItemsData(filterParams);
 
-  const filterItemsList = (dscp: string) => {
+  const filterItemsList = (val: string) => {
     let query: string = '';
-    filterParams.description = dscp;
+    filterParams = { ...filterParams, description: val };
 
     for (const [key, value] of Object.entries(filterParams)) {
       if ((key === 'description' && value === '')
