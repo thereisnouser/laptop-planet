@@ -1,10 +1,10 @@
 import {
-  ShopItemInt,
+  IShopItem,
   img1, img2, img3,
-} from './imports';
+} from '../imports';
 
-function getItemsData() {
-  const listItems: Array<ShopItemInt> = [
+export const getItemsData = (): IShopItem[] => {
+  const listItems = [
     {
       id: 1,
       image: img1,
@@ -35,6 +35,4 @@ function getItemsData() {
   ];
 
   return listItems;
-}
-
-export default getItemsData;
+};

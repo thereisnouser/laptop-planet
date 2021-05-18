@@ -1,12 +1,16 @@
 import {
-  React, Grid, Button, Paper, Typography, Rating, ShopItemInt,
+  React, Grid, Button, Paper, Typography, Rating, IShopItem,
 } from '../../imports';
 import './ShopItemFull.css';
 
-const ShopItemFull: React.FC<ShopItemInt> = (props: ShopItemInt) => {
+interface ShopItemFullProps {
+  item: IShopItem;
+}
+
+export const ShopItemFull: React.FC<ShopItemFullProps> = ({ item }): React.ReactElement => {
   const {
-    id, image, title, price, description, rating, showMoreInfoToggler,
-  } = props;
+    id, image, title, price, description, rating,
+  } = item;
 
   return (
     <Grid item key={id}>
@@ -18,7 +22,7 @@ const ShopItemFull: React.FC<ShopItemInt> = (props: ShopItemInt) => {
           <Grid item md={6} xs={12} container direction="column" justify="space-around">
             <Grid item container justify="space-between" alignItems="center">
               <Grid item>
-                <Typography variant="h5" className="shop-item-full__title" onClick={() => showMoreInfoToggler(id)}>
+                <Typography variant="h5" className="shop-item-full__title">
                   {title}
                 </Typography>
               </Grid>
@@ -48,5 +52,3 @@ const ShopItemFull: React.FC<ShopItemInt> = (props: ShopItemInt) => {
     </Grid>
   );
 };
-
-export default ShopItemFull;

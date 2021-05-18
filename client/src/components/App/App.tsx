@@ -3,37 +3,16 @@ import {
   getItemsData, ShopList, ShopItemFull,
 } from '../../imports';
 
-// need to replace w/ routing
-function isItemActive(itemsList: any) {
-  for (let i = 0; i < itemsList.length; i++) {
-    if (itemsList[i].active === true) {
-      return i;
-    }
-  }
+export const App: React.FC = (): React.ReactElement => {
+  const [itemsList] = useState(getItemsData());
+  const [activeItemId, setActiveItemId] = useState(0);
 
-  return -1;
-}
+  if (activeItemId > 0) {
+    const index = itemsList.findIndex((item) => item.id === activeItemId);
 
-const App: React.FC = () => {
-  const [itemsList, setItemsList] = useState(getItemsData());
-
-  const showMoreInfoToggler = (id: number) => {
-    setItemsList(() => [
-      ...itemsList.slice(0, id - 1),
-      {
-        ...itemsList[id - 1],
-        active: !itemsList[id - 1].active,
-      },
-      ...itemsList.slice(id),
-    ]);
-  };
-
-  const idxActiveItem = isItemActive(itemsList);
-  if (idxActiveItem >= 0) {
     return (
       <ShopItemFull
-        {...itemsList[idxActiveItem]}
-        showMoreInfoToggler={showMoreInfoToggler}
+        item={itemsList[index]}
       />
     );
   }
@@ -41,9 +20,7 @@ const App: React.FC = () => {
   return (
     <ShopList
       itemsList={itemsList}
-      showMoreInfoToggler={showMoreInfoToggler}
+      onSelect={setActiveItemId}
     />
   );
 };
-
-export default App;

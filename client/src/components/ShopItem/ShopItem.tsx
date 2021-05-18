@@ -1,13 +1,21 @@
 import {
   React, Grid, Button, Paper, Typography, Rating,
-  ShopItemInt, trimDescription,
+  IShopItem, trimDescription,
 } from '../../imports';
 import './ShopItem.css';
 
-const ShopItem: React.FC<ShopItemInt> = (props: ShopItemInt) => {
+interface ShopItemProps {
+  item: IShopItem;
+  // eslint-disable-next-line no-unused-vars
+  onSelect: (id: number) => void;
+}
+
+export const ShopItem: React.FC<ShopItemProps> = ({
+  item, onSelect,
+}): React.ReactElement => {
   const {
-    id, image, title, price, description, rating, showMoreInfoToggler,
-  } = props;
+    id, image, title, price, description, rating,
+  } = item;
 
   return (
     <Grid item key={id}>
@@ -19,7 +27,7 @@ const ShopItem: React.FC<ShopItemInt> = (props: ShopItemInt) => {
           <Grid item sm={9} xs={12} container direction="column" justify="space-around">
             <Grid item container justify="space-between" alignItems="center">
               <Grid item>
-                <Typography variant="h6" className="shop-item__title" onClick={() => showMoreInfoToggler(id)}>
+                <Typography variant="h6" className="shop-item__title" onClick={() => onSelect(id)}>
                   {title}
                 </Typography>
               </Grid>
@@ -49,5 +57,3 @@ const ShopItem: React.FC<ShopItemInt> = (props: ShopItemInt) => {
     </Grid>
   );
 };
-
-export default ShopItem;
