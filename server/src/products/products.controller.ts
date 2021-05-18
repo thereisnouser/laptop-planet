@@ -27,15 +27,11 @@ export class ProductsController {
   }
 
   @Get('filter')
-  async getProductsFilterList(@Query('description') description): Promise<Product[]> {
+  async getProductsFilterList(@Query() query): Promise<Product[]> {
     let productsList = await this.productsService.getProductsList();
     if (!productsList) throw new NotFoundException();
 
-    if (description) {
-      productsList = productsList.filter((item) => (
-        item.description.toLowerCase().includes(description.toLowerCase())
-      ));
-    }
+    productsList = await this.filteringProductsList(productsList, query);
 
     return productsList;
   }
@@ -70,5 +66,23 @@ export class ProductsController {
     this.productsService.removeProduct(id);
 
     return `Product ${id} was removed`;
+  }
+
+  filteringProductsList(list: Product[], { description, page, sort }): Product[] {
+    if (sort) {
+      list.sort((a, b) => (a.id > b.id) ? 1 : -1);
+    }
+    if (description) {
+      list = list.filter((item) => (
+        item.description.toLowerCase().includes(description.toLowerCase())
+      ));
+    }
+    if (page) {
+      list = list.filter((item, index) => {
+        if (index + 1 === +page) return item;
+      });
+    }
+
+    return list;
   }
 }
