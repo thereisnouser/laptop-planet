@@ -1,17 +1,19 @@
 import {
   React, useState, useEffect, Route, useLocation, useHistory,
-  SearchPanel, getItemsData, ShopList, ShopItemFull,
+  SearchPanel, getItemsData, ShopList, ShopItemFull, IFilterProps,
 } from '../../imports';
 
 const App: React.FC = () => {
   const history = useHistory();
   const location = useLocation();
   const params = new URLSearchParams(location.search);
+
+  const filterParams: IFilterProps = {};
   const [description, setDescription] = useState('');
-  let itemsList = getItemsData('');
+  let itemsList = getItemsData(description);
 
   useEffect(() => {
-    if (params.get('description') !== null) {
+    if (params.has('description')) {
       const value = params.get('description');
       setDescription(value as string);
     } else {
@@ -19,18 +21,24 @@ const App: React.FC = () => {
     }
   }, [location]);
 
-  itemsList = getItemsData(description || '');
+  itemsList = getItemsData(description);
 
-  const filterItemsList = (value: string) => {
-    if (value !== '') {
-      history.push({
-        search: `?description=${value}`,
-      });
-    } else {
-      history.push({
-        search: '',
-      });
+  const filterItemsList = (dscp: string) => {
+    let query: string = '';
+    filterParams.description = dscp;
+
+    for (const [key, value] of Object.entries(filterParams)) {
+      if ((key === 'description' && value === '')
+       || (key === 'page' && value <= 1)) {
+        continue;
+      }
+
+      query += `&${key}=${value}`;
     }
+
+    history.push({
+      search: query.substr(1),
+    });
   };
 
   return (
