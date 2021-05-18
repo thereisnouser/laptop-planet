@@ -1,4 +1,4 @@
-interface ShopItemInt {
+export interface IShopItem {
   id: number,
   image: string,
   title: string,
@@ -6,5 +6,3 @@ interface ShopItemInt {
   description: string,
   rating: number,
 }
-
-export default ShopItemInt;

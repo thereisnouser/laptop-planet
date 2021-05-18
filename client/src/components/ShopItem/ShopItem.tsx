@@ -1,33 +1,39 @@
 import {
-  React,
-  ShopItemInt, ItemRating,
-  trimDescription,
+  React, IShopItem, ItemRating, trimDescription,
 } from '../../imports';
 import './ShopItem.css';
 
-const ShopListItem: React.FC<ShopItemInt> = (props: ShopItemInt) => {
+interface ShopItemProps {
+  item: IShopItem;
+  onSelect: (id: number) => void;
+}
+
+export const ShopItem: React.FC<ShopItemProps> = ({
+  item, onSelect,
+}): React.ReactElement => {
   const {
     id, image, title, price, description, rating,
-  } = props;
+  } = item;
 
   return (
-    <li>
+    <li key={id}>
       <div className="shop-item">
         <div className="shop-item__img">
           <img src={image} alt="img-1" />
         </div>
         <div className="shop-item__info">
           <div className="shop-item__header">
-            <div className="shop-item__title">
+            <button className="shop-item__title-button" onClick={() => onSelect(id)} type="button">
               {title}
-              {id}
-            </div>
+            </button>
             <div className="shop-item__price">
               $
               {price}
             </div>
           </div>
-          <div className="shop-item__description">{trimDescription(description)}</div>
+          <div className="shop-item__description">
+            {trimDescription(description)}
+          </div>
           <div className="shop-item__footer">
             <ItemRating rating={rating} />
             <button className="shop-item__button" type="button">Add to cart</button>
@@ -37,5 +43,3 @@ const ShopListItem: React.FC<ShopItemInt> = (props: ShopItemInt) => {
     </li>
   );
 };
-
-export default ShopListItem;
