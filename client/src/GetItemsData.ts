@@ -1,10 +1,8 @@
 import {
   useEffect, useState,
-  createFilterQuery, IFilterProps,
 } from './imports';
 
-const getItemsData = (params: IFilterProps) => {
-  const filterQuery: string = createFilterQuery(params);
+const getItemsData = (filterQuery: string) => {
   const url = `http://localhost:5000/api/products/filter?${filterQuery}`;
   const [items, setItems] = useState([]);
 
@@ -12,7 +10,7 @@ const getItemsData = (params: IFilterProps) => {
     fetch(url)
       .then((res) => res.json())
       .then((res) => setItems(res));
-  }, [filterQuery]);
+  }, [url]);
 
   return items;
 };

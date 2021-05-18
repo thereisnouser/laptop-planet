@@ -21,11 +21,9 @@ import ShopItemFull from './components/ShopItemFull/ShopItemFull';
 import trimDescription from './components/ShopItem/TrimDescription';
 
 import getItemsData from './GetItemsData';
-import { createFilterQuery } from './api/createFilterQuery';
 import muiconfig from './muiconfig';
 
 import ShopItemInt from './shopItemInt';
-import { IFilterProps } from './models/filterProps';
 
 export {
   React, useState, useEffect, ReactDOM,
@@ -34,6 +32,6 @@ export {
   Container, Grid, Button, Paper, Typography, InputBase, IconButton, SearchIcon, Rating,
   SearchPanel, App, ShopList, ShopItem, ShopItemFull,
   trimDescription,
-  getItemsData, createFilterQuery, muiconfig,
+  getItemsData, muiconfig,
 };
-export type { ShopItemInt, IFilterProps };
+export type { ShopItemInt };

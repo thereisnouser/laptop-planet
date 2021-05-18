@@ -1,45 +1,36 @@
 import {
-  React, useState, useEffect, Route, useLocation, useHistory,
-  SearchPanel, getItemsData, ShopList, ShopItemFull, IFilterProps, createFilterQuery,
+  React, useState, Route, useLocation, useHistory,
+  SearchPanel, getItemsData, ShopList, ShopItemFull,
 } from '../../imports';
 
 const App: React.FC = () => {
   const history = useHistory();
   const location = useLocation();
-  const params = new URLSearchParams(location.search);
-  const [description, setDescription] = useState('');
-  let filterParams: IFilterProps = {
-    description,
-  };
+  const [query, setQuery] = useState('');
+  const itemsList = getItemsData(query);
 
-  useEffect(() => {
-    if (params.has('description')) {
-      const value = params.get('description');
-      setDescription(value as string);
+  const setParamInQuery = (property: string, value: string) => {
+    const newQuery = new URLSearchParams(location.search);
+
+    if (newQuery.has(property) && value === '') {
+      newQuery.delete(property);
+    } else if (newQuery.has(property)) {
+      newQuery.set(property, value);
     } else {
-      setDescription('');
+      newQuery.append(property, value);
     }
 
-    return (() => {
-      filterParams = { ...filterParams, description };
-    });
-  }, [location]);
-
-  const itemsList = getItemsData(filterParams);
-
-  const filterItemsList = (val: string) => {
-    filterParams = { ...filterParams, description: val };
-    const query: string = createFilterQuery(filterParams);
+    setQuery(newQuery.toString());
 
     history.push({
-      search: query.substr(1),
+      search: newQuery.toString(),
     });
   };
 
   return (
     <>
       <Route path="/" exact>
-        <SearchPanel onSearch={filterItemsList} />
+        <SearchPanel onSearch={setParamInQuery} />
         <ShopList itemsList={itemsList} />
       </Route>
       <Route path="/product/:id">

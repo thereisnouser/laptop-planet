@@ -5,7 +5,7 @@ import {
 import './SearchPanel.css';
 
 interface SearchPanelProps {
-  onSearch: (value: string) => void;
+  onSearch: (property: string, value: string) => void;
 }
 
 const SearchPanel: React.FC<SearchPanelProps> = ({ onSearch }): React.ReactElement => {
@@ -13,7 +13,7 @@ const SearchPanel: React.FC<SearchPanelProps> = ({ onSearch }): React.ReactEleme
 
   const handleSubmit = (event: React.FormEvent): void => {
     event.preventDefault();
-    onSearch(value);
+    onSearch('description', value);
   };
 
   return (
