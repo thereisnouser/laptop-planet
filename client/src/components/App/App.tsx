@@ -1,6 +1,6 @@
 import {
   React, useState, Route, useLocation, useHistory,
-  SearchPanel, getItemsData, ShopList, ShopItemFull,
+  SearchPanel, ShopList, ShopItemFull, PageNumbers, getItemsData,
 } from '../../imports';
 
 const App: React.FC = () => {
@@ -32,7 +32,7 @@ const App: React.FC = () => {
       <Route path="/" exact>
         <SearchPanel onSearch={setParamInQuery} />
         <ShopList itemsList={itemsList} />
-        <PageNumbers />
+        <PageNumbers changePage={setParamInQuery} />
       </Route>
       <Route path="/product/:id">
         <ShopItemFull {...itemsList[0]} />

@@ -3,18 +3,19 @@ import {
 } from '../../imports';
 import './PageNumbers.css';
 
-const PageNumbers = () => {
-  const history = useHistory();
+interface PageNumberProps {
+  changePage: (property: string, value: string) => void;
+}
 
-  const changePageNumber = (event: React.ChangeEvent<unknown>, value: number) => {
-    history.push({
-      search: `page=${value}`,
-    });
+const PageNumbers: React.FC<PageNumberProps> = ({ changePage }): React.ReactElement => {
+  const changeHandler = (event: React.ChangeEvent<unknown>, value: number) => {
+    event.preventDefault();
+    changePage('page', String(value));
   };
 
   return (
     <Pagination
-      onChange={changePageNumber}
+      onChange={changeHandler}
       count={10}
       variant="outlined"
       shape="rounded"
