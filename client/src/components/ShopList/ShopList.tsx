@@ -4,7 +4,6 @@ import {
 
 interface ShopListProps {
   itemsList: IShopItem[];
-  // eslint-disable-next-line no-unused-vars
   onSelect: (id: number) => void;
 }
 
