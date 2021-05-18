@@ -13,16 +13,24 @@ const App: React.FC = () => {
   useEffect(() => {
     if (params.get('description') !== null) {
       const value = params.get('description');
-      setDescription(value || '');
+      setDescription(value as string);
+    } else {
+      setDescription('');
     }
   }, [location]);
 
   itemsList = getItemsData(description || '');
 
   const filterItemsList = (value: string) => {
-    history.push({
-      search: `?description=${value}`,
-    });
+    if (value !== '') {
+      history.push({
+        search: `?description=${value}`,
+      });
+    } else {
+      history.push({
+        search: '',
+      });
+    }
   };
 
   return (
