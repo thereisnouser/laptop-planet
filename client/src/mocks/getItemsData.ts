@@ -1,3 +1,4 @@
+// eslint-disable-next-line no-restricted-imports
 import { IShopItem, img1, img2, img3 } from '../imports';
 
 export const getItemsData = (): IShopItem[] => {

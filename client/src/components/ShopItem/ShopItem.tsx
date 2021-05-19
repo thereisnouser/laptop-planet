@@ -1,3 +1,4 @@
+// eslint-disable-next-line no-restricted-imports
 import { React, Grid, Button, Paper, Typography, Rating, IShopItem, trimDescription } from '../../imports';
 import './ShopItem.css';
 

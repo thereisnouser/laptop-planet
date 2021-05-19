@@ -136,4 +136,12 @@ module.exports = {
       },
     },
   ],
+  // settings: {
+  //   'import/resolver': {
+  //     node: {
+  //       paths: ['.'],
+  //       extensions: ['.js', '.jsx', '.ts', '.tsx'],
+  //     },
+  //   },
+  // },
 };
