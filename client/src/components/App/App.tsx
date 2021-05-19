@@ -1,5 +1,4 @@
-// eslint-disable-next-line no-restricted-imports
-import { React, useState, getItemsData, ShopList, ShopItemFull } from '../../imports';
+import { React, useState, getItemsData, ShopList, ShopItemFull } from 'imports';
 
 export const App: React.FC = (): React.ReactElement => {
   const [itemsList] = useState(getItemsData());

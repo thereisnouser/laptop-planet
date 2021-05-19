@@ -1,5 +1,4 @@
-// eslint-disable-next-line no-restricted-imports
-import { React, Grid, Container, IShopItem, ShopItem } from '../../imports';
+import { React, Grid, Container, IShopItem, ShopItem } from 'imports';
 
 interface ShopListProps {
   itemsList: IShopItem[];

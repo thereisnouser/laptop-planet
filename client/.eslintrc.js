@@ -22,7 +22,7 @@ module.exports = {
     ecmaVersion: 12,
     sourceType: 'module',
   },
-  plugins: ['react', 'react-hooks', '@typescript-eslint', 'prettier'],
+  plugins: ['react', 'react-hooks', '@typescript-eslint', 'prettier', 'import'],
   rules: {
     'prettier/prettier': 'error',
     'linebreak-style': ['error', 'unix'],
@@ -136,12 +136,12 @@ module.exports = {
       },
     },
   ],
-  // settings: {
-  //   'import/resolver': {
-  //     node: {
-  //       paths: ['.'],
-  //       extensions: ['.js', '.jsx', '.ts', '.tsx'],
-  //     },
-  //   },
-  // },
+  settings: {
+    'import/resolver': {
+      node: {
+        paths: ['./src'],
+        extensions: ['.ts', '.tsx'],
+      },
+    },
+  },
 };
