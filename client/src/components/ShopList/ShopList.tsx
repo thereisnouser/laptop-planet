@@ -1,12 +1,12 @@
 import {
   React,
   ShopItem,
-  getItemsData,
+  getProductsList,
 } from '../../imports';
 import './ShopList.css';
 
 const ShopList: React.FC = () => {
-  const listItems = getItemsData();
+  const listItems = getProductsList();
 
   return (
     <div className="container">
