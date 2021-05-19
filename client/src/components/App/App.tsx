@@ -2,7 +2,6 @@ import {
   React, useState,
   getItemsData, ShopList, ShopItemFull,
 } from '../../imports';
-import './App.css';
 
 export const App: React.FC = (): React.ReactElement => {
   const [itemsList] = useState(getItemsData());

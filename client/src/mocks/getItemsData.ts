@@ -3,7 +3,7 @@ import {
   img1, img2, img3,
 } from '../imports';
 
-export function getItemsData(): IShopItem[] {
+export const getItemsData = (): IShopItem[] => {
   const listItems = [
     {
       id: 1,
@@ -35,4 +35,4 @@ export function getItemsData(): IShopItem[] {
   ];
 
   return listItems;
-}
+};

@@ -1,7 +1,6 @@
 import {
-  React, IShopItem, ShopItem,
+  React, Grid, Container, IShopItem, ShopItem,
 } from '../../imports';
-import './ShopList.css';
 
 interface ShopListProps {
   itemsList: IShopItem[];
@@ -11,8 +10,8 @@ interface ShopListProps {
 export const ShopList: React.FC<ShopListProps> = ({
   itemsList, onSelect,
 }): React.ReactElement => (
-  <div className="container">
-    <ul className="shop-list">
+  <Container>
+    <Grid container spacing={2}>
       {
         itemsList.map((item: IShopItem) => (
           <ShopItem
@@ -21,6 +20,6 @@ export const ShopList: React.FC<ShopListProps> = ({
           />
         ))
       }
-    </ul>
-  </div>
+    </Grid>
+  </Container>
 );

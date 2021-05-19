@@ -1,5 +1,5 @@
 import {
-  React, IShopItem, ItemRating,
+  React, Grid, Button, Paper, Typography, Rating, IShopItem,
 } from '../../imports';
 import './ShopItemFull.css';
 
@@ -13,32 +13,42 @@ export const ShopItemFull: React.FC<ShopItemFullProps> = ({ item }): React.React
   } = item;
 
   return (
-    <div className="container">
-      <div className="shop-item-full" key={id}>
-        <div className="shop-item-full__img">
-          <img src={image} alt="img-1" />
-        </div>
-        <div className="shop-item-full__info">
-          <div className="shop-item-full__header">
-            <div className="shop-item-full__title">
-              <button className="shop-item-full__title-button" type="button">
-                {title}
-              </button>
-            </div>
-            <ItemRating rating={rating} />
-          </div>
-          <div className="shop-item-full__description">
-            {description}
-          </div>
-          <div className="shop-item-full__footer">
-            <div className="shop-item-full__price">
-              $
-              {price}
-            </div>
-            <button className="shop-item-full__button" type="button">Add to cart</button>
-          </div>
-        </div>
-      </div>
-    </div>
+    <Grid item key={id}>
+      <Paper elevation={4} className="shop-item-full">
+        <Grid container justify="space-around">
+          <Grid item>
+            <img className="shop-item-full__img" src={image} alt="img-1" />
+          </Grid>
+          <Grid item md={6} xs={12} container direction="column" justify="space-around">
+            <Grid item container justify="space-between" alignItems="center">
+              <Grid item>
+                <Typography variant="h5" className="shop-item-full__title">
+                  {title}
+                </Typography>
+              </Grid>
+              <Grid item>
+                <Typography variant="h6" className="shop-item-full__price">
+                  $
+                  {price}
+                </Typography>
+              </Grid>
+            </Grid>
+            <Grid item>
+              <Typography className="shop-item-full__description">
+                {description}
+              </Typography>
+            </Grid>
+            <Grid item container justify="space-between" alignItems="center">
+              <Grid item>
+                <Rating name="read-only" value={rating} readOnly />
+              </Grid>
+              <Grid item>
+                <Button color="primary" variant="contained">Add to cart</Button>
+              </Grid>
+            </Grid>
+          </Grid>
+        </Grid>
+      </Paper>
+    </Grid>
   );
 };
