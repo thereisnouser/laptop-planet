@@ -9,7 +9,7 @@ import { ProductsService } from './products.service';
 @Controller('products')
 export class ProductsController {
   constructor(private productsService: ProductsService) {}
-
+  
   @Post()
   createProduct(@Body() dto: CreateProductDto): Promise<CreateProductDto> {
     return this.productsService.createProduct(dto);
@@ -28,7 +28,7 @@ export class ProductsController {
   @Put(':id')
   async updateProduct(
     @Param('id') id: number,
-    @Body() dto: CreateProductDto): Promise<Object> {
+    @Body() dto: CreateProductDto): Promise<UpdateDeleteResult> {
     await this.productsService.updateProduct(id, dto);
 
     return {
@@ -39,7 +39,7 @@ export class ProductsController {
 
   @Delete(':id')
   async removeProduct(
-    @Param('id') id: number): Promise<Object> {
+    @Param('id') id: number): Promise<UpdateDeleteResult> {
     await this.productsService.removeProduct(id);
 
     return {
@@ -48,3 +48,8 @@ export class ProductsController {
     };
   }
 }
+
+interface UpdateDeleteResult {
+  status: string;
+  id: number;
+};
