@@ -1,38 +1,33 @@
 import { Injectable } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { DeleteResult, Repository, UpdateResult } from 'typeorm';
+import { Product } from './entities/product.entity';
+import { CreateProductDto } from './dto/create-product.dto';
 
 @Injectable()
 export class ProductsService {
-  private readonly products: Array<any> = [];
+  constructor(
+    @InjectRepository(Product)
+    private productRepository: Repository<Product>
+  ) {}
 
-  createProduct(product: any) {
-    this.products.push(product);
+  createProduct(dto: CreateProductDto): Promise<CreateProductDto> {
+    return this.productRepository.save(dto);
   }
 
-  getProductsList() {
-    return this.products;
+  getProductsList(): Promise<Product[]> {
+    return this.productRepository.find();
   }
 
-  getProduct(id: number) {
-    const idx = this.findProductIdx(id);
-    return this.products[idx];
+  getProduct(id: number): Promise<Product> {
+    return this.productRepository.findOne(id);
   }
 
-  updateProduct(id: number, props: any): void {
-    const idx = this.findProductIdx(id);
-
-    this.products[idx] = {...props};
+  updateProduct(id: number, dto: CreateProductDto): Promise<UpdateResult> {
+    return this.productRepository.update(id, dto);
   }
 
-  removeProduct(id: number): void {
-    const idx = this.findProductIdx(id);
-    this.products.splice(idx, 1);
-  }
-
-  private findProductIdx(id: number): number {
-    const idx = this.products.findIndex(
-      item => item.id == id
-    );
-
-    return idx;
+  removeProduct(id: number): Promise<DeleteResult> {
+    return this.productRepository.delete(id);
   }
 }
