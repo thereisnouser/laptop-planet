@@ -9,8 +9,8 @@ interface ShopListProps {
 export const ShopList: React.FC<ShopListProps> = ({ itemsList, onSelect }): React.ReactElement => (
   <Container>
     <Grid container spacing={2}>
-      {itemsList.map((item: IShopItem) => (
-        <ShopItem item={item} onSelect={onSelect} />
+      {itemsList.map((item: IShopItem, index: number) => (
+        <ShopItem key={index} item={item} onSelect={onSelect} />
       ))}
     </Grid>
   </Container>
