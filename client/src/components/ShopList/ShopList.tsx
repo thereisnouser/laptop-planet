@@ -1,24 +1,16 @@
-import {
-  React,
-  ShopItem,
-  getItemsData,
-} from '../../imports';
-import './ShopList.css';
+import { React, Grid, Container, IShopItem, ShopItem } from 'imports';
 
-const ShopList: React.FC = () => {
-  const listItems = getItemsData();
+interface ShopListProps {
+  itemsList: IShopItem[];
+  onSelect: (id: number) => void;
+}
 
-  return (
-    <div className="container">
-      <ul className="shop-list">
-        {
-          listItems.map((item) => (
-            <ShopItem {...item} />
-          ))
-        }
-      </ul>
-    </div>
-  );
-};
-
-export default ShopList;
+export const ShopList: React.FC<ShopListProps> = ({ itemsList, onSelect }): React.ReactElement => (
+  <Container>
+    <Grid container spacing={2}>
+      {itemsList.map((item: IShopItem, index: number) => (
+        <ShopItem key={index} item={item} onSelect={onSelect} />
+      ))}
+    </Grid>
+  </Container>
+);

@@ -5,6 +5,7 @@ import {
 } from '@nestjs/common';
 import { CreateProductDto } from './dto/create-product.dto';
 import { ValidationPipe } from './pipes/validation.pipe';
+import { Product } from './entities/product.entity';
 import { ProductsService } from './products.service';
 
 @Controller('products')
@@ -13,12 +14,12 @@ export class ProductsController {
 
   @UsePipes(ValidationPipe)
   @Post()
-  createProduct(@Body() dto: CreateProductDto) {
+  createProduct(@Body() dto: CreateProductDto): Promise<CreateProductDto> {
     return this.productsService.createProduct(dto);
   }
 
   @Get()
-  async getProductsList() {
+  async getProductsList(): Promise<Product[]> {
     const productsList = await this.productsService.getProductsList();
     if (!productsList) throw new NotFoundException();
 
@@ -26,7 +27,7 @@ export class ProductsController {
   }
 
   @Get(':id')
-  async getProduct(@Param('id') id: number) {
+  async getProduct(@Param('id') id: number): Promise<Product> {
     const product = await this.productsService.getProduct(id);
     if(!product) throw new NotFoundException();
 
@@ -37,23 +38,34 @@ export class ProductsController {
   @Put(':id')
   async updateProduct(
     @Param('id') id: number,
-    @Body() dto: CreateProductDto) {
+    @Body() dto: CreateProductDto): Promise<UpdateDeleteResult> {
     const product = await this.productsService.getProduct(id);
     if(!product) throw new BadRequestException();
 
     this.productsService.updateProduct(id, dto);
 
-    return `Product ${id} was updated`;
+    return {
+      "status": "Product was updated",
+      "id": id
+    };
   }
 
   @Delete(':id')
   async removeProduct(
-    @Param('id') id: number) {
+    @Param('id') id: number): Promise<UpdateDeleteResult> {
     const product = await this.productsService.getProduct(id);
     if(!product) throw new BadRequestException();
 
     this.productsService.removeProduct(id);
 
-    return `Product ${id} was removed`;
+    return {
+      "status": "Product was removed",
+      "id": id
+    };
   }
 }
+
+interface UpdateDeleteResult {
+  status: string;
+  id: number;
+};
