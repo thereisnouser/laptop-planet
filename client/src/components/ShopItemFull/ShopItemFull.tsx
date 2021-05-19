@@ -1,6 +1,4 @@
-import {
-  React, Grid, Button, Paper, Typography, Rating, IShopItem,
-} from '../../imports';
+import { React, Grid, Button, Paper, Typography, Rating, IShopItem } from '../../imports';
 import './ShopItemFull.css';
 
 interface ShopItemFullProps {
@@ -8,9 +6,7 @@ interface ShopItemFullProps {
 }
 
 export const ShopItemFull: React.FC<ShopItemFullProps> = ({ item }): React.ReactElement => {
-  const {
-    id, image, title, price, description, rating,
-  } = item;
+  const { id, image, title, price, description, rating } = item;
 
   return (
     <Grid item key={id}>
@@ -28,22 +24,21 @@ export const ShopItemFull: React.FC<ShopItemFullProps> = ({ item }): React.React
               </Grid>
               <Grid item>
                 <Typography variant="h6" className="shop-item-full__price">
-                  $
-                  {price}
+                  ${price}
                 </Typography>
               </Grid>
             </Grid>
             <Grid item>
-              <Typography className="shop-item-full__description">
-                {description}
-              </Typography>
+              <Typography className="shop-item-full__description">{description}</Typography>
             </Grid>
             <Grid item container justify="space-between" alignItems="center">
               <Grid item>
                 <Rating name="read-only" value={rating} readOnly />
               </Grid>
               <Grid item>
-                <Button color="primary" variant="contained">Add to cart</Button>
+                <Button color="primary" variant="contained">
+                  Add to cart
+                </Button>
               </Grid>
             </Grid>
           </Grid>
