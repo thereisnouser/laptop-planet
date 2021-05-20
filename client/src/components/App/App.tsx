@@ -17,7 +17,7 @@ const App: React.FC = () => {
       newQuery.delete(property);
     } else if (newQuery.has(property)) {
       newQuery.set(property, value);
-    } else {
+    } else if (value !== '') {
       newQuery.append(property, value);
     }
 
