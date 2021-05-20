@@ -14,6 +14,10 @@ const App: React.FC = () => {
   const setParamInQuery = (property: string, value: string) => {
     const newQuery = new URLSearchParams(location.search);
 
+    if (property === 'description') {
+      newQuery.set('page', '1');
+    }
+
     if (newQuery.has(property) && value === '') {
       newQuery.delete(property);
     } else if (newQuery.has(property)) {
