@@ -1,13 +1,14 @@
 import {
   React, useState, Route, useLocation, useHistory,
-  SearchPanel, ShopList, ShopItemFull, PageNumbers, getItemsData,
+  SearchPanel, ShopList, ShopItemFull, PageNumbers, getItemsData, getPagesQuantity,
 } from '../../imports';
 
 const App: React.FC = () => {
   const history = useHistory();
   const location = useLocation();
   const [query, setQuery] = useState(new URLSearchParams(location.search).toString());
-  const page = new URLSearchParams(location.search).get('page') || 1;
+  const currentPage = new URLSearchParams(location.search).get('page') || 1;
+  const pagesQuantity = getPagesQuantity();
   const itemsList = getItemsData(query);
 
   const setParamInQuery = (property: string, value: string) => {
@@ -33,7 +34,11 @@ const App: React.FC = () => {
       <Route path="/" exact>
         <SearchPanel onSearch={setParamInQuery} />
         <ShopList itemsList={itemsList} />
-        <PageNumbers currentPage={+page} changePage={setParamInQuery} />
+        <PageNumbers
+          pagesQuantity={pagesQuantity}
+          currentPage={+currentPage}
+          changePage={setParamInQuery}
+        />
       </Route>
       <Route path="/product/:id">
         <ShopItemFull {...itemsList[0]} />

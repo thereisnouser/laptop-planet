@@ -1,15 +1,16 @@
 import {
-  React, Pagination, useHistory,
+  React, Pagination,
 } from '../../imports';
 import './PageNumbers.css';
 
 interface PageNumberProps {
+  pagesQuantity: number;
   currentPage: number;
   changePage: (property: string, value: string) => void;
 }
 
 const PageNumbers: React.FC<PageNumberProps> = ({
-  currentPage, changePage,
+  pagesQuantity, currentPage, changePage,
 }): React.ReactElement => {
   const changeHandler = (event: React.ChangeEvent<unknown>, value: number) => {
     event.preventDefault();
@@ -20,7 +21,7 @@ const PageNumbers: React.FC<PageNumberProps> = ({
     <Pagination
       onChange={changeHandler}
       page={currentPage}
-      count={10}
+      count={pagesQuantity}
       variant="outlined"
       shape="rounded"
       size="large"
