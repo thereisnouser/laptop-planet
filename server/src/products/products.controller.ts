@@ -68,22 +68,21 @@ export class ProductsController {
     return `Product ${id} was removed`;
   }
 
-  filteringProductsList(list: Product[], { description, page, sort }): Product[] {
-    if (sort) {
-      list.sort((a, b) => (a.id > b.id) ? 1 : -1);
-    }
+  filteringProductsList(list: Product[], { description, page }): Product[] {
+    const maxItemsOnPage = 5;
+
     if (description) {
       list = list.filter((item) => (
         item.description.toLowerCase().includes(description.toLowerCase())
       ));
     }
-    if (page) {
-      const maxItemsOnPage = 2;
-
+    if (+page > 0) {
       list = list.slice(
         maxItemsOnPage * (page - 1),
         maxItemsOnPage * (page - 1) + maxItemsOnPage
       );
+    } else {
+      list = list.slice(0, maxItemsOnPage);
     }
 
     return list;
