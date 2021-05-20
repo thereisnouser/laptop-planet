@@ -22,6 +22,7 @@ import PageNumbers from './components/PageNumbers/PageNumbers';
 import trimDescription from './components/ShopItem/TrimDescription';
 
 import getItemsData from './GetItemsData';
+import getPagesQuantity from './api/getPagesQuantity';
 import muiconfig from './muiconfig';
 
 import ShopItemInt from './shopItemInt';
@@ -33,6 +34,6 @@ export {
   Container, Grid, Button, Paper, Typography, InputBase, IconButton, SearchIcon, Rating, Pagination,
   SearchPanel, App, ShopList, ShopItem, ShopItemFull, PageNumbers,
   trimDescription,
-  getItemsData, muiconfig,
+  getItemsData, getPagesQuantity, muiconfig,
 };
 export type { ShopItemInt };
