@@ -12,6 +12,8 @@ import { ProductsService } from './products.service';
 export class ProductsController {
   constructor(private productsService: ProductsService) {}
 
+  private maxItemsOnPage = 5;
+
   @UsePipes(ValidationPipe)
   @Post()
   createProduct(@Body() dto: CreateProductDto): Promise<CreateProductDto> {
@@ -78,15 +80,13 @@ export class ProductsController {
   }
 
   filterByPage(list: Product[], page: number): Product[] {
-    const maxItemsOnPage = 5;
-
     if (page > 0) {
       list = list.slice(
-        maxItemsOnPage * (page - 1),
-        maxItemsOnPage * (page - 1) + maxItemsOnPage
+        this.maxItemsOnPage * (page - 1),
+        this.maxItemsOnPage * (page - 1) + this.maxItemsOnPage
       );
     } else {
-      list = list.slice(0, maxItemsOnPage);
+      list = list.slice(0, this.maxItemsOnPage);
     }
 
     return list;
