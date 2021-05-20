@@ -23,7 +23,7 @@ export class ProductsController {
     let productsList = await this.productsService.getProductsList();
     if (!productsList) throw new NotFoundException();
 
-    productsList = await this.filteringProductsList(productsList, query);
+    productsList = await this.filterProductsList(productsList, query);
 
     return productsList;
   }
@@ -60,9 +60,9 @@ export class ProductsController {
     return `Product ${id} was removed`;
   }
 
-  filteringProductsList(list: Product[], { description, page }): Product[] {
-    list = this.filterByDescription(list, description);
-    list = this.filterByPage(list, +page);
+  async filterProductsList(list: Product[], { description, page }): Promise<Product[]> {
+    list = await this.filterByDescription(list, description);
+    list = await this.filterByPage(list, +page);
 
     return list;
   }
