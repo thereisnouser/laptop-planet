@@ -23,6 +23,7 @@ const PageNumbers: React.FC<PageNumberProps> = ({
       count={10}
       variant="outlined"
       shape="rounded"
+      size="large"
       className="page-numbers"
     />
   );
