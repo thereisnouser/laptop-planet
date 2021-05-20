@@ -1,0 +1,21 @@
+image: node
+
+stages:
+  - lint
+
+eslint:
+  tags:
+    - docker
+  stage: lint
+  script:
+    - |
+      npm install eslint \
+      @typescript-eslint/eslint-plugin \
+      @typescript-eslint/parser \
+      eslint-plugin-import \
+      eslint-plugin-react \
+      eslint-plugin-react-hooks \
+      eslint-config-prettier \
+      eslint-plugin-prettier \
+      prettier
+    - node_modules/eslint/bin/eslint.js .
