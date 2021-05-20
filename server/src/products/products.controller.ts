@@ -19,14 +19,6 @@ export class ProductsController {
   }
 
   @Get()
-  async getProductsList(): Promise<Product[]> {
-    let productsList = await this.productsService.getProductsList();
-    if (!productsList) throw new NotFoundException();
-
-    return productsList;
-  }
-
-  @Get('filter')
   async getProductsFilterList(@Query() query): Promise<Product[]> {
     let productsList = await this.productsService.getProductsList();
     if (!productsList) throw new NotFoundException();

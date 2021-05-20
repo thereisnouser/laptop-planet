@@ -3,7 +3,7 @@ import {
 } from './imports';
 
 const getItemsData = (filterQuery: string) => {
-  const url = `http://localhost:5000/api/products/filter?${filterQuery}`;
+  const url = `http://localhost:5000/api/products?${filterQuery}`;
   const [items, setItems] = useState([]);
 
   useEffect(() => {
