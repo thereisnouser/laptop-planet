@@ -12,6 +12,7 @@ import { ProductsService } from './products.service';
 export class ProductsController {
   constructor(private productsService: ProductsService) {}
 
+  private productsQuantity: number = 1;
   private maxItemsOnPage = 5;
 
   @UsePipes(ValidationPipe)
@@ -28,6 +29,12 @@ export class ProductsController {
     productsList = await this.filterProductsList(productsList, query);
 
     return productsList;
+  }
+
+  @Get('count')
+  async getPagesQuantity(): Promise<number> {
+    const pages = await Math.ceil(this.productsQuantity / 5);
+    return pages;
   }
 
   @Get(':id')
@@ -64,6 +71,9 @@ export class ProductsController {
 
   async filterProductsList(list: Product[], { description, page }): Promise<Product[]> {
     list = await this.filterByDescription(list, description);
+
+    this.productsQuantity = list.length;
+
     list = await this.filterByPage(list, +page);
 
     return list;
