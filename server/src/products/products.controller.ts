@@ -61,14 +61,26 @@ export class ProductsController {
   }
 
   filteringProductsList(list: Product[], { description, page }): Product[] {
-    const maxItemsOnPage = 5;
+    list = this.filterByDescription(list, description);
+    list = this.filterByPage(list, +page);
 
+    return list;
+  }
+
+  filterByDescription(list: Product[], description: string): Product[] {
     if (description) {
       list = list.filter((item) => (
         item.description.toLowerCase().includes(description.toLowerCase())
       ));
     }
-    if (+page > 0) {
+
+    return list;
+  }
+
+  filterByPage(list: Product[], page: number): Product[] {
+    const maxItemsOnPage = 5;
+
+    if (page > 0) {
       list = list.slice(
         maxItemsOnPage * (page - 1),
         maxItemsOnPage * (page - 1) + maxItemsOnPage
