@@ -7,16 +7,18 @@ import {
 const App: React.FC = () => {
   const history = useHistory();
   const location = useLocation();
-  const [query, setQuery] = useState(new URLSearchParams(location.search).toString());
-  const currentPage = new URLSearchParams(location.search).get('page') || 1;
-  const currentSortType = new URLSearchParams(location.search).get('orderBy') || '';
+  const [query, setQuery] = useState(new URLSearchParams(location.search));
+
+  const currentPage = query.get('page') || 1;
+  const currentSortType = query.get('orderBy') || '';
   const pagesQuantity = getPagesQuantity();
-  const itemsList = getItemsData(query);
+
+  const itemsList = getItemsData(query.toString());
 
   const setParamInQuery = (property: string, value: string) => {
     const newQuery = new URLSearchParams(location.search);
 
-    if (property === 'description') {
+    if (property === 'description' || property === 'orderBy') {
       newQuery.set('page', '1');
     }
 
@@ -28,7 +30,7 @@ const App: React.FC = () => {
       newQuery.append(property, value);
     }
 
-    setQuery(newQuery.toString());
+    setQuery(newQuery);
 
     history.push({
       search: newQuery.toString(),
