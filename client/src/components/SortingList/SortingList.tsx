@@ -3,18 +3,23 @@ import {
 } from '../../imports';
 import './SortingList.css';
 
-const SortingList = () => {
-  const [sortType, setSortType] = React.useState('');
+interface SortingListProps {
+  currentSortType: string;
+  onChangeSortType: (property: string, value: string) => void;
+}
 
+const SortingList: React.FC<SortingListProps> = ({
+  currentSortType, onChangeSortType,
+}): React.ReactElement => {
   const handleChange = (event: React.ChangeEvent<{ value: unknown }>) => {
-    setSortType(event.target.value as string);
+    onChangeSortType('orderBy', event.target.value as string);
   };
 
   return (
     <FormControl variant="outlined">
       <InputLabel>Sort by</InputLabel>
       <Select
-        value={sortType}
+        value={currentSortType}
         onChange={handleChange}
         label="Sort by"
         className="sorting-list__input"

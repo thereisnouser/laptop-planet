@@ -9,6 +9,7 @@ const App: React.FC = () => {
   const location = useLocation();
   const [query, setQuery] = useState(new URLSearchParams(location.search).toString());
   const currentPage = new URLSearchParams(location.search).get('page') || 1;
+  const currentSortType = new URLSearchParams(location.search).get('orderBy') || '';
   const pagesQuantity = getPagesQuantity();
   const itemsList = getItemsData(query);
 
@@ -38,7 +39,10 @@ const App: React.FC = () => {
     <>
       <Route path="/" exact>
         <SearchPanel onSearch={setParamInQuery} />
-        <SortingList />
+        <SortingList
+          currentSortType={currentSortType}
+          onChangeSortType={setParamInQuery}
+        />
         <ShopList itemsList={itemsList} />
         <PageNumbers
           pagesQuantity={pagesQuantity}
