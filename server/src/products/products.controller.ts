@@ -69,7 +69,17 @@ export class ProductsController {
     return `Product ${id} was removed`;
   }
 
-  async filterProductsList(list: Product[], { description, page }): Promise<Product[]> {
+  async filterProductsList(list: Product[], { description, page, filter }): Promise<Product[]> {
+    const filterParams = filter.split(' ');
+    const priceIndex = filterParams.findIndex((item) => item === 'price');
+
+    if (priceIndex >= 0) {
+      const condition = filterParams[priceIndex + 1];
+      const value = +filterParams[priceIndex + 2];
+
+      list = await this.filterByPrice(list, condition, value);
+    }
+
     list = await this.filterByDescription(list, description);
 
     this.productsQuantity = list.length;
@@ -89,28 +99,25 @@ export class ProductsController {
     return list;
   }
 
-  filterByPrice(list: Product[], params: string): Product[] {
-    const condition = params[0];
-    const value = +params[1];
-
+  filterByPrice(list: Product[], condition: string, value: number): Product[] {
     switch (condition) {
       case 'eq': // equal
-        list.filter((item) => item.price === value);
+        list = list.filter((item) => item.price === value);
         break;
       case 'ne': // not equal
-        list.filter((item) => item.price !== value);
+        list = list.filter((item) => item.price !== value);
         break;
       case 'gt': // greater than
-        list.filter((item) => item.price > value);
+        list = list.filter((item) => item.price > value);
         break;
       case 'ge': // greater or equal
-        list.filter((item) => item.price >= value);
+        list = list.filter((item) => item.price >= value);
         break;
       case 'lt': // less than
-        list.filter((item) => item.price < value);
+        list = list.filter((item) => item.price < value);
         break;
       case 'le': // less or equal
-        list.filter((item) => item.price <= value);
+        list = list.filter((item) => item.price <= value);
         break;
     }
 
