@@ -70,14 +70,16 @@ export class ProductsController {
   }
 
   async filterProductsList(list: Product[], { description, page, filter }): Promise<Product[]> {
-    const filterParams = filter.split(' ');
-    const priceIndex = filterParams.findIndex((item) => item === 'price');
+    if (filter) {
+      const filterParams = filter.split(' ');
+      const priceIndex = filterParams.findIndex((item) => item === 'price');
 
-    if (priceIndex >= 0) {
-      const condition = filterParams[priceIndex + 1];
-      const value = +filterParams[priceIndex + 2];
+      if (priceIndex >= 0) {
+        const condition = filterParams[priceIndex + 1];
+        const value = +filterParams[priceIndex + 2];
 
-      list = await this.filterByPrice(list, condition, value);
+        list = await this.filterByPrice(list, condition, value);
+      }
     }
 
     list = await this.filterByDescription(list, description);
