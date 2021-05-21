@@ -69,11 +69,12 @@ export class ProductsController {
     return `Product ${id} was removed`;
   }
 
-  async filterProductsList(list: Product[], { description, page }): Promise<Product[]> {
+  async filterProductsList(list: Product[], { description, page, orderBy }): Promise<Product[]> {
     list = await this.filterByDescription(list, description);
 
     this.productsQuantity = list.length;
 
+    list = await this.orderBy(list, orderBy);
     list = await this.filterByPage(list, +page);
 
     return list;
@@ -97,6 +98,30 @@ export class ProductsController {
       );
     } else {
       list = list.slice(0, this.maxItemsOnPage);
+    }
+
+    return list;
+  }
+
+  orderBy(list: Product[], orderBy: string): Product[] {
+    const params = orderBy.split(' ');
+    const priceIdx = params.findIndex((item) => item === 'price')
+
+    if (priceIdx >= 0) {
+      list = this.orderByPrice(list, params[priceIdx + 1]);
+    }
+
+    return list;
+  }
+
+  orderByPrice(list: Product[], sortOption): Product[] {
+    switch(sortOption) {
+      case 'asc':
+        list.sort((a, b) => (a.price > b.price) ? 1 : -1);
+        break;
+      case 'desc':
+        list.sort((a, b) => (a.price < b.price) ? 1 : -1);
+        break;
     }
 
     return list;
