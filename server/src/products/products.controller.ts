@@ -89,6 +89,34 @@ export class ProductsController {
     return list;
   }
 
+  filterByPrice(list: Product[], params: string): Product[] {
+    const condition = params[0];
+    const value = +params[1];
+
+    switch (condition) {
+      case 'eq': // equal
+        list.filter((item) => item.price === value);
+        break;
+      case 'ne': // not equal
+        list.filter((item) => item.price !== value);
+        break;
+      case 'gt': // greater than
+        list.filter((item) => item.price > value);
+        break;
+      case 'ge': // greater or equal
+        list.filter((item) => item.price >= value);
+        break;
+      case 'lt': // less than
+        list.filter((item) => item.price < value);
+        break;
+      case 'le': // less or equal
+        list.filter((item) => item.price <= value);
+        break;
+    }
+
+    return list;
+  }
+
   filterByPage(list: Product[], page: number): Product[] {
     if (page > 0) {
       list = list.slice(
