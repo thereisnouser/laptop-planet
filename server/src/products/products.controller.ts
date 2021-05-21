@@ -70,22 +70,24 @@ export class ProductsController {
   }
 
   async filterProductsList(list: Product[], { description, page, orderBy }): Promise<Product[]> {
-    list = await this.filterByDescription(list, description);
+    if (description) {
+      list = await this.filterByDescription(list, description);
+    }
 
     this.productsQuantity = list.length;
 
-    list = await this.orderBy(list, orderBy);
+    if (orderBy) {
+      list = await this.orderBy(list, orderBy);
+    }
     list = await this.filterByPage(list, +page);
 
     return list;
   }
 
   filterByDescription(list: Product[], description: string): Product[] {
-    if (description) {
-      list = list.filter((item) => (
-        item.description.toLowerCase().includes(description.toLowerCase())
-      ));
-    }
+    list = list.filter((item) => (
+      item.description.toLowerCase().includes(description.toLowerCase())
+    ));
 
     return list;
   }
@@ -104,8 +106,8 @@ export class ProductsController {
   }
 
   orderBy(list: Product[], orderBy: string): Product[] {
-    const params = orderBy.split(' ');
-    const priceIdx = params.findIndex((item) => item === 'price')
+    const params: string[] = orderBy.split(' ');
+    const priceIdx: number = params.findIndex((item) => item === 'price')
 
     if (priceIdx >= 0) {
       list = this.orderByPrice(list, params[priceIdx + 1]);
