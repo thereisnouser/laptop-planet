@@ -37,7 +37,7 @@ const App: React.FC = () => {
     <>
       <Route path="/" exact>
         <SearchPanel onSearch={setParamInQuery} />
-        <FilterForm />
+        <FilterForm filterProducts={setParamInQuery} />
         <ShopList itemsList={itemsList} />
         <PageNumbers
           pagesQuantity={pagesQuantity}
