@@ -13,7 +13,12 @@ const FilterForm: React.FC<FilterFormProps> = ({ filterProducts }): React.ReactE
 
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
-    filterProducts('filter', `price ${filterType} ${value}`);
+
+    if (filterType === '' || value === '') {
+      filterProducts('filter', '');
+    } else {
+      filterProducts('filter', `price ${filterType} ${value}`);
+    }
   };
 
   return (
