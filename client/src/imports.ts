@@ -8,6 +8,7 @@ import {
 import {
   CssBaseline, ThemeProvider,
   Container, Grid, Button, Paper, Typography, InputBase, IconButton,
+  FormControl, InputLabel, MenuItem, Select, TextField,
 } from '@material-ui/core';
 import { Search as SearchIcon } from '@material-ui/icons';
 import { Rating, Pagination } from '@material-ui/lab';
@@ -18,6 +19,7 @@ import ShopList from './components/ShopList/ShopList';
 import ShopItem from './components/ShopItem/ShopItem';
 import ShopItemFull from './components/ShopItemFull/ShopItemFull';
 import PageNumbers from './components/PageNumbers/PageNumbers';
+import FilterForm from './components/FilterForm/FilterForm';
 
 import trimDescription from './components/ShopItem/TrimDescription';
 
@@ -32,7 +34,8 @@ export {
   BrowserRouter, Route, Link, useHistory, useLocation,
   CssBaseline, ThemeProvider,
   Container, Grid, Button, Paper, Typography, InputBase, IconButton, SearchIcon, Rating, Pagination,
-  SearchPanel, App, ShopList, ShopItem, ShopItemFull, PageNumbers,
+  FormControl, InputLabel, MenuItem, Select, TextField,
+  SearchPanel, App, ShopList, ShopItem, ShopItemFull, PageNumbers, FilterForm,
   trimDescription,
   getItemsData, getPagesQuantity, muiconfig,
 };
