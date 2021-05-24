@@ -1,0 +1,6 @@
+.filter-form__select {
+  min-width: 200px;
+}
+.filter-form__input {
+  max-width: 100px;
+}
