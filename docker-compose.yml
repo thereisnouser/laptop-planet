@@ -10,10 +10,18 @@ services:
       dockerfile: ./server.dockerfile
     ports: 
       - 5000:5000
-    command: npm run start:dev
+    command: npm run start
     depends_on:
       - postgres
     restart: always
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+    - 8080:8080
+    links:
+    - postgres
 
   postgres:
     image: postgres:latest
@@ -27,6 +35,15 @@ services:
     volumes:
       - pgdata:/var/lib/postgresql/data
     restart: always
+
+  migrations:
+    build: 
+      context: ./server/
+      dockerfile: ./migrations.dockerfile
+    depends_on: 
+      - postgres
+    links: 
+      - postgres
 
 volumes: 
   pgdata: 
