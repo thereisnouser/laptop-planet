@@ -1,0 +1,32 @@
+version: '3.0'
+services:
+
+  server: 
+    container_name: server
+    env_file: 
+      - ./server/.development.env
+    build: 
+      context: ./server/
+      dockerfile: ./server.dockerfile
+    ports: 
+      - 5000:5000
+    command: npm run start:dev
+    depends_on:
+      - postgres
+    restart: always
+
+  postgres:
+    image: postgres:latest
+    container_name: postgres
+    env_file: 
+      - ./server/.development.env
+    environment: 
+      PG_DATA: /var/lib/postgresql/data
+    ports: 
+      - 5432:5432
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    restart: always
+
+volumes: 
+  pgdata: 
