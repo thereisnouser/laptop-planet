@@ -1,10 +1,9 @@
 import {
   Controller, Body, Param,
   Delete, Get, Post, Put,
-  UsePipes, NotFoundException, BadRequestException,
+  NotFoundException, BadRequestException, ValidationPipe,
 } from '@nestjs/common';
 import { CreateProductDto } from './dto/create-product.dto';
-import { ValidationPipe } from './pipes/validation.pipe';
 import { Product } from './entities/product.entity';
 import { ProductsService } from './products.service';
 
@@ -12,9 +11,8 @@ import { ProductsService } from './products.service';
 export class ProductsController {
   constructor(private productsService: ProductsService) {}
 
-  @UsePipes(ValidationPipe)
   @Post()
-  createProduct(@Body() dto: CreateProductDto): Promise<CreateProductDto> {
+  createProduct(@Body(new ValidationPipe()) dto: CreateProductDto): Promise<CreateProductDto> {
     return this.productsService.createProduct(dto);
   }
 
@@ -34,11 +32,10 @@ export class ProductsController {
     return product;
   }
 
-  @UsePipes(ValidationPipe)
   @Put(':id')
   async updateProduct(
     @Param('id') id: number,
-    @Body() dto: CreateProductDto): Promise<UpdateDeleteResult> {
+    @Body(new ValidationPipe()) dto: CreateProductDto): Promise<UpdateDeleteResult> {
     const product = await this.productsService.getProduct(id);
     if(!product) throw new BadRequestException();
 
