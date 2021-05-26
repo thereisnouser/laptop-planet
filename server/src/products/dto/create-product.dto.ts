@@ -5,19 +5,19 @@ export class CreateProductDto {
   id?: number;
 
   @IsString({ message: 'must be string' })
-  title!: string;
+  title: string;
 
   @IsPositive({ message: 'must be positive number' })
-  price!: number;
+  price: number;
 
   @IsInt({ message: 'must be integer' })
   @Min(0)
   @Max(5)
-  rating!: number;
+  rating: number;
 
   @IsString({ message: 'must be string' })
-  description!: string;
+  description: string;
 
   @IsString({ message: 'must be string' })
-  image!: string;
+  image: string;
 }
