@@ -15,12 +15,12 @@ export class ProductsService {
     return this.productRepository.save(dto);
   }
 
-  getProductsList(): Promise<Product[]> {
+  getProductsList(): Promise<Product[] | undefined> {
     return this.productRepository.find();
   }
 
-  getProduct(id: number): Promise<Product> {
-    return this.productRepository.findOne(id) as Promise<Product>;
+  getProduct(id: number): Promise<Product | undefined> {
+    return this.productRepository.findOne(id);
   }
 
   updateProduct(id: number, dto: CreateProductDto): Promise<UpdateResult> {

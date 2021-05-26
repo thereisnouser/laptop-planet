@@ -1,7 +1,7 @@
 import {
   Controller, Body, Param,
   Delete, Get, Post, Put, HttpCode,
-  NotFoundException, BadRequestException, ValidationPipe,
+  BadRequestException, ValidationPipe,
 } from '@nestjs/common';
 import { CreateProductDto } from './dto/create-product.dto';
 import { Product } from './entities/product.entity';
@@ -18,17 +18,15 @@ export class ProductsController {
   }
 
   @Get()
-  async getProductsList(): Promise<Product[]> {
+  async getProductsList(): Promise<Product[] | undefined> {
     const productsList = await this.productsService.getProductsList();
-    if (!productsList) throw new NotFoundException();
 
     return productsList;
   }
 
   @Get(':id')
-  async getProduct(@Param('id') id: number): Promise<Product> {
+  async getProduct(@Param('id') id: number): Promise<Product | undefined> {
     const product = await this.productsService.getProduct(id);
-    if(!product) throw new NotFoundException();
 
     return product;
   }
