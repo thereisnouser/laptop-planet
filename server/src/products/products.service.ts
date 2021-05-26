@@ -8,7 +8,7 @@ import { CreateProductDto } from './dto/create-product.dto';
 export class ProductsService {
   constructor(
     @InjectRepository(Product)
-    private productRepository: Repository<Product>
+    private productRepository: Repository<Product>,
   ) {}
 
   createProduct(dto: CreateProductDto): Promise<CreateProductDto> {

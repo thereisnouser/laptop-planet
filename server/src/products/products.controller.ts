@@ -1,7 +1,14 @@
 import {
-  Controller, Body, Param,
-  Delete, Get, Post, Put, HttpCode,
-  BadRequestException, ValidationPipe,
+  Controller,
+  Body,
+  Param,
+  Delete,
+  Get,
+  Post,
+  Put,
+  HttpCode,
+  BadRequestException,
+  ValidationPipe,
 } from '@nestjs/common';
 import { CreateProductDto } from './dto/create-product.dto';
 import { Product } from './entities/product.entity';
@@ -34,29 +41,29 @@ export class ProductsController {
   @Put(':id')
   async updateProduct(
     @Param('id') id: number,
-    @Body(new ValidationPipe()) dto: CreateProductDto): Promise<UpdateDeleteResult> {
+    @Body(new ValidationPipe()) dto: CreateProductDto,
+  ): Promise<UpdateDeleteResult> {
     const product = await this.productsService.getProduct(id);
-    if(!product) throw new BadRequestException();
+    if (!product) throw new BadRequestException();
 
     this.productsService.updateProduct(id, dto);
 
     return {
-      "status": "Product was updated",
-      "id": id
+      status: 'Product was updated',
+      id: id,
     };
   }
 
   @Delete(':id')
-  async removeProduct(
-    @Param('id') id: number): Promise<UpdateDeleteResult> {
+  async removeProduct(@Param('id') id: number): Promise<UpdateDeleteResult> {
     const product = await this.productsService.getProduct(id);
-    if(!product) throw new BadRequestException();
+    if (!product) throw new BadRequestException();
 
     this.productsService.removeProduct(id);
 
     return {
-      "status": "Product was removed",
-      "id": id
+      status: 'Product was removed',
+      id: id,
     };
   }
 }
@@ -64,4 +71,4 @@ export class ProductsController {
 interface UpdateDeleteResult {
   status: string;
   id: number;
-};
+}
