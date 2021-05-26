@@ -1,6 +1,6 @@
 import {
   Controller, Body, Param,
-  Delete, Get, Post, Put,
+  Delete, Get, Post, Put, HttpCode,
   NotFoundException, BadRequestException, ValidationPipe,
 } from '@nestjs/common';
 import { CreateProductDto } from './dto/create-product.dto';
@@ -12,6 +12,7 @@ export class ProductsController {
   constructor(private productsService: ProductsService) {}
 
   @Post()
+  @HttpCode(204)
   createProduct(@Body(new ValidationPipe()) dto: CreateProductDto): Promise<CreateProductDto> {
     return this.productsService.createProduct(dto);
   }
