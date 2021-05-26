@@ -4,7 +4,7 @@ services:
   server: 
     container_name: server
     env_file: 
-      - ./server/.development.env
+      - ./server/.production.env
     build: 
       context: ./server/
       dockerfile: ./server.dockerfile
@@ -27,7 +27,7 @@ services:
     image: postgres:latest
     container_name: postgres
     env_file: 
-      - ./server/.development.env
+      - ./server/.production.env
     environment: 
       PG_DATA: /var/lib/postgresql/data
     ports: 
