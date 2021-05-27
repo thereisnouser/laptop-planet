@@ -48,7 +48,7 @@ const App: React.FC = () => {
         <ShopItemFull {...itemsList[0]} />
       </Route>
       <Route path="/admin">
-        <AdminPanel />
+        <AdminPanel itemsList={itemsList} />
       </Route>
     </>
   );
