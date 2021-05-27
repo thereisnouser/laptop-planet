@@ -23,7 +23,8 @@ import AdminPanel from './components/AdminPanel/AdminPanel';
 
 import trimDescription from './components/ShopItem/TrimDescription';
 
-import getItemsData from './GetItemsData';
+import getProductsList from './api/getProductsList';
+import getFilteredProductsList from './api/getFilteredProductsList';
 import getPagesQuantity from './api/getPagesQuantity';
 import muiconfig from './muiconfig';
 
@@ -36,7 +37,7 @@ export {
   Container, Grid, Button, Paper, Typography, InputBase, IconButton, SearchIcon, Rating, Pagination,
   SearchPanel, App, ShopList, ShopItem, ShopItemFull, PageNumbers, AdminPanel,
   trimDescription,
-  getItemsData, getPagesQuantity, muiconfig,
+  getProductsList, getFilteredProductsList, getPagesQuantity, muiconfig,
   DataGrid,
 };
 export type { ShopItemInt };
