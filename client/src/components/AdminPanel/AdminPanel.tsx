@@ -1,12 +1,9 @@
 import {
-  React, DataGrid, ShopItemInt,
+  React, DataGrid, getProductsList,
 } from '../../imports';
 
-interface AdminPanelProps {
-  itemsList: ShopItemInt[];
-}
-
-const AdminPanel: React.FC<AdminPanelProps> = ({ itemsList }): React.ReactElement => {
+const AdminPanel: React.FC = (): React.ReactElement => {
+  const products = getProductsList();
   const columns = [
     {
       field: 'id',
@@ -53,7 +50,7 @@ const AdminPanel: React.FC<AdminPanelProps> = ({ itemsList }): React.ReactElemen
   return (
     <DataGrid
       columns={columns}
-      rows={itemsList}
+      rows={products}
       hideFooter
       showCellRightBorder
       autoHeight
