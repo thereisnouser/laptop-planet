@@ -1,6 +1,16 @@
 import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
-import { CssBaseline, ThemeProvider, Container, Grid, Button, Paper, Typography } from '@material-ui/core';
+import {
+  CssBaseline,
+  ThemeProvider,
+  Container,
+  Grid,
+  Button,
+  Paper,
+  Typography,
+  AppBar,
+  Toolbar,
+} from '@material-ui/core';
 import { Rating } from '@material-ui/lab';
 
 import { App } from './components/App/App';
@@ -27,6 +37,8 @@ export {
   Button,
   Paper,
   Typography,
+  AppBar,
+  Toolbar,
   Rating,
   App,
   ShopList,
