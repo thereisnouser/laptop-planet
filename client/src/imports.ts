@@ -11,6 +11,7 @@ import {
 } from '@material-ui/core';
 import { Search as SearchIcon } from '@material-ui/icons';
 import { Rating, Pagination } from '@material-ui/lab';
+import { DataGrid } from '@material-ui/data-grid';
 
 import App from './components/App/App';
 import SearchPanel from './components/SearchPanel/SearchPanel';
@@ -18,6 +19,7 @@ import ShopList from './components/ShopList/ShopList';
 import ShopItem from './components/ShopItem/ShopItem';
 import ShopItemFull from './components/ShopItemFull/ShopItemFull';
 import PageNumbers from './components/PageNumbers/PageNumbers';
+import AdminPanel from './components/AdminPanel/AdminPanel';
 
 import trimDescription from './components/ShopItem/TrimDescription';
 
@@ -32,8 +34,9 @@ export {
   BrowserRouter, Route, Link, useHistory, useLocation,
   CssBaseline, ThemeProvider,
   Container, Grid, Button, Paper, Typography, InputBase, IconButton, SearchIcon, Rating, Pagination,
-  SearchPanel, App, ShopList, ShopItem, ShopItemFull, PageNumbers,
+  SearchPanel, App, ShopList, ShopItem, ShopItemFull, PageNumbers, AdminPanel,
   trimDescription,
   getItemsData, getPagesQuantity, muiconfig,
+  DataGrid,
 };
 export type { ShopItemInt };

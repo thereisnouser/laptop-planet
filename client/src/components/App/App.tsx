@@ -1,6 +1,6 @@
 import {
   React, useState, Route, useLocation, useHistory,
-  SearchPanel, ShopList, ShopItemFull, PageNumbers, getItemsData, getPagesQuantity,
+  SearchPanel, ShopList, ShopItemFull, PageNumbers, getItemsData, getPagesQuantity, AdminPanel,
 } from '../../imports';
 
 const App: React.FC = () => {
@@ -46,6 +46,9 @@ const App: React.FC = () => {
       </Route>
       <Route path="/product/:id">
         <ShopItemFull {...itemsList[0]} />
+      </Route>
+      <Route path="/admin">
+        <AdminPanel />
       </Route>
     </>
   );
