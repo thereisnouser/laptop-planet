@@ -1,6 +1,7 @@
 import {
   React, DataGrid, getProductsList,
 } from '../../imports';
+import './AdminPanel.css';
 
 const AdminPanel: React.FC = (): React.ReactElement => {
   const products = getProductsList();
@@ -51,9 +52,10 @@ const AdminPanel: React.FC = (): React.ReactElement => {
     <DataGrid
       columns={columns}
       rows={products}
-      hideFooter
       showCellRightBorder
       autoHeight
+      pageSize={12}
+      className="admin-panel"
     />
   );
 };
