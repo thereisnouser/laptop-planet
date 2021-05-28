@@ -1,4 +1,16 @@
-import { Controller, Body, Param, Get, Post, Put, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Body,
+  Param,
+  Delete,
+  Get,
+  Post,
+  Put,
+  HttpCode,
+  BadRequestException,
+  ValidationPipe,
+} from '@nestjs/common';
+
 import { CreateProductDto } from './dto/create-product.dto';
 import { Product } from './entities/product.entity';
 import { ProductsService } from './products.service';
@@ -8,22 +20,33 @@ export class ProductsController {
   constructor(private productsService: ProductsService) {}
 
   @Post()
-  createProduct(@Body() dto: CreateProductDto): Promise<CreateProductDto> {
+  @HttpCode(204)
+  createProduct(@Body(new ValidationPipe()) dto: CreateProductDto): Promise<CreateProductDto> {
     return this.productsService.createProduct(dto);
   }
 
   @Get()
-  getProductsList(): Promise<Product[]> {
-    return this.productsService.getProductsList();
+  async getProductsList(): Promise<Product[]> {
+    const productsList = await this.productsService.getProductsList();
+
+    return productsList;
   }
 
   @Get(':id')
-  getProduct(@Param('id') id: number): Promise<Product> {
-    return this.productsService.getProduct(id);
+  async getProduct(@Param('id') id: number): Promise<Product | undefined> {
+    const product = await this.productsService.getProduct(id);
+
+    return product;
   }
 
   @Put(':id')
   async updateProduct(@Param('id') id: number, @Body() dto: CreateProductDto): Promise<UpdateDeleteResult> {
+    const product = await this.productsService.getProduct(id);
+
+    if (!product) {
+      throw new BadRequestException();
+    }
+
     await this.productsService.updateProduct(id, dto);
 
     return {
@@ -34,6 +57,12 @@ export class ProductsController {
 
   @Delete(':id')
   async removeProduct(@Param('id') id: number): Promise<UpdateDeleteResult> {
+    const product = await this.productsService.getProduct(id);
+
+    if (!product) {
+      throw new BadRequestException();
+    }
+
     await this.productsService.removeProduct(id);
 
     return {

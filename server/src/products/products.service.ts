@@ -19,7 +19,7 @@ export class ProductsService {
     return this.productRepository.find();
   }
 
-  getProduct(id: number): Promise<Product> {
+  getProduct(id: number): Promise<Product | undefined> {
     return this.productRepository.findOne(id);
   }
 
