@@ -1,9 +1,6 @@
-import { IsEmpty, IsInt, IsPositive, IsString, Max, Min } from 'class-validator';
+import { IsInt, IsPositive, IsString, Max, Min } from 'class-validator';
 
 export class CreateProductDto {
-  @IsEmpty({ message: 'id must be empty' })
-  id?: number;
-
   @IsString({ message: 'title must be string' })
   title: string;
 
