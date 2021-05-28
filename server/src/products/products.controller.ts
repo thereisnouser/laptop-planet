@@ -46,7 +46,7 @@ export class ProductsController {
     const product = await this.productsService.getProduct(id);
     if (!product) throw new BadRequestException();
 
-    this.productsService.updateProduct(id, dto);
+    await this.productsService.updateProduct(id, dto);
 
     return {
       status: 'Product was updated',
@@ -59,7 +59,7 @@ export class ProductsController {
     const product = await this.productsService.getProduct(id);
     if (!product) throw new BadRequestException();
 
-    this.productsService.removeProduct(id);
+    await this.productsService.removeProduct(id);
 
     return {
       status: 'Product was removed',
