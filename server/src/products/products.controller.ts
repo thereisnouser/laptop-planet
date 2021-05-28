@@ -25,7 +25,7 @@ export class ProductsController {
   }
 
   @Get()
-  async getProductsList(): Promise<Product[] | undefined> {
+  async getProductsList(): Promise<Product[]> {
     const productsList = await this.productsService.getProductsList();
 
     return productsList;

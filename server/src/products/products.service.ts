@@ -15,7 +15,7 @@ export class ProductsService {
     return this.productRepository.save(dto);
   }
 
-  getProductsList(): Promise<Product[] | undefined> {
+  getProductsList(): Promise<Product[]> {
     return this.productRepository.find();
   }
 
