@@ -40,13 +40,12 @@ export class ProductsController {
   @Get('filter')
   async getFilteredProductsList(@Query('description') description: string): Promise<Product[] | undefined> {
     let productsList = await this.productsService.getProductsList();
+
     if (!productsList) {
       throw new NotFoundException();
     }
 
-    if (description) {
-      productsList = productsList.filter(item => item.description.toLowerCase().includes(description.toLowerCase()));
-    }
+    productsList = await this.filterProductsList(productsList, description);
 
     return productsList;
   }
@@ -89,6 +88,20 @@ export class ProductsController {
       status: 'Product was removed',
       id: id,
     };
+  }
+
+  async filterProductsList(list: Product[], description: string): Promise<Product[]> {
+    list = await this.filterByDescription(list, description);
+
+    return list;
+  }
+
+  filterByDescription(list: Product[], description: string): Product[] {
+    if (description) {
+      list = list.filter(item => item.description.toLowerCase().includes(description.toLowerCase()));
+    }
+
+    return list;
   }
 }
 
