@@ -29,6 +29,7 @@ module.exports = {
   },
   ignorePatterns: ['.eslintrc.js'],
   rules: {
+    'no-param-reassign': ['error'],
     'prettier/prettier': 'error',
     'linebreak-style': ['error', 'unix'],
     'arrow-body-style': [
