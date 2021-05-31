@@ -10,6 +10,7 @@ eslint:
   stage: lint
   script:
     - npm install -g lerna
+    - lerna bootstrap --hoist
     - npm run lint
 
 prettier:
@@ -17,5 +18,4 @@ prettier:
     - docker
   stage: prettier
   script:
-    - npm install -g lerna
     - npm run prettier
