@@ -1,0 +1,18 @@
+image: node
+
+stages:
+  - lint
+
+eslint:
+  tags:
+    - docker
+  stage: lint
+  script:
+    - npm run lint
+
+prettier:
+  tags:
+    - docker
+  stage: prettier
+  script:
+    - npm run prettier
