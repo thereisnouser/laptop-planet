@@ -82,8 +82,8 @@ export class ProductsController {
     };
   }
 
-  async filterProductsList(list: Product[], description: string): Promise<Product[]> {
-    list = await this.filterByDescription(list, description);
+  filterProductsList(list: Product[], description: string): Product[] {
+    list = this.filterByDescription(list, description);
 
     return list;
   }
