@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-const getProductsList = () => {
+export const getProductsList = () => {
   const SERVER = 'http://localhost:5000/';
   const [items, setItems] = useState([]);
 
@@ -12,5 +12,3 @@ const getProductsList = () => {
 
   return items;
 };
-
-export default getProductsList;
