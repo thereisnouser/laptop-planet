@@ -1,36 +1,35 @@
-import { React, Grid, Button, Paper, Typography, Rating, IShopItem, trimDescription } from 'imports';
-import './ShopItem.css';
+import { React, Grid, Button, Paper, Typography, Rating, IShopItem } from 'imports';
+import './ShopItemFull.css';
 
-interface ShopItemProps {
+interface ShopItemFullProps {
   item: IShopItem;
-  onSelect: (id: number) => void;
 }
 
-export const ShopItem: React.FC<ShopItemProps> = ({ item, onSelect }): React.ReactElement => {
+export const ShopItemFull: React.FC<ShopItemFullProps> = ({ item }): React.ReactElement => {
   const { id, image, title, price, description, rating } = item;
 
   return (
     <Grid item key={id}>
-      <Paper elevation={4} className="shop-item">
-        <Grid container spacing={2}>
-          <Grid item sm={3} xs={12}>
-            <img className="shop-item__img" src={image} alt="img-1" />
+      <Paper elevation={4} className="shop-item-full">
+        <Grid container justify="space-around">
+          <Grid item>
+            <img className="shop-item-full__img" src={image} alt="img-1" />
           </Grid>
-          <Grid item sm={9} xs={12} container direction="column" justify="space-around">
+          <Grid item md={6} xs={12} container direction="column" justify="space-around">
             <Grid item container justify="space-between" alignItems="center">
               <Grid item>
-                <Typography variant="h6" className="shop-item__title" onClick={() => onSelect(id)}>
+                <Typography variant="h5" className="shop-item-full__title">
                   {title}
                 </Typography>
               </Grid>
               <Grid item>
-                <Typography variant="h6" className="shop-item__price">
+                <Typography variant="h6" className="shop-item-full__price">
                   ${price}
                 </Typography>
               </Grid>
             </Grid>
             <Grid item>
-              <Typography className="shop-item__description">{trimDescription(description)}</Typography>
+              <Typography className="shop-item-full__description">{description}</Typography>
             </Grid>
             <Grid item container justify="space-between" alignItems="center">
               <Grid item>

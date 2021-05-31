@@ -8,12 +8,10 @@ const config: PostgresConnectionOptions = {
   password: '345YP455',
   database: 'laptop_planet',
   entities: ['dist/src/**/*.entity.js'],
-  migrations: [
-    'dist/src/database/migrations/*.js'
-  ],
+  migrations: ['dist/src/database/migrations/*.js'],
   cli: {
-    migrationsDir: 'src/database/migrations'
-  }
-}
+    migrationsDir: 'src/database/migrations',
+  },
+};
 
 export default config;

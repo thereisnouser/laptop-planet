@@ -5,6 +5,7 @@ module.exports = {
   },
   extends: [
     'eslint:recommended',
+    'plugin:react/recommended',
     'plugin:@typescript-eslint/recommended',
     'plugin:import/errors',
     'plugin:import/warnings',
@@ -13,20 +14,13 @@ module.exports = {
   ],
   parser: '@typescript-eslint/parser',
   parserOptions: {
-    project: './tsconfig.json',
-    tsconfigRootDir: __dirname,
-    sourceType: 'module',
-    ecmaVersion: 12,
     ecmaFeatures: {
       jsx: true,
     },
+    ecmaVersion: 12,
+    sourceType: 'module',
   },
-  plugins: ['@typescript-eslint/eslint-plugin', 'prettier'],
-  root: true,
-  env: {
-    node: true,
-    jest: true,
-  },
+  plugins: ['react', 'react-hooks', '@typescript-eslint', 'prettier', 'import'],
   ignorePatterns: ['.eslintrc.js'],
   rules: {
     'prettier/prettier': 'error',
@@ -66,6 +60,9 @@ module.exports = {
         patterns: ['../*'],
       },
     ],
+    'react-hooks/rules-of-hooks': 'error',
+    'react-hooks/exhaustive-deps': 'warn',
+    'react/self-closing-comp': 'error',
     'import/extensions': [
       'error',
       'ignorePackages',
@@ -90,7 +87,6 @@ module.exports = {
       },
     ],
     'import/newline-after-import': 'error',
-    '@typescript-eslint/interface-name-prefix': 'off',
     '@typescript-eslint/no-explicit-any': 'error',
     '@typescript-eslint/explicit-function-return-type': 'off',
     '@typescript-eslint/explicit-module-boundary-types': 'off',
@@ -130,5 +126,21 @@ module.exports = {
         format: ['snake_case', 'camelCase'],
       },
     ],
+  },
+  overrides: [
+    {
+      files: ['*.ts', '*.tsx'],
+      rules: {
+        'react/prop-types': 'off',
+      },
+    },
+  ],
+  settings: {
+    'import/resolver': {
+      node: {
+        paths: ['./src'],
+        extensions: ['.ts', '.tsx'],
+      },
+    },
   },
 };

@@ -1,10 +1,14 @@
-import {
-  React, ShopList,
-} from '../../imports';
-import './App.css';
+import { React, useState, getProductsList, ShopList, ShopItemFull, IShopItem } from 'imports';
 
-const App: React.FC = () => (
-  <ShopList />
-);
+export const App: React.FC = (): React.ReactElement => {
+  const [itemsList] = useState(getProductsList());
+  const [activeItemId, setActiveItemId] = useState(0);
 
-export default App;
+  if (activeItemId > 0) {
+    const index = itemsList.findIndex((item: IShopItem) => item.id === activeItemId);
+
+    return <ShopItemFull item={itemsList[index]} />;
+  }
+
+  return <ShopList itemsList={itemsList} onSelect={setActiveItemId} />;
+};
