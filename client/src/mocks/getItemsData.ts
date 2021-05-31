@@ -1,10 +1,10 @@
-import { IShopItem, img1, img2, img3 } from 'imports';
+import { IShopItem } from 'imports';
 
 export const getItemsData = (): IShopItem[] => {
   const listItems = [
     {
       id: 1,
-      image: img1,
+      image: 'img-1',
       title: 'ASUS E210MA-GJ002T',
       price: 300,
       description:
@@ -14,7 +14,7 @@ export const getItemsData = (): IShopItem[] => {
     },
     {
       id: 2,
-      image: img2,
+      image: 'img-2',
       title: 'Irbis NB260',
       price: 350,
       description:
@@ -24,7 +24,7 @@ export const getItemsData = (): IShopItem[] => {
     },
     {
       id: 3,
-      image: img3,
+      image: 'img-3',
       title: 'IdeaPad Slim 1-11AST-05',
       price: 340,
       description:
