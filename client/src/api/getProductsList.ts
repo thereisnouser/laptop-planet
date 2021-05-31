@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
+import { SERVER } from '../imports';
 
 export const getProductsList = () => {
-  const SERVER = 'http://localhost:5000/';
   const [items, setItems] = useState([]);
 
   useEffect(() => {

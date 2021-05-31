@@ -13,6 +13,8 @@ import { getProductsList } from './api/getProductsList';
 import { getItemsData } from './mocks/getItemsData';
 import { muiconfig } from './muiconfig';
 
+import { SERVER } from './constants';
+
 export {
   React,
   useState,
@@ -33,5 +35,6 @@ export {
   getProductsList,
   getItemsData,
   muiconfig,
+  SERVER,
 };
 export type { IShopItem };
