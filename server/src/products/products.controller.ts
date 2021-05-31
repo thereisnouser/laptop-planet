@@ -9,7 +9,6 @@ import {
   HttpCode,
   BadRequestException,
   ValidationPipe,
-  NotFoundException,
   Query,
 } from '@nestjs/common';
 
@@ -30,20 +29,13 @@ export class ProductsController {
   @Get()
   async getProductsList(): Promise<Product[]> {
     const productsList = await this.productsService.getProductsList();
-    if (!productsList) {
-      throw new NotFoundException();
-    }
 
     return productsList;
   }
 
   @Get('filter')
-  async getFilteredProductsList(@Query('description') description: string): Promise<Product[] | undefined> {
+  async getFilteredProductsList(@Query('description') description: string): Promise<Product[]> {
     let productsList = await this.productsService.getProductsList();
-
-    if (!productsList) {
-      throw new NotFoundException();
-    }
 
     productsList = await this.filterProductsList(productsList, description);
 
