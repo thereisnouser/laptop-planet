@@ -2,12 +2,14 @@ image: node
 
 stages:
   - lint
+  - prettier
 
 eslint:
   tags:
     - docker
   stage: lint
   script:
+    - npm intall -g lerna
     - npm run lint
 
 prettier:
@@ -15,4 +17,5 @@ prettier:
     - docker
   stage: prettier
   script:
+    - npm intall -g lerna
     - npm run prettier
