@@ -83,17 +83,21 @@ export class ProductsController {
   }
 
   filterProductsList(list: Product[], description: string): Product[] {
-    list = this.filterByDescription(list, description);
+    const filteredList = this.filterByDescription(list, description);
 
-    return list;
+    return filteredList;
   }
 
   filterByDescription(list: Product[], description: string): Product[] {
+    let filteredByDescriptionList: Product[] = [];
+
     if (description) {
-      list = list.filter(item => item.description.toLowerCase().includes(description.toLowerCase()));
+      filteredByDescriptionList = list.filter(item =>
+        item.description.toLowerCase().includes(description.toLowerCase()),
+      );
     }
 
-    return list;
+    return filteredByDescriptionList;
   }
 }
 
