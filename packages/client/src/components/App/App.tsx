@@ -1,4 +1,6 @@
+import { Header } from 'components/Header/Header';
 import { React, useState, getItemsData, ShopList, ShopItemFull } from 'imports';
+import './App.css';
 
 export const App: React.FC = (): React.ReactElement => {
   const [itemsList] = useState(getItemsData());
@@ -10,5 +12,10 @@ export const App: React.FC = (): React.ReactElement => {
     return <ShopItemFull item={itemsList[index]} />;
   }
 
-  return <ShopList itemsList={itemsList} onSelect={setActiveItemId} />;
+  return (
+    <>
+      <Header />
+      <ShopList itemsList={itemsList} onSelect={setActiveItemId} />
+    </>
+  );
 };

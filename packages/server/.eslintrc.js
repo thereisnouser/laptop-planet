@@ -135,8 +135,8 @@ module.exports = {
   settings: {
     'import/resolver': {
       node: {
-        paths: ['.'],
-        extensions: ['.ts', '.tsx'],
+        paths: ['./'],
+        extensions: ['.ts'],
       },
     },
   },

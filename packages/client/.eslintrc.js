@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/naming-convention */
-/* eslint-disable no-undef */
 module.exports = {
   env: {
     browser: true,
@@ -23,6 +21,7 @@ module.exports = {
     sourceType: 'module',
   },
   plugins: ['react', 'react-hooks', '@typescript-eslint', 'prettier', 'import'],
+  ignorePatterns: ['.eslintrc.js'],
   rules: {
     'no-param-reassign': ['error'],
     'prettier/prettier': 'error',

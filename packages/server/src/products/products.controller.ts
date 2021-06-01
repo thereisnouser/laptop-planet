@@ -50,11 +50,9 @@ export class ProductsController {
   }
 
   @Put(':id')
-  async updateProduct(
-    @Param('id') id: number,
-    @Body(new ValidationPipe()) dto: CreateProductDto,
-  ): Promise<UpdateDeleteResult> {
+  async updateProduct(@Param('id') id: number, @Body() dto: CreateProductDto): Promise<UpdateDeleteResult> {
     const product = await this.productsService.getProduct(id);
+
     if (!product) {
       throw new BadRequestException();
     }
@@ -70,6 +68,7 @@ export class ProductsController {
   @Delete(':id')
   async removeProduct(@Param('id') id: number): Promise<UpdateDeleteResult> {
     const product = await this.productsService.getProduct(id);
+
     if (!product) {
       throw new BadRequestException();
     }
