@@ -20,6 +20,10 @@ export class ProductsService {
     return this.productRepository.find();
   }
 
+  getFilteredProductsList(filterQuery: string): Promise<Product[]> {
+    return this.productRepository.createQueryBuilder('product').where(filterQuery).getMany();
+  }
+
   getProduct(id: number): Promise<Product | undefined> {
     return this.productRepository.findOne(id);
   }

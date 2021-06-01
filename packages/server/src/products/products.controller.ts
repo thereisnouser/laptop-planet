@@ -35,9 +35,10 @@ export class ProductsController {
 
   @Get('filter')
   async getFilteredProductsList(@Query('description') description: string): Promise<Product[]> {
-    let productsList = await this.productsService.getProductsList();
+    const descriptionQuery = description ? `description ILIKE '%${description}%'` : '';
+    const filterQuery = `${descriptionQuery}`;
 
-    productsList = await this.filterProductsList(productsList, description);
+    const productsList = await this.productsService.getFilteredProductsList(filterQuery);
 
     return productsList;
   }
@@ -79,24 +80,6 @@ export class ProductsController {
       status: 'Product was removed',
       id: id,
     };
-  }
-
-  filterProductsList(list: Product[], description: string): Product[] {
-    const filteredList = this.filterByDescription(list, description);
-
-    return filteredList;
-  }
-
-  filterByDescription(list: Product[], description: string): Product[] {
-    let filteredByDescriptionList: Product[] = [];
-
-    if (description) {
-      filteredByDescriptionList = list.filter(item =>
-        item.description.toLowerCase().includes(description.toLowerCase()),
-      );
-    }
-
-    return filteredByDescriptionList;
   }
 }
 
