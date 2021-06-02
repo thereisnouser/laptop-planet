@@ -20,7 +20,7 @@ import { ShopList } from './components/ShopList/ShopList';
 import { ShopItem } from './components/ShopItem/ShopItem';
 import { ShopItemFull } from './components/ShopItemFull/ShopItemFull';
 import { trimDescription } from './components/ShopItem/TrimDescription';
-import { GetProductsList } from './api/getProductsList';
+import { getProductsList } from './api/getProductsList';
 import { muiconfig } from './muiconfig';
 
 export {
@@ -44,7 +44,7 @@ export {
   ShopItem,
   ShopItemFull,
   trimDescription,
-  GetProductsList,
+  getProductsList,
   muiconfig,
 };
 export type { IShopItem };
