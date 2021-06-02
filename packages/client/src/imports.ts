@@ -21,7 +21,6 @@ import { ShopItem } from './components/ShopItem/ShopItem';
 import { ShopItemFull } from './components/ShopItemFull/ShopItemFull';
 import { trimDescription } from './components/ShopItem/TrimDescription';
 import { GetProductsList } from './api/getProductsList';
-import { getItemsData } from './mocks/getItemsData';
 import { muiconfig } from './muiconfig';
 
 export {
@@ -46,7 +45,6 @@ export {
   ShopItemFull,
   trimDescription,
   GetProductsList,
-  getItemsData,
   muiconfig,
 };
 export type { IShopItem };
