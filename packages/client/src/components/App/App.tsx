@@ -1,4 +1,5 @@
-import { React, useState, getProductsList, ShopList, ShopItemFull, IShopItem } from 'imports';
+import { React, useState, getProductsList, Header, ShopList, ShopItemFull, IShopItem } from 'imports';
+import './App.css';
 
 export const App: React.FC = (): React.ReactElement => {
   const [itemsList] = useState(getProductsList());
@@ -10,5 +11,10 @@ export const App: React.FC = (): React.ReactElement => {
     return <ShopItemFull item={itemsList[index]} />;
   }
 
-  return <ShopList itemsList={itemsList} onSelect={setActiveItemId} />;
+  return (
+    <>
+      <Header />
+      <ShopList itemsList={itemsList} onSelect={setActiveItemId} />
+    </>
+  );
 };

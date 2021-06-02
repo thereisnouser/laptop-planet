@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react';
-import { SERVER } from '../imports';
+import { useEffect, useState } from 'imports';
+import { SERVER } from 'constants';
 
 export const getProductsList = () => {
   const [items, setItems] = useState([]);
