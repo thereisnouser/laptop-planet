@@ -1,11 +1,10 @@
 import { useEffect, useState } from 'imports';
-import { SERVER } from 'constants';
 
-export const getProductsList = () => {
+export const GetProductsList = () => {
   const [items, setItems] = useState([]);
 
   useEffect(() => {
-    fetch(`${SERVER}api/products/`)
+    fetch('/api/products/')
       .then(res => res.json())
       .then(res => setItems(res));
   }, []);

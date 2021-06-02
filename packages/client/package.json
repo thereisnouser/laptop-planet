@@ -18,6 +18,7 @@
     "lint": "eslint --ext .ts --ext .tsx",
     "prettier": "prettier --write ."
   },
+  "proxy": "http://localhost:5000",
   "eslintConfig": {
     "extends": [
       "react-app",

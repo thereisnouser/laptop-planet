@@ -1,8 +1,8 @@
-import { React, useState, getProductsList, Header, ShopList, ShopItemFull, IShopItem } from 'imports';
+import { React, useState, GetProductsList, Header, ShopList, ShopItemFull, IShopItem } from 'imports';
 import './App.css';
 
 export const App: React.FC = (): React.ReactElement => {
-  const [itemsList] = useState(getProductsList());
+  const itemsList = GetProductsList();
   const [activeItemId, setActiveItemId] = useState(0);
 
   if (activeItemId > 0) {

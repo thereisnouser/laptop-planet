@@ -20,10 +20,9 @@ import { ShopList } from './components/ShopList/ShopList';
 import { ShopItem } from './components/ShopItem/ShopItem';
 import { ShopItemFull } from './components/ShopItemFull/ShopItemFull';
 import { trimDescription } from './components/ShopItem/TrimDescription';
-import { getProductsList } from './api/getProductsList';
+import { GetProductsList } from './api/getProductsList';
 import { getItemsData } from './mocks/getItemsData';
 import { muiconfig } from './muiconfig';
-import { SERVER } from './constants';
 
 export {
   React,
@@ -46,9 +45,8 @@ export {
   ShopItem,
   ShopItemFull,
   trimDescription,
-  getProductsList,
+  GetProductsList,
   getItemsData,
   muiconfig,
-  SERVER,
 };
 export type { IShopItem };
