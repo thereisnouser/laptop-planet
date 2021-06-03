@@ -1,0 +1,7 @@
+.header__appbar {
+  margin-bottom: 16px;
+}
+.header__sign {
+  flex-grow: 1;
+  color: #628395;
+}
