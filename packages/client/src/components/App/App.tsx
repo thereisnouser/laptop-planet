@@ -31,10 +31,8 @@ export const App: React.FC = (): JSX.Element => {
         <ShopList itemsList={itemsList} />
       </Route>
       <Route path="/product/:id">
-        <ShopItemFull item={itemsList[0]} />
+        <ShopItemFull />
       </Route>
     </BrowserRouter>
-    // remove hard coded '0' id when add method
-    // for getting product by id from server
   );
 };
