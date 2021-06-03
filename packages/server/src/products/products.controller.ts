@@ -9,6 +9,7 @@ import {
   HttpCode,
   BadRequestException,
   ValidationPipe,
+  Query,
 } from '@nestjs/common';
 
 import { CreateProductDto } from './dto/create-product.dto';
@@ -28,6 +29,16 @@ export class ProductsController {
   @Get()
   async getProductsList(): Promise<Product[]> {
     const productsList = await this.productsService.getProductsList();
+
+    return productsList;
+  }
+
+  @Get('filter')
+  async getFilteredProductsList(@Query('description') description: string): Promise<Product[]> {
+    const descriptionQuery = description ? `description ILIKE '%${description}%'` : '';
+    const filterQuery = `${descriptionQuery}`;
+
+    const productsList = await this.productsService.getFilteredProductsList(filterQuery);
 
     return productsList;
   }
