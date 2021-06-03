@@ -1,12 +1,11 @@
-import { React, Grid, Button, Paper, Typography, Rating, IShopItem, trimDescription } from 'imports';
+import { React, Link, Grid, Button, Paper, Typography, Rating, IShopItem, trimDescription } from 'imports';
 import './ShopItem.css';
 
 interface ShopItemProps {
   item: IShopItem;
-  onSelect: (id: number) => void;
 }
 
-export const ShopItem: React.FC<ShopItemProps> = ({ item, onSelect }): React.ReactElement => {
+export const ShopItem: React.FC<ShopItemProps> = ({ item }): React.ReactElement => {
   const { id, image, title, price, description, rating } = item;
 
   return (
@@ -19,8 +18,10 @@ export const ShopItem: React.FC<ShopItemProps> = ({ item, onSelect }): React.Rea
           <Grid item sm={9} xs={12} container direction="column" justify="space-around">
             <Grid item container justify="space-between" alignItems="center">
               <Grid item>
-                <Typography variant="h6" className="shop-item__title" onClick={() => onSelect(id)}>
-                  {title}
+                <Typography variant="h6">
+                  <Link to={`/product/${id}`} className="shop-item__title">
+                    {title}
+                  </Link>
                 </Typography>
               </Grid>
               <Grid item>

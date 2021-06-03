@@ -6,8 +6,8 @@
   object-fit: contain;
 }
 .shop-item__title {
+  text-decoration: none;
   color: #628395;
-  cursor: pointer;
 }
 .shop-item__price {
   color: #1a1e33;

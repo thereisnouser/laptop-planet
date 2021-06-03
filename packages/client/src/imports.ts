@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
+import { BrowserRouter, Route, Link, useParams } from 'react-router-dom';
 import {
   CssBaseline,
   ThemeProvider,
@@ -21,6 +22,7 @@ import { ShopItem } from './components/ShopItem/ShopItem';
 import { ShopItemFull } from './components/ShopItemFull/ShopItemFull';
 import { trimDescription } from './components/ShopItem/TrimDescription';
 import { getProductsList } from './api/getProductsList';
+import { getProduct } from './api/getProduct';
 import { muiconfig } from './muiconfig';
 
 export {
@@ -28,6 +30,10 @@ export {
   useState,
   useEffect,
   ReactDOM,
+  BrowserRouter,
+  Route,
+  Link,
+  useParams,
   CssBaseline,
   ThemeProvider,
   Container,
@@ -45,6 +51,7 @@ export {
   ShopItemFull,
   trimDescription,
   getProductsList,
+  getProduct,
   muiconfig,
 };
 export type { IShopItem };

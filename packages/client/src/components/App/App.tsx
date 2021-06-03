@@ -1,9 +1,19 @@
-import { React, useState, useEffect, getProductsList, Header, ShopList, ShopItemFull, IShopItem } from 'imports';
+import {
+  React,
+  useState,
+  useEffect,
+  BrowserRouter,
+  Route,
+  getProductsList,
+  Header,
+  ShopList,
+  ShopItemFull,
+  IShopItem,
+} from 'imports';
 import './App.css';
 
 export const App: React.FC = (): JSX.Element => {
   const [itemsList, setItemsList] = useState<IShopItem[]>([]);
-  const [activeItemId, setActiveItemId] = useState(0);
 
   useEffect(() => {
     async function fetch() {
@@ -14,16 +24,15 @@ export const App: React.FC = (): JSX.Element => {
     fetch();
   }, []);
 
-  if (activeItemId > 0) {
-    const index = itemsList.findIndex((item: IShopItem) => item.id === activeItemId);
-
-    return <ShopItemFull item={itemsList[index]} />;
-  }
-
   return (
-    <>
-      <Header />
-      <ShopList itemsList={itemsList} onSelect={setActiveItemId} />
-    </>
+    <BrowserRouter>
+      <Route path="/" exact>
+        <Header />
+        <ShopList itemsList={itemsList} />
+      </Route>
+      <Route path="/product/:id">
+        <ShopItemFull />
+      </Route>
+    </BrowserRouter>
   );
 };
