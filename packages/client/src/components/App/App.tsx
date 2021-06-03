@@ -2,7 +2,7 @@ import { React, useState, useEffect, getProductsList, Header, ShopList, ShopItem
 import './App.css';
 
 export const App: React.FC = (): JSX.Element => {
-  const [itemsList, setItemsList] = useState([]);
+  const [itemsList, setItemsList] = useState<IShopItem[]>([]);
   const [activeItemId, setActiveItemId] = useState(0);
 
   useEffect(() => {
