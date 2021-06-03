@@ -2,6 +2,11 @@
 /dist
 /node_modules
 
+# images
+*.jpg
+*.jpeg
+*.png
+
 # Logs
 logs
 *.log
