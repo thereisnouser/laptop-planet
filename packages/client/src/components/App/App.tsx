@@ -4,12 +4,12 @@ import {
   useEffect,
   BrowserRouter,
   Route,
-  getProductsList,
   Header,
   SearchPanel,
   ShopList,
   ShopItemFull,
   IShopItem,
+  getFilteredProductsList,
 } from 'imports';
 import './App.css';
 
@@ -19,12 +19,12 @@ export const App: React.FC = (): JSX.Element => {
 
   useEffect(() => {
     async function fetch() {
-      const response = await getProductsList();
+      const response = await getFilteredProductsList(description);
       setItemsList(response);
     }
 
     fetch();
-  }, []);
+  }, [description]);
 
   return (
     <BrowserRouter>
