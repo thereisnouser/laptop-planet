@@ -1,0 +1,15 @@
+.shop-item-full {
+  padding: 10px;
+}
+.shop-item-full__img {
+  max-width: 100%;
+}
+.shop-item-full__title {
+  color: #628395;
+}
+.shop-item-full__price {
+  color: #1a1e33;
+}
+.shop-item-full__description {
+  color: #1a1e33;
+}
