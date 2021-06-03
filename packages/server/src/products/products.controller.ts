@@ -46,15 +46,13 @@ export class ProductsController {
     const descriptionQuery = description ? `description ILIKE '%${description}%'` : '';
     const filterQuery = `${descriptionQuery}`;
 
+    this.productsQuantity = await this.productsService.countFilteredProductsList(filterQuery);
+
     const productsList = await this.productsService.getFilteredProductsList(
       filterQuery,
       offsetNumber,
       this.maxItemsOnPage,
     );
-
-    console.log(productsList.length, this.productsQuantity);
-    this.productsQuantity = productsList.length;
-    console.log(this.productsQuantity);
 
     return productsList;
   }
