@@ -21,7 +21,7 @@ export class ProductsController {
   constructor(private productsService: ProductsService) {}
 
   private productsQuantity = 1;
-  private maxItemsOnPage = 5;
+  private readonly maxItemsOnPage = 5;
 
   @Post()
   @HttpCode(204)
