@@ -37,10 +37,8 @@ export class ProductsController {
   }
 
   @Get('filter')
-  async getFilteredProductsList(
-    @Query('description') description: string,
-    @Query('page') page: string,
-  ): Promise<Product[]> {
+  async getFilteredProductsList(@Query() query: FilterQueryProps): Promise<Product[]> {
+    const { page, description } = query;
     const pageNumber = Number(page);
     const offsetNumber = this.getOffsetNumber(pageNumber);
     const descriptionQuery = description ? `description ILIKE '%${description}%'` : '';
@@ -48,11 +46,11 @@ export class ProductsController {
 
     this.productsQuantity = await this.productsService.countFilteredProductsList(filterQuery);
 
-    const productsList = await this.productsService.getFilteredProductsList(
+    const productsList = await this.productsService.getFilteredProductsList({
       filterQuery,
       offsetNumber,
-      this.maxItemsOnPage,
-    );
+      limitNumber: this.maxItemsOnPage,
+    });
 
     return productsList;
   }
@@ -114,4 +112,9 @@ export class ProductsController {
 interface UpdateDeleteResult {
   status: string;
   id: number;
+}
+
+interface FilterQueryProps {
+  page: string;
+  description: string;
 }
