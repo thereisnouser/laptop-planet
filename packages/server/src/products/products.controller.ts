@@ -20,7 +20,7 @@ import { ProductsService } from './products.service';
 export class ProductsController {
   constructor(private productsService: ProductsService) {}
 
-  private maxItemsOnPage = 5;
+  private readonly maxItemsOnPage = 5;
 
   @Post()
   @HttpCode(204)
