@@ -38,16 +38,16 @@ export class ProductsController {
 
   @Get('filter')
   async getFilteredProductsList(@Query() query: FilterQueryProps): Promise<Product[]> {
-    const { page, description, orderBy } = query;
+    const { page = 1, description = '', orderBy = '' } = query;
 
     const pageNumber = Number(page);
     const offsetNumber = this.getOffsetNumber(pageNumber);
 
-    const orderProps = orderBy.split(' ');
+    const orderProps = orderBy.split(' ') || '';
     const orderParam = this.getOrderParam(orderProps[0] || '');
     const orderMethod = this.getOrderMethod(orderProps[1] || '');
 
-    const descriptionQuery = description ? `description ILIKE '%${description}%'` : '';
+    const descriptionQuery = `description ILIKE '%${description}%'`;
     const filterQuery = `${descriptionQuery}`;
 
     this.productsQuantity = await this.productsService.countFilteredProductsList(filterQuery);
