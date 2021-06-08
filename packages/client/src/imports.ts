@@ -28,6 +28,7 @@ import { trimDescription } from './components/ShopItem/TrimDescription';
 import { getProductsList } from './api/getProductsList';
 import { getFilteredProductsList } from './api/getFilteredProductsList';
 import { getProduct } from './api/getProduct';
+import { useQuery } from './hooks/useQuery';
 import { muiconfig } from './muiconfig';
 
 export {
@@ -64,6 +65,7 @@ export {
   getProductsList,
   getFilteredProductsList,
   getProduct,
+  useQuery,
   muiconfig,
 };
 export type { IShopItem };

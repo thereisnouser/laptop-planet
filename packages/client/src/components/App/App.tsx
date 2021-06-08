@@ -3,28 +3,19 @@ import {
   useState,
   useEffect,
   Route,
-  useLocation,
-  useHistory,
   Header,
   SearchPanel,
   ShopList,
   ShopItemFull,
   IShopItem,
   getFilteredProductsList,
+  useQuery,
 } from 'imports';
 import './App.css';
 
 export const App: React.FC = (): JSX.Element => {
-  const history = useHistory();
-  const location = useLocation();
-  const [query, setQuery] = useState<URLSearchParams>(new URLSearchParams(location.search));
+  const [query, updateQuery] = useQuery();
   const [itemsList, setItemsList] = useState<IShopItem[]>([]);
-
-  useEffect(() => {
-    const newQuery = new URLSearchParams(location.search);
-
-    setQuery(newQuery);
-  }, [location]);
 
   useEffect(() => {
     async function fetch() {
@@ -37,19 +28,7 @@ export const App: React.FC = (): JSX.Element => {
   }, [query]);
 
   const setParamInQuery = (property: string, value: string) => {
-    const newQuery = new URLSearchParams(location.search);
-
-    if (newQuery.has(property) && value === '') {
-      newQuery.delete(property);
-    } else if (newQuery.has(property)) {
-      newQuery.set(property, value);
-    } else {
-      newQuery.append(property, value);
-    }
-
-    history.push({
-      search: newQuery.toString(),
-    });
+    updateQuery(property, value);
   };
 
   return (
