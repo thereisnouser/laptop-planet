@@ -8,9 +8,7 @@ export const useQuery = (property = '', value = '') => {
   const updateQuery = (property: string, value: string) => {
     const newQuery = new URLSearchParams(location.search);
 
-    if (newQuery.has(property) && value === '') {
-      newQuery.delete(property);
-    } else if (newQuery.has(property)) {
+    if (newQuery.has(property)) {
       newQuery.set(property, value);
     } else if (property && value) {
       newQuery.append(property, value);
