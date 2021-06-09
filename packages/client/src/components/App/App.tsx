@@ -11,13 +11,14 @@ import {
   IShopItem,
   getFilteredProductsList,
   useQuery,
+  INITIAL_PAGE,
 } from 'imports';
 import './App.css';
 
 export const App: React.FC = (): JSX.Element => {
   const [query, updateQuery] = useQuery();
   const [itemsList, setItemsList] = useState<IShopItem[]>([]);
-  const page = query.get('page') || 1;
+  const page = Number(query.get('page')) || INITIAL_PAGE;
 
   useEffect(() => {
     async function fetch() {
