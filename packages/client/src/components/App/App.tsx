@@ -17,6 +17,7 @@ import './App.css';
 
 enum QueryKeys {
   Page = 'page',
+  Description = 'description',
 }
 
 export const App: React.FC = () => {
@@ -42,7 +43,7 @@ export const App: React.FC = () => {
     <>
       <Route path="/" exact>
         <Header />
-        <SearchPanel onSearch={setParamInQuery} />
+        <SearchPanel onSearch={(value: string) => setParamInQuery(QueryKeys.Description, value)} />
         <ShopList itemsList={itemsList} />
         <PageNumbers
           currentPage={Number(page)}
