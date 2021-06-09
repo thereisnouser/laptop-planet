@@ -3,13 +3,13 @@ import './PageNumbers.css';
 
 interface PageNumberProps {
   currentPage: number;
-  changePage: (property: string, value: string) => void;
+  changePage: (value: string) => void;
 }
 
 export const PageNumbers: React.FC<PageNumberProps> = ({ currentPage, changePage }) => {
   const changeHandler = (event: React.ChangeEvent<unknown>, value: number) => {
     event.preventDefault();
-    changePage('page', String(value));
+    changePage(String(value));
   };
 
   return (

@@ -15,6 +15,10 @@ import {
 } from 'imports';
 import './App.css';
 
+enum QueryKeys {
+  Page = 'page',
+}
+
 export const App: React.FC = () => {
   const [query, updateQuery] = useQuery();
   const [itemsList, setItemsList] = useState<IShopItem[]>([]);
@@ -40,7 +44,10 @@ export const App: React.FC = () => {
         <Header />
         <SearchPanel onSearch={setParamInQuery} />
         <ShopList itemsList={itemsList} />
-        <PageNumbers currentPage={Number(page)} changePage={setParamInQuery} />
+        <PageNumbers
+          currentPage={Number(page)}
+          changePage={(value: string) => setParamInQuery(QueryKeys.Page, value)}
+        />
       </Route>
       <Route path="/product/:id">
         <ShopItemFull />
