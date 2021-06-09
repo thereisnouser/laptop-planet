@@ -10,7 +10,9 @@ export const SearchPanel: React.FC<SearchPanelProps> = ({ onSearch }): React.Rea
 
   const handleSubmit = (event: React.FormEvent): void => {
     event.preventDefault();
-    onSearch('description', value);
+    const property = 'description';
+
+    onSearch(property, value);
   };
 
   return (
