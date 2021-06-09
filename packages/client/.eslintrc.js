@@ -23,6 +23,7 @@ module.exports = {
   plugins: ['react', 'react-hooks', '@typescript-eslint', 'prettier', 'import'],
   ignorePatterns: ['.eslintrc.js'],
   rules: {
+    'no-shadow': 'error',
     'no-param-reassign': ['error'],
     'prettier/prettier': 'error',
     'linebreak-style': ['error', 'unix'],
