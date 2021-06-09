@@ -5,7 +5,7 @@ interface SearchPanelProps {
   onSearch: (property: string, value: string) => void;
 }
 
-export const SearchPanel: React.FC<SearchPanelProps> = ({ onSearch }): React.ReactElement => {
+export const SearchPanel: React.FC<SearchPanelProps> = ({ onSearch }) => {
   const [value, setValue] = useState('');
 
   const handleSubmit = (event: React.FormEvent): void => {

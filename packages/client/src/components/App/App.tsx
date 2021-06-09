@@ -15,7 +15,7 @@ import {
 } from 'imports';
 import './App.css';
 
-export const App: React.FC = (): JSX.Element => {
+export const App: React.FC = () => {
   const [query, updateQuery] = useQuery();
   const [itemsList, setItemsList] = useState<IShopItem[]>([]);
   const page = Number(query.get('page')) || INITIAL_PAGE;
