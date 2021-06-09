@@ -1,8 +1,10 @@
-import { React, ReactDOM, App, ThemeProvider, muiconfig } from 'imports';
+import { React, ReactDOM, BrowserRouter, App, ThemeProvider, muiconfig } from 'imports';
 
 ReactDOM.render(
   <ThemeProvider theme={muiconfig}>
-    <App />
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
   </ThemeProvider>,
   document.getElementById('root'),
 );

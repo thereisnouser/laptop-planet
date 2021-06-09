@@ -2,7 +2,6 @@ import {
   React,
   useState,
   useEffect,
-  BrowserRouter,
   Route,
   Header,
   SearchPanel,
@@ -10,32 +9,38 @@ import {
   ShopItemFull,
   IShopItem,
   getFilteredProductsList,
+  useQuery,
 } from 'imports';
 import './App.css';
 
 export const App: React.FC = (): JSX.Element => {
-  const [description, setDescription] = useState('');
+  const [query, updateQuery] = useQuery();
   const [itemsList, setItemsList] = useState<IShopItem[]>([]);
 
   useEffect(() => {
     async function fetch() {
-      const response = await getFilteredProductsList(description);
+      const response = await getFilteredProductsList(query.toString());
+
       setItemsList(response);
     }
 
     fetch();
-  }, [description]);
+  }, [query]);
+
+  const setParamInQuery = (property: string, value: string) => {
+    updateQuery(property, value);
+  };
 
   return (
-    <BrowserRouter>
+    <>
       <Route path="/" exact>
         <Header />
-        <SearchPanel filterItemsList={(value: string) => setDescription(value)} />
+        <SearchPanel onSearch={setParamInQuery} />
         <ShopList itemsList={itemsList} />
       </Route>
       <Route path="/product/:id">
         <ShopItemFull />
       </Route>
-    </BrowserRouter>
+    </>
   );
 };

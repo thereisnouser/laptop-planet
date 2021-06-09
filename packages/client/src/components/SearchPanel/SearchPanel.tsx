@@ -2,15 +2,17 @@ import { React, useState, Paper, InputBase, IconButton, SearchIcon } from 'impor
 import './SearchPanel.css';
 
 interface SearchPanelProps {
-  filterItemsList: (value: string) => void;
+  onSearch: (property: string, value: string) => void;
 }
 
-export const SearchPanel: React.FC<SearchPanelProps> = ({ filterItemsList }): React.ReactElement => {
+export const SearchPanel: React.FC<SearchPanelProps> = ({ onSearch }): React.ReactElement => {
   const [value, setValue] = useState('');
 
   const handleSubmit = (event: React.FormEvent): void => {
     event.preventDefault();
-    filterItemsList(value);
+    const property = 'description';
+
+    onSearch(property, value);
   };
 
   return (
