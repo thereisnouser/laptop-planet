@@ -1,11 +1,11 @@
-import { useEffect, useHistory, useLocation, useState } from 'imports';
+import { useHistory, useLocation, useState } from 'imports';
 
-export const useQuery = (property = '', value = '') => {
+export const useQuery = () => {
   const history = useHistory();
   const location = useLocation();
   const [query, setQuery] = useState(new URLSearchParams(location.search));
 
-  const updateQuery = (property: string, value: string) => {
+  const updateQuery = (property = '', value = '') => {
     const newQuery = new URLSearchParams(location.search);
 
     if (newQuery.has(property)) {
@@ -20,10 +20,6 @@ export const useQuery = (property = '', value = '') => {
       search: newQuery.toString(),
     });
   };
-
-  useEffect(() => {
-    updateQuery(property, value);
-  }, [property, value]);
 
   return [query, updateQuery] as const;
 };
