@@ -35,20 +35,13 @@ export const App: React.FC = () => {
     fetch();
   }, [query]);
 
-  const setParamInQuery = (property: string, value: string) => {
-    updateQuery(property, value);
-  };
-
   return (
     <>
       <Route path="/" exact>
         <Header />
-        <SearchPanel onSearch={(value: string) => setParamInQuery(QueryKeys.Description, value)} />
+        <SearchPanel onSearch={(value: string) => updateQuery(QueryKeys.Description, value)} />
         <ShopList itemsList={itemsList} />
-        <PageNumbers
-          currentPage={Number(page)}
-          changePage={(value: string) => setParamInQuery(QueryKeys.Page, value)}
-        />
+        <PageNumbers currentPage={Number(page)} changePage={(value: string) => updateQuery(QueryKeys.Page, value)} />
       </Route>
       <Route path="/product/:id">
         <ShopItemFull />
