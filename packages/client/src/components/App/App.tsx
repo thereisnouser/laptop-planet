@@ -11,8 +11,9 @@ import {
   IShopItem,
   getFilteredProductsList,
   useQuery,
-  INITIAL_PAGE,
   getPagesQuantity,
+  INITIAL_PAGE,
+  MIN_PAGES_QUANTITY,
 } from 'imports';
 import './App.css';
 
@@ -25,7 +26,7 @@ export const App: React.FC = () => {
   const [query, updateQuery] = useQuery();
   const [itemsList, setItemsList] = useState<IShopItem[]>([]);
   const page = Number(query.get(QueryKeys.Page)) || INITIAL_PAGE;
-  const [pagesQuantity, setPagesQuantity] = useState(1);
+  const [pagesQuantity, setPagesQuantity] = useState(MIN_PAGES_QUANTITY);
 
   useEffect(() => {
     async function fetch() {
