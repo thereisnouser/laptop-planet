@@ -3,8 +3,6 @@ import {
   useState,
   useEffect,
   Route,
-  useLocation,
-  useHistory,
   Header,
   SearchPanel,
   PageNumbers,
@@ -12,23 +10,23 @@ import {
   ShopItemFull,
   IShopItem,
   getFilteredProductsList,
+  useQuery,
   getPagesQuantity,
+  INITIAL_PAGE,
+  MIN_PAGES_QUANTITY,
 } from 'imports';
 import './App.css';
 
-export const App: React.FC = (): JSX.Element => {
-  const history = useHistory();
-  const location = useLocation();
-  const [query, setQuery] = useState<URLSearchParams>(new URLSearchParams(location.search));
+enum QueryKeys {
+  Page = 'page',
+  Description = 'description',
+}
+
+export const App: React.FC = () => {
+  const [query, updateQuery] = useQuery();
   const [itemsList, setItemsList] = useState<IShopItem[]>([]);
-  const currentPage = query.get('page') || 1;
-  const [pagesQuantity, setPagesQuantity] = useState(1);
-
-  useEffect(() => {
-    const newQuery = new URLSearchParams(location.search);
-
-    setQuery(newQuery);
-  }, [location]);
+  const page = Number(query.get(QueryKeys.Page)) || INITIAL_PAGE;
+  const [pagesQuantity, setPagesQuantity] = useState(MIN_PAGES_QUANTITY);
 
   useEffect(() => {
     async function fetch() {
@@ -49,29 +47,17 @@ export const App: React.FC = (): JSX.Element => {
     fetch();
   }, [itemsList]);
 
-  const setParamInQuery = (property: string, value: string) => {
-    const newQuery = new URLSearchParams(location.search);
-
-    if (newQuery.has(property) && value === '') {
-      newQuery.delete(property);
-    } else if (newQuery.has(property)) {
-      newQuery.set(property, value);
-    } else {
-      newQuery.append(property, value);
-    }
-
-    history.push({
-      search: newQuery.toString(),
-    });
-  };
-
   return (
     <>
       <Route path="/" exact>
         <Header />
-        <SearchPanel onSearch={setParamInQuery} />
+        <SearchPanel onSearch={(value: string) => updateQuery(QueryKeys.Description, value)} />
         <ShopList itemsList={itemsList} />
-        <PageNumbers pagesQuantity={pagesQuantity} currentPage={Number(currentPage)} changePage={setParamInQuery} />
+        <PageNumbers
+          pagesQuantity={pagesQuantity}
+          currentPage={page}
+          changePage={(value: string) => updateQuery(QueryKeys.Page, value)}
+        />
       </Route>
       <Route path="/product/:id">
         <ShopItemFull />
