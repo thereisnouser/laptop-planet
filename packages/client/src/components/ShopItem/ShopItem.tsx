@@ -5,7 +5,7 @@ interface ShopItemProps {
   item: IShopItem;
 }
 
-export const ShopItem: React.FC<ShopItemProps> = ({ item }): React.ReactElement => {
+export const ShopItem: React.FC<ShopItemProps> = ({ item }) => {
   const { id, image, title, price, description, rating } = item;
 
   return (
