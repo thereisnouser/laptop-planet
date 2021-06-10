@@ -23,7 +23,7 @@ enum QueryKeys {
 export const App: React.FC = () => {
   const [query, updateQuery] = useQuery();
   const [itemsList, setItemsList] = useState<IShopItem[]>([]);
-  const page = Number(query.get('page')) || INITIAL_PAGE;
+  const page = Number(query.get(QueryKeys.Page)) || INITIAL_PAGE;
 
   useEffect(() => {
     async function fetch() {
@@ -41,7 +41,7 @@ export const App: React.FC = () => {
         <Header />
         <SearchPanel onSearch={(value: string) => updateQuery(QueryKeys.Description, value)} />
         <ShopList itemsList={itemsList} />
-        <PageNumbers currentPage={Number(page)} changePage={(value: string) => updateQuery(QueryKeys.Page, value)} />
+        <PageNumbers currentPage={page} changePage={(value: string) => updateQuery(QueryKeys.Page, value)} />
       </Route>
       <Route path="/product/:id">
         <ShopItemFull />
