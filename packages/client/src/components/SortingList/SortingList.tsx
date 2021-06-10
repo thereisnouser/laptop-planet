@@ -8,7 +8,9 @@ interface SortingListProps {
 
 export const SortingList: React.FC<SortingListProps> = ({ currentSortType, onChangeSortType }): React.ReactElement => {
   const handleChange = (event: React.ChangeEvent<{ value: unknown }>) => {
-    onChangeSortType(event.target.value as string);
+    const value = String(event.target.value);
+
+    onChangeSortType(value);
   };
 
   return (
