@@ -31,6 +31,10 @@ export class ProductsService {
       .getMany();
   }
 
+  countFilteredProductsList(filterQuery: string) {
+    return this.productRepository.createQueryBuilder('product').where(filterQuery).getCount();
+  }
+
   getProduct(id: number): Promise<Product | undefined> {
     return this.productRepository.findOne(id);
   }

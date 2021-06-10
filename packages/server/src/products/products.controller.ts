@@ -20,6 +20,7 @@ import { ProductsService } from './products.service';
 export class ProductsController {
   constructor(private productsService: ProductsService) {}
 
+  private productsQuantity = 1;
   private readonly maxItemsOnPage = 5;
 
   @Post()
@@ -43,6 +44,8 @@ export class ProductsController {
     const descriptionQuery = description ? `description ILIKE '%${description}%'` : '';
     const filterQuery = `${descriptionQuery}`;
 
+    this.productsQuantity = await this.productsService.countFilteredProductsList(filterQuery);
+
     const productsList = await this.productsService.getFilteredProductsList({
       filterQuery,
       offsetNumber,
@@ -50,6 +53,12 @@ export class ProductsController {
     });
 
     return productsList;
+  }
+
+  @Get('count')
+  async getPagesQuantity(): Promise<number> {
+    const pages = await Math.ceil(this.productsQuantity / this.maxItemsOnPage);
+    return pages;
   }
 
   @Get(':id')
