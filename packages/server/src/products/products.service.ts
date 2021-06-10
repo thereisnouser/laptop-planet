@@ -20,8 +20,15 @@ export class ProductsService {
     return this.productRepository.find();
   }
 
-  getFilteredProductsList(filterQuery: string): Promise<Product[]> {
-    return this.productRepository.createQueryBuilder('product').where(filterQuery).getMany();
+  getFilteredProductsList(props: SQLQueryProps): Promise<Product[]> {
+    const { filterQuery, offsetNumber, limitNumber } = props;
+
+    return this.productRepository
+      .createQueryBuilder('product')
+      .where(filterQuery)
+      .offset(offsetNumber)
+      .limit(limitNumber)
+      .getMany();
   }
 
   getProduct(id: number): Promise<Product | undefined> {
@@ -35,4 +42,10 @@ export class ProductsService {
   removeProduct(id: number): Promise<DeleteResult> {
     return this.productRepository.delete(id);
   }
+}
+
+interface SQLQueryProps {
+  filterQuery: string;
+  offsetNumber: number;
+  limitNumber: number;
 }

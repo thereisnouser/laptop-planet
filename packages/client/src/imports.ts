@@ -15,12 +15,13 @@ import {
   IconButton,
 } from '@material-ui/core';
 import { Search as SearchIcon } from '@material-ui/icons';
-import { Rating } from '@material-ui/lab';
+import { Rating, Pagination } from '@material-ui/lab';
 
 import { App } from './components/App/App';
 import { IShopItem } from './models/shopItem';
 import { Header } from './components/Header/Header';
 import { SearchPanel } from './components/SearchPanel/SearchPanel';
+import { PageNumbers } from './components/PageNumbers/PageNumbers';
 import { ShopList } from './components/ShopList/ShopList';
 import { ShopItem } from './components/ShopItem/ShopItem';
 import { ShopItemFull } from './components/ShopItemFull/ShopItemFull';
@@ -30,6 +31,7 @@ import { getFilteredProductsList } from './api/getFilteredProductsList';
 import { getProduct } from './api/getProduct';
 import { useQuery } from './hooks/useQuery';
 import { muiconfig } from './muiconfig';
+import { INITIAL_PAGE } from './constants';
 
 export {
   React,
@@ -55,9 +57,11 @@ export {
   IconButton,
   SearchIcon,
   Rating,
+  Pagination,
   App,
   Header,
   SearchPanel,
+  PageNumbers,
   ShopList,
   ShopItem,
   ShopItemFull,
@@ -67,5 +71,6 @@ export {
   getProduct,
   useQuery,
   muiconfig,
+  INITIAL_PAGE,
 };
 export type { IShopItem };

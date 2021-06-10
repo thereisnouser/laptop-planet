@@ -20,6 +20,8 @@ import { ProductsService } from './products.service';
 export class ProductsController {
   constructor(private productsService: ProductsService) {}
 
+  private readonly maxItemsOnPage = 5;
+
   @Post()
   @HttpCode(204)
   createProduct(@Body(new ValidationPipe()) dto: CreateProductDto): Promise<CreateProductDto> {
@@ -34,11 +36,18 @@ export class ProductsController {
   }
 
   @Get('filter')
-  async getFilteredProductsList(@Query('description') description: string): Promise<Product[]> {
+  async getFilteredProductsList(@Query() query: FilterQueryProps): Promise<Product[]> {
+    const { page, description } = query;
+    const pageNumber = Number(page);
+    const offsetNumber = this.getOffsetNumber(pageNumber);
     const descriptionQuery = description ? `description ILIKE '%${description}%'` : '';
     const filterQuery = `${descriptionQuery}`;
 
-    const productsList = await this.productsService.getFilteredProductsList(filterQuery);
+    const productsList = await this.productsService.getFilteredProductsList({
+      filterQuery,
+      offsetNumber,
+      limitNumber: this.maxItemsOnPage,
+    });
 
     return productsList;
   }
@@ -81,9 +90,22 @@ export class ProductsController {
       id: id,
     };
   }
+
+  getOffsetNumber(page: number): number {
+    if (page > 0) {
+      return this.maxItemsOnPage * (page - 1);
+    }
+
+    return 0;
+  }
 }
 
 interface UpdateDeleteResult {
   status: string;
   id: number;
+}
+
+interface FilterQueryProps {
+  page: string;
+  description: string;
 }
