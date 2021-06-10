@@ -4,7 +4,7 @@ interface ShopListProps {
   itemsList: IShopItem[];
 }
 
-export const ShopList: React.FC<ShopListProps> = ({ itemsList }): React.ReactElement => (
+export const ShopList: React.FC<ShopListProps> = ({ itemsList }) => (
   <Container>
     <Grid container spacing={2}>
       {itemsList.map((item: IShopItem, index: number) => (

@@ -3,12 +3,12 @@ import './SortingList.css';
 
 interface SortingListProps {
   currentSortType: string;
-  onChangeSortType: (property: string, value: string) => void;
+  onChangeSortType: (value: string) => void;
 }
 
 export const SortingList: React.FC<SortingListProps> = ({ currentSortType, onChangeSortType }): React.ReactElement => {
   const handleChange = (event: React.ChangeEvent<{ value: unknown }>) => {
-    onChangeSortType('orderBy', event.target.value as string);
+    onChangeSortType(event.target.value as string);
   };
 
   return (

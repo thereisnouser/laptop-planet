@@ -13,7 +13,7 @@ import {
 } from 'imports';
 import './ShopItemFull.css';
 
-export const ShopItemFull: React.FC = (): JSX.Element => {
+export const ShopItemFull: React.FC = () => {
   const params = useParams<{ id: string }>();
   const [product, setProduct] = useState<IShopItem>();
 

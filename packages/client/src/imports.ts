@@ -35,7 +35,9 @@ import { getProductsList } from './api/getProductsList';
 import { getFilteredProductsList } from './api/getFilteredProductsList';
 import { getProduct } from './api/getProduct';
 import { getPagesQuantity } from './api/getPagesQuantity';
+import { useQuery } from './hooks/useQuery';
 import { muiconfig } from './muiconfig';
+import { INITIAL_PAGE, MIN_PAGES_QUANTITY } from './constants';
 
 export {
   React,
@@ -79,6 +81,9 @@ export {
   getFilteredProductsList,
   getProduct,
   getPagesQuantity,
+  useQuery,
   muiconfig,
+  INITIAL_PAGE,
+  MIN_PAGES_QUANTITY,
 };
 export type { IShopItem };
