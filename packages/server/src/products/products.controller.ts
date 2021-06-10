@@ -57,7 +57,7 @@ export class ProductsController {
 
   @Get('count')
   async getPagesQuantity(): Promise<number> {
-    const pages = await Math.ceil(this.productsQuantity / 5);
+    const pages = await Math.ceil(this.productsQuantity / this.maxItemsOnPage);
     return pages;
   }
 
