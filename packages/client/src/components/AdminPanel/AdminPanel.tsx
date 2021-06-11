@@ -1,4 +1,4 @@
-import { React, DataGrid, getProductsList, useEffect, useState, IShopItem } from 'imports';
+import { React, DataGrid, getProductsList, useEffect, useState, IShopItem, MAX_ITEMS_ON_ADMIN_PAGE } from 'imports';
 import './AdminPanel.css';
 
 export const AdminPanel: React.FC = () => {
@@ -56,6 +56,13 @@ export const AdminPanel: React.FC = () => {
   }, []);
 
   return (
-    <DataGrid columns={columns} rows={products} showCellRightBorder autoHeight pageSize={12} className="admin-panel" />
+    <DataGrid
+      columns={columns}
+      rows={products}
+      showCellRightBorder
+      autoHeight
+      pageSize={MAX_ITEMS_ON_ADMIN_PAGE}
+      className="admin-panel"
+    />
   );
 };
