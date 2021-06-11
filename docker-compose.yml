@@ -4,9 +4,9 @@ services:
   server: 
     container_name: server
     env_file: 
-      - ./server/.production.env
+      - ./packages/server/.production.env
     build: 
-      context: ./server/
+      context: ./packages/server/
       dockerfile: ./server.dockerfile
     ports: 
       - 5000:5000
@@ -27,7 +27,7 @@ services:
     image: postgres:latest
     container_name: postgres
     env_file: 
-      - ./server/.production.env
+      - ./packages/server/.production.env
     environment: 
       PG_DATA: /var/lib/postgresql/data
     ports: 
@@ -38,7 +38,7 @@ services:
 
   migrations:
     build: 
-      context: ./server/
+      context: ./packages/server/
       dockerfile: ./migrations.dockerfile
     depends_on: 
       - postgres
