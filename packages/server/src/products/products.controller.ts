@@ -46,8 +46,7 @@ export class ProductsController {
     const orderParam = this.getOrderParam(orderProps[0] || '');
     const orderMethod = this.getOrderMethod(orderProps[1] || '');
 
-    const descriptionQuery = `description ILIKE '%${description}%'`;
-    const filterQuery = `${descriptionQuery}`;
+    const filterQuery = this.getSQLFilterQuery(description);
 
     const pagesQuantity = await this.productsService.countFilteredProductsList(filterQuery);
 
@@ -102,6 +101,16 @@ export class ProductsController {
       status: 'Product was removed',
       id: id,
     };
+  }
+
+  getSQLFilterQuery(description: string): string {
+    const descriptionQuery = this.getSQLFilterQueryByDescription(description);
+
+    return `${descriptionQuery}`;
+  }
+
+  getSQLFilterQueryByDescription(description: string): string {
+    return `description ILIKE '%${description}%'`;
   }
 
   getOffsetNumber(page: number): number {
