@@ -20,7 +20,6 @@ import { ProductsService } from './products.service';
 export class ProductsController {
   constructor(private productsService: ProductsService) {}
 
-  private productsQuantity = 1;
   private readonly maxItemsOnPage = 5;
 
   @Post()
@@ -37,7 +36,7 @@ export class ProductsController {
   }
 
   @Get('filter')
-  async getFilteredProductsList(@Query() query: FilterQueryProps): Promise<Product[]> {
+  async getFilteredProductsList(@Query() query: FilterQueryProps): Promise<IFilteringResult> {
     const { page = 1, description = '', orderBy = '' } = query;
 
     const pageNumber = Number(page);
@@ -50,7 +49,7 @@ export class ProductsController {
     const descriptionQuery = `description ILIKE '%${description}%'`;
     const filterQuery = `${descriptionQuery}`;
 
-    this.productsQuantity = await this.productsService.countFilteredProductsList(filterQuery);
+    const pagesQuantity = await this.productsService.countFilteredProductsList(filterQuery);
 
     const productsList = await this.productsService.getFilteredProductsList({
       filterQuery,
@@ -60,13 +59,10 @@ export class ProductsController {
       limitNumber: this.maxItemsOnPage,
     });
 
-    return productsList;
-  }
-
-  @Get('count')
-  async getPagesQuantity(): Promise<number> {
-    const pages = await Math.ceil(this.productsQuantity / this.maxItemsOnPage);
-    return pages;
+    return {
+      items: productsList,
+      pages: pagesQuantity,
+    };
   }
 
   @Get(':id')
@@ -142,4 +138,9 @@ interface FilterQueryProps {
   page: string;
   description: string;
   orderBy: string;
+}
+
+interface IFilteringResult {
+  items: Product[];
+  pages: number;
 }
