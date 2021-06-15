@@ -21,6 +21,7 @@ export class ProductsController {
   constructor(private productsService: ProductsService) {}
 
   private readonly maxItemsOnPage = 5;
+  private readonly orderParams = ['price', 'rating'];
 
   @Post()
   @HttpCode(204)
@@ -122,7 +123,9 @@ export class ProductsController {
   }
 
   getOrderParam(orderParam: string): string {
-    if (orderParam === 'price' || orderParam === 'rating') {
+    const isOrderParamExist = this.orderParams.includes(orderParam);
+
+    if (isOrderParamExist) {
       return orderParam;
     }
 
