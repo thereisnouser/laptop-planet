@@ -49,7 +49,8 @@ export class ProductsController {
 
     const filterQuery = this.getSQLFilterQuery(description);
 
-    const pagesQuantity = await this.productsService.countFilteredProductsList(filterQuery);
+    const productsQuantity = await this.productsService.countFilteredProductsList(filterQuery);
+    const pagesQuantity = this.getPagesQuantity(productsQuantity);
 
     const productsList = await this.productsService.getFilteredProductsList({
       filterQuery,
@@ -112,6 +113,12 @@ export class ProductsController {
 
   getSQLFilterQueryByDescription(description: string): string {
     return `description ILIKE '%${description}%'`;
+  }
+
+  getPagesQuantity(productsQuantity: number): number {
+    const pages = Math.ceil(productsQuantity / this.maxItemsOnPage);
+
+    return pages;
   }
 
   getOffsetNumber(page: number): number {
