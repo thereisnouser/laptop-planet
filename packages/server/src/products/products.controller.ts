@@ -43,9 +43,9 @@ export class ProductsController {
     const pageNumber = Number(page);
     const offsetNumber = this.getOffsetNumber(pageNumber);
 
-    const orderProps = orderBy.split(' ') || '';
-    const orderParam = this.getOrderParam(orderProps[0] || '');
-    const orderMethod = this.getOrderMethod(orderProps[1] || '');
+    const [queryOrderParam, queryOrderMethod] = orderBy.split(' ');
+    const orderParam = this.getOrderParam(queryOrderParam);
+    const orderMethod = this.getOrderMethod(queryOrderMethod);
 
     const filterQuery = this.getSQLFilterQuery(description);
 
@@ -140,7 +140,7 @@ export class ProductsController {
   }
 
   getOrderMethod(orderMethod: string): 'ASC' | 'DESC' {
-    if (orderMethod.toUpperCase() === 'DESC') {
+    if (orderMethod && orderMethod.toUpperCase() === 'DESC') {
       return 'DESC';
     }
 
