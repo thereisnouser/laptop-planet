@@ -10,6 +10,7 @@ import {
   BadRequestException,
   ValidationPipe,
   Query,
+  ParseIntPipe,
 } from '@nestjs/common';
 
 import { CreateProductDto } from './dto/create-product.dto';
@@ -37,11 +38,12 @@ export class ProductsController {
   }
 
   @Get('filter')
-  async getFilteredProductsList(@Query() query: FilterQueryProps): Promise<IFilteringResult> {
-    const { page = 1, description = '', orderBy = '' } = query;
-
-    const pageNumber = Number(page);
-    const offsetNumber = this.getOffsetNumber(pageNumber);
+  async getFilteredProductsList(
+    @Query('page', ParseIntPipe) page = 1,
+    description = '',
+    orderBy = '',
+  ): Promise<IFilteringResult> {
+    const offsetNumber = this.getOffsetNumber(page);
 
     const [queryOrderParam, queryOrderMethod] = orderBy.split(' ');
     const orderParam = this.getOrderParam(queryOrderParam);
@@ -151,12 +153,6 @@ export class ProductsController {
 interface UpdateDeleteResult {
   status: string;
   id: number;
-}
-
-interface FilterQueryProps {
-  page: string;
-  description: string;
-  orderBy: string;
 }
 
 interface IFilteringResult {
