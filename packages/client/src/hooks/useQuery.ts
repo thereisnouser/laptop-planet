@@ -8,10 +8,6 @@ export const useQuery = () => {
   const updateQuery = (property = '', value = '') => {
     const newQuery = new URLSearchParams(location.search);
 
-    if (property === 'description') {
-      newQuery.set('page', '1');
-    }
-
     if (newQuery.has(property)) {
       newQuery.set(property, value);
     } else if (property && value) {
