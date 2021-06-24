@@ -12,9 +12,11 @@ import {
   Query,
   ParseIntPipe,
 } from '@nestjs/common';
+import { ILike } from 'typeorm';
 
 import { CreateProductDto } from './dto/create-product.dto';
 import { Product } from './entities/product.entity';
+import { SQLFilterQueryResult } from './interfaces/sqlFilterQueryResult.interface';
 import { ProductsService } from './products.service';
 
 @Controller('products')
@@ -107,12 +109,8 @@ export class ProductsController {
     };
   }
 
-  getSQLFilterQuery(description: string): string {
-    return this.getSQLFilterQueryByDescription(description);
-  }
-
-  getSQLFilterQueryByDescription(description: string): string {
-    return `description ILIKE '%${description}%'`;
+  getSQLFilterQuery(description: string): SQLFilterQueryResult {
+    return { description: ILike(`%${description}%`) };
   }
 
   getPagesQuantity(productsQuantity: number): number {
