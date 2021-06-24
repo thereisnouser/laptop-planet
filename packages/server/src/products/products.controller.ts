@@ -114,9 +114,7 @@ export class ProductsController {
   }
 
   getPagesQuantity(productsQuantity: number): number {
-    const pages = Math.ceil(productsQuantity / this.maxItemsOnPage);
-
-    return pages;
+    return Math.ceil(productsQuantity / this.maxItemsOnPage);
   }
 
   getOffsetNumber(page: number): number {
