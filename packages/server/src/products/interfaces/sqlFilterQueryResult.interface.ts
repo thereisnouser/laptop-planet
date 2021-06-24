@@ -1,5 +1,5 @@
 import { FindOperator } from 'typeorm';
 
-export interface SQLFilterQueryResult {
+export interface ISQLFilterQueryResult {
   description: FindOperator<string>;
 }

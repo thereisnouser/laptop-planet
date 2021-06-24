@@ -4,7 +4,7 @@ import { DeleteResult, Repository, UpdateResult } from 'typeorm';
 
 import { Product } from './entities/product.entity';
 import { CreateProductDto } from './dto/create-product.dto';
-import { SQLFilterQueryResult } from './interfaces/sqlFilterQueryResult.interface';
+import { ISQLFilterQueryResult } from './interfaces/sqlFilterQueryResult.interface';
 
 @Injectable()
 export class ProductsService {
@@ -33,7 +33,7 @@ export class ProductsService {
       .getMany();
   }
 
-  countFilteredProductsList(filterQuery: SQLFilterQueryResult) {
+  countFilteredProductsList(filterQuery: ISQLFilterQueryResult) {
     return this.productRepository.createQueryBuilder('product').where(filterQuery).getCount();
   }
 
@@ -51,7 +51,7 @@ export class ProductsService {
 }
 
 interface SQLQueryProps {
-  filterQuery: SQLFilterQueryResult;
+  filterQuery: ISQLFilterQueryResult;
   orderParam: string;
   orderMethod: 'ASC' | 'DESC';
   offsetNumber: number;

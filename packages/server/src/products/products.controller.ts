@@ -20,7 +20,7 @@ import { FilterPropsSchema } from './schemas/filter-props.schema';
 import { FilterPropsValidationPipe } from './pipes/filter-props-validation.pipe';
 import { CreateProductDto } from './dto/create-product.dto';
 import { FilterProductsListDto } from './dto/filter-products-list.dto';
-import { SQLFilterQueryResult } from './interfaces/sqlFilterQueryResult.interface';
+import { ISQLFilterQueryResult } from './interfaces/sqlFilterQueryResult.interface';
 
 @Controller('products')
 export class ProductsController {
@@ -111,7 +111,7 @@ export class ProductsController {
     };
   }
 
-  getSQLFilterQuery(description: string): SQLFilterQueryResult {
+  getSQLFilterQuery(description: string): ISQLFilterQueryResult {
     return { description: ILike(`%${description}%`) };
   }
 
