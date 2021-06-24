@@ -108,9 +108,7 @@ export class ProductsController {
   }
 
   getSQLFilterQuery(description: string): string {
-    const descriptionQuery = this.getSQLFilterQueryByDescription(description);
-
-    return `${descriptionQuery}`;
+    return this.getSQLFilterQueryByDescription(description);
   }
 
   getSQLFilterQueryByDescription(description: string): string {
