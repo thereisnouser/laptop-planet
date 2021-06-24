@@ -10,14 +10,17 @@ import {
   BadRequestException,
   ValidationPipe,
   Query,
-  ParseIntPipe,
+  UsePipes,
 } from '@nestjs/common';
 import { ILike } from 'typeorm';
 
-import { CreateProductDto } from './dto/create-product.dto';
-import { Product } from './entities/product.entity';
-import { SQLFilterQueryResult } from './interfaces/sqlFilterQueryResult.interface';
 import { ProductsService } from './products.service';
+import { Product } from './entities/product.entity';
+import { FilterPropsSchema } from './schemas/filter-props.schema';
+import { FilterPropsValidationPipe } from './pipes/filter-props-validation.pipe';
+import { CreateProductDto } from './dto/create-product.dto';
+import { FilterProductsListDto } from './dto/filter-products-list.dto';
+import { SQLFilterQueryResult } from './interfaces/sqlFilterQueryResult.interface';
 
 @Controller('products')
 export class ProductsController {
@@ -40,11 +43,10 @@ export class ProductsController {
   }
 
   @Get('filter')
-  async getFilteredProductsList(
-    @Query('page', ParseIntPipe) page = 1,
-    description = '',
-    orderBy = '',
-  ): Promise<IFilteringResult> {
+  @UsePipes(new FilterPropsValidationPipe(FilterPropsSchema))
+  async getFilteredProductsList(@Query() params: FilterProductsListDto): Promise<IFilteringResult> {
+    const { page, description, orderBy } = params;
+
     const offsetNumber = this.getOffsetNumber(page);
 
     const [queryOrderParam, queryOrderMethod] = orderBy.split(' ');
