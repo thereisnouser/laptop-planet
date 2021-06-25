@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 
 import { CreateUserDto } from './dto/create-user.dto';
 import { GetUserDto } from './dto/get-user.dto';
+import { CreateUserResult } from './interfaces/createUserResult.interface';
 
 @Injectable()
 export class UsersService {
@@ -23,8 +24,13 @@ export class UsersService {
     },
   ];
 
-  createUser(user: CreateUserDto) {
+  createUser(user: CreateUserDto): CreateUserResult {
     this.usersList.push(user);
+
+    return {
+      status: 'User was successfully created',
+      id: user.id,
+    };
   }
 
   getUser(id: number): GetUserDto {
