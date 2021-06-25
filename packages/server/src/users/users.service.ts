@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 
 import { CreateUserDto } from './dto/create-user.dto';
+import { GetUserDto } from './dto/get-user.dto';
 
 @Injectable()
 export class UsersService {
@@ -26,13 +27,13 @@ export class UsersService {
     this.usersList.push(user);
   }
 
-  getUser(id: number): CreateUserDto {
+  getUser(id: number): GetUserDto {
     const index = this.usersList.findIndex(item => item.id === id);
 
     return this.usersList[index];
   }
 
-  getUsersList(): CreateUserDto[] {
+  getUsersList(): GetUserDto[] {
     return this.usersList;
   }
 }
