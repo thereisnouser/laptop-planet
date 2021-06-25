@@ -19,15 +19,14 @@ import { Product } from './entities/product.entity';
 import { FilterPropsSchema } from './schemas/filter-props.schema';
 import { FilterPropsValidationPipe } from './pipes/filter-props-validation.pipe';
 import { CreateProductDto } from './dto/create-product.dto';
-import { FilterProductsListDto } from './dto/filter-products-list.dto';
 import { ISQLFilterQueryResult } from './interfaces/sqlFilterQueryResult.interface';
+import { IValidatedFilteringProps } from './interfaces/validatedFilteringProps.interface';
 
 @Controller('products')
 export class ProductsController {
   constructor(private productsService: ProductsService) {}
 
   private readonly maxItemsOnPage = 5;
-  private readonly orderParams = ['price', 'rating'];
 
   @Post()
   @HttpCode(204)
@@ -44,15 +43,11 @@ export class ProductsController {
 
   @Get('filter')
   @UsePipes(new FilterPropsValidationPipe(FilterPropsSchema))
-  async getFilteredProductsList(@Query() params: FilterProductsListDto): Promise<IFilteringResult> {
+  async getFilteredProductsList(@Query() params: IValidatedFilteringProps): Promise<IFilteringResult> {
     const { page, description, orderBy } = params;
 
+    const [orderParam, orderMethod] = orderBy;
     const offsetNumber = this.getOffsetNumber(page);
-
-    const [queryOrderParam, queryOrderMethod] = orderBy.split(' ');
-    const orderParam = this.getOrderParam(queryOrderParam);
-    const orderMethod = this.getOrderMethod(queryOrderMethod);
-
     const filterQuery = this.getSQLFilterQuery(description);
 
     const productsQuantity = await this.productsService.countFilteredProductsList(filterQuery);
@@ -125,24 +120,6 @@ export class ProductsController {
     }
 
     return 0;
-  }
-
-  getOrderParam(orderParam: string): string {
-    const isOrderParamExist = this.orderParams.includes(orderParam);
-
-    if (isOrderParamExist) {
-      return orderParam;
-    }
-
-    return '';
-  }
-
-  getOrderMethod(orderMethod: string): 'ASC' | 'DESC' {
-    if (orderMethod && orderMethod.toUpperCase() === 'DESC') {
-      return 'DESC';
-    }
-
-    return 'ASC';
   }
 }
 
