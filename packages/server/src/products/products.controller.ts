@@ -36,9 +36,7 @@ export class ProductsController {
 
   @Get()
   async getProductsList(): Promise<Product[]> {
-    const productsList = await this.productsService.getProductsList();
-
-    return productsList;
+    return await this.productsService.getProductsList();
   }
 
   @Get('filter')
@@ -69,9 +67,7 @@ export class ProductsController {
 
   @Get(':id')
   async getProduct(@Param('id') id: number): Promise<Product | undefined> {
-    const product = await this.productsService.getProduct(id);
-
-    return product;
+    return await this.productsService.getProduct(id);
   }
 
   @Put(':id')
