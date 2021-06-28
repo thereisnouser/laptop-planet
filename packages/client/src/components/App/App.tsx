@@ -12,6 +12,7 @@ import {
   getFilteredProductsList,
   useQuery,
   getPagesQuantity,
+  AdminPanel,
   INITIAL_PAGE,
   MIN_PAGES_QUANTITY,
 } from 'imports';
@@ -61,6 +62,9 @@ export const App: React.FC = () => {
       </Route>
       <Route path="/product/:id">
         <ShopItemFull />
+      </Route>
+      <Route path="/admin">
+        <AdminPanel />
       </Route>
     </>
   );

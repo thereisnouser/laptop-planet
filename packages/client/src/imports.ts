@@ -16,6 +16,7 @@ import {
 } from '@material-ui/core';
 import { Search as SearchIcon } from '@material-ui/icons';
 import { Rating, Pagination } from '@material-ui/lab';
+import { DataGrid } from '@material-ui/data-grid';
 
 import { App } from './components/App/App';
 import { IShopItem } from './models/shopItem';
@@ -26,6 +27,7 @@ import { ShopList } from './components/ShopList/ShopList';
 import { ShopItem } from './components/ShopItem/ShopItem';
 import { ShopItemFull } from './components/ShopItemFull/ShopItemFull';
 import { trimDescription } from './components/ShopItem/TrimDescription';
+import { AdminPanel } from './components/AdminPanel/AdminPanel';
 import { getProductsList } from './api/getProductsList';
 import { getFilteredProductsList } from './api/getFilteredProductsList';
 import { getProduct } from './api/getProduct';
@@ -59,6 +61,7 @@ export {
   SearchIcon,
   Rating,
   Pagination,
+  DataGrid,
   App,
   Header,
   SearchPanel,
@@ -67,6 +70,7 @@ export {
   ShopItem,
   ShopItemFull,
   trimDescription,
+  AdminPanel,
   getProductsList,
   getFilteredProductsList,
   getProduct,
