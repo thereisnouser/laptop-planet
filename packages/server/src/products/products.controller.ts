@@ -103,7 +103,7 @@ export class ProductsController {
   }
 
   getSQLFilterQuery(description: string): ISQLFilterQueryResult {
-    return { description: ILike(`%${description}%`) };
+    return { description: ILike(description) };
   }
 
   getPagesQuantity(productsQuantity: number): number {
