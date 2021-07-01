@@ -9,7 +9,7 @@ import { config } from 'ormconfig';
 @Module({
   imports: [
     ConfigModule.forRoot({
-      envFilePath: `.${process.env.NODE_ENV}.env.template`,
+      envFilePath: `.${process.env.NODE_ENV}.env`,
     }),
     TypeOrmModule.forRoot(config),
     ProductsModule,
