@@ -33,7 +33,7 @@ export class UsersService {
     };
   }
 
-  getUser(id: number): GetUserDto {
+  getUser(id: number): GetUserDto | undefined {
     const index = this.usersList.findIndex(item => item.id === id);
 
     return this.usersList[index];
