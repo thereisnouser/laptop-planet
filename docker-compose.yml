@@ -17,9 +17,10 @@ services:
 
   adminer:
     image: adminer
+    container_name: adminer
     restart: always
     ports:
-    - 8080:8080
+    - 5001:5001
     links:
     - postgres
 
@@ -37,6 +38,9 @@ services:
     restart: always
 
   migrations:
+    container_name: migrations
+    env_file:
+      - ./packages/server/.production.env
     build: 
       context: ./packages/server/
       dockerfile: ./migrations.dockerfile

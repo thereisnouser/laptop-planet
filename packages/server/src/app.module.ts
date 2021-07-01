@@ -4,14 +4,14 @@ import { ConfigModule } from '@nestjs/config';
 
 import { ProductsModule } from './products/products.module';
 
-import { config } from 'ormconfig';
+import ormConfig from 'ormconfig';
 
 @Module({
   imports: [
     ConfigModule.forRoot({
       envFilePath: `.${process.env.NODE_ENV}.env`,
     }),
-    TypeOrmModule.forRoot(config),
+    TypeOrmModule.forRoot(ormConfig),
     ProductsModule,
   ],
 })
