@@ -8,28 +8,15 @@ import { IValidatedFilteringProps } from 'src/products/interfaces/validatedFilte
 export class FilterPropsValidationPipe implements PipeTransform {
   constructor(private schema: Schema) {}
 
-  private readonly orderParams = ['price', 'rating'];
-
   transform(props: FilterProductsListDto): IValidatedFilteringProps {
     const validatedProps = this.schema.validate(props).value;
 
-    const [queryOrderParam, queryOrderMethod] = validatedProps.orderBy.split(' ');
-    const orderParam = this.getOrderParam(queryOrderParam);
+    const [queryOrderParam, queryOrderMethod] = validatedProps.orderBy;
     const orderMethod = this.getOrderMethod(queryOrderMethod);
 
-    validatedProps.orderBy = [orderParam, orderMethod];
+    validatedProps.orderBy = [queryOrderParam, orderMethod];
 
     return validatedProps;
-  }
-
-  getOrderParam(orderParam: string): string {
-    const isOrderParamExist = this.orderParams.includes(orderParam);
-
-    if (isOrderParamExist) {
-      return orderParam;
-    }
-
-    return '';
   }
 
   getOrderMethod(orderMethod: string): 'ASC' | 'DESC' {
