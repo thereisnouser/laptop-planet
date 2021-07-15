@@ -10,17 +10,22 @@ import {
   BadRequestException,
   ValidationPipe,
   Query,
+  UsePipes,
 } from '@nestjs/common';
+import { ILike } from 'typeorm';
 
-import { CreateProductDto } from './dto/create-product.dto';
-import { Product } from './entities/product.entity';
 import { ProductsService } from './products.service';
+import { Product } from './entities/product.entity';
+import { FilterPropsSchema } from './schemas/filter-props.schema';
+import { FilterPropsValidationPipe } from './pipes/filter-props-validation.pipe';
+import { CreateProductDto } from './dto/create-product.dto';
+import { ISQLFilterQueryResult } from './interfaces/sqlFilterQueryResult.interface';
+import { IValidatedFilteringProps } from './interfaces/validatedFilteringProps.interface';
 
 @Controller('products')
 export class ProductsController {
   constructor(private productsService: ProductsService) {}
 
-  private productsQuantity = 1;
   private readonly maxItemsOnPage = 5;
 
   @Post()
@@ -31,41 +36,38 @@ export class ProductsController {
 
   @Get()
   async getProductsList(): Promise<Product[]> {
-    const productsList = await this.productsService.getProductsList();
-
-    return productsList;
+    return await this.productsService.getProductsList();
   }
 
   @Get('filter')
-  async getFilteredProductsList(@Query() query: FilterQueryProps): Promise<Product[]> {
-    const { page, description } = query;
-    const pageNumber = Number(page);
-    const offsetNumber = this.getOffsetNumber(pageNumber);
-    const descriptionQuery = description ? `description ILIKE '%${description}%'` : '';
-    const filterQuery = `${descriptionQuery}`;
+  @UsePipes(new FilterPropsValidationPipe(FilterPropsSchema))
+  async getFilteredProductsList(@Query() params: IValidatedFilteringProps): Promise<IFilteringResult> {
+    const { page, description, orderBy } = params;
 
-    this.productsQuantity = await this.productsService.countFilteredProductsList(filterQuery);
+    const [orderParam, orderMethod] = orderBy;
+    const offsetNumber = this.getOffsetNumber(page);
+    const filterQuery = this.getSQLFilterQuery(description);
+
+    const productsQuantity = await this.productsService.countFilteredProductsList(filterQuery);
+    const pagesQuantity = this.getPagesQuantity(productsQuantity);
 
     const productsList = await this.productsService.getFilteredProductsList({
       filterQuery,
+      orderParam,
+      orderMethod,
       offsetNumber,
       limitNumber: this.maxItemsOnPage,
     });
 
-    return productsList;
-  }
-
-  @Get('count')
-  async getPagesQuantity(): Promise<number> {
-    const pages = await Math.ceil(this.productsQuantity / this.maxItemsOnPage);
-    return pages;
+    return {
+      items: productsList,
+      pages: pagesQuantity,
+    };
   }
 
   @Get(':id')
   async getProduct(@Param('id') id: number): Promise<Product | undefined> {
-    const product = await this.productsService.getProduct(id);
-
-    return product;
+    return await this.productsService.getProduct(id);
   }
 
   @Put(':id')
@@ -100,6 +102,14 @@ export class ProductsController {
     };
   }
 
+  getSQLFilterQuery(description: string): ISQLFilterQueryResult {
+    return { description: ILike(description) };
+  }
+
+  getPagesQuantity(productsQuantity: number): number {
+    return Math.ceil(productsQuantity / this.maxItemsOnPage);
+  }
+
   getOffsetNumber(page: number): number {
     if (page > 0) {
       return this.maxItemsOnPage * (page - 1);
@@ -114,7 +124,7 @@ interface UpdateDeleteResult {
   id: number;
 }
 
-interface FilterQueryProps {
-  page: string;
-  description: string;
+interface IFilteringResult {
+  items: Product[];
+  pages: number;
 }

@@ -4,6 +4,7 @@ import { DeleteResult, Repository, UpdateResult } from 'typeorm';
 
 import { Product } from './entities/product.entity';
 import { CreateProductDto } from './dto/create-product.dto';
+import { ISQLFilterQueryResult } from './interfaces/sqlFilterQueryResult.interface';
 
 @Injectable()
 export class ProductsService {
@@ -21,17 +22,18 @@ export class ProductsService {
   }
 
   getFilteredProductsList(props: SQLQueryProps): Promise<Product[]> {
-    const { filterQuery, offsetNumber, limitNumber } = props;
+    const { filterQuery, orderParam, orderMethod, offsetNumber, limitNumber } = props;
 
     return this.productRepository
       .createQueryBuilder('product')
       .where(filterQuery)
+      .orderBy(orderParam, orderMethod)
       .offset(offsetNumber)
       .limit(limitNumber)
       .getMany();
   }
 
-  countFilteredProductsList(filterQuery: string) {
+  countFilteredProductsList(filterQuery: ISQLFilterQueryResult) {
     return this.productRepository.createQueryBuilder('product').where(filterQuery).getCount();
   }
 
@@ -49,7 +51,9 @@ export class ProductsService {
 }
 
 interface SQLQueryProps {
-  filterQuery: string;
+  filterQuery: ISQLFilterQueryResult;
+  orderParam: string;
+  orderMethod: 'ASC' | 'DESC';
   offsetNumber: number;
   limitNumber: number;
 }
