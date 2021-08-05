@@ -1,3 +1,3 @@
 # Laptop Planet
 
-Online shop of selling laptops.
+Online shop to sell laptops.
